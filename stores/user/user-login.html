@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户首页</title>
+	<link rel="stylesheet" href="../css/index.css">
+	<link rel="stylesheet" href="../css/lunbo.css">
+</head>
+<body>
+<div class="head-collect">
+	<div class="collect">
+		欢迎来到潘氏积分商城
+		<span class="collect-left">服务热线：100-001-1234</span>
+		<span class="collect-right" onclick="AddFavorite('xx积分商城',location.href);">收藏网页</span>
+	</div>
+</div>
+<div class="head-title">
+	<div class="title">
+	<div class="title-left">LOGO</div>
+	<div class="title-right">
+		<ul>
+			<li><a href="">联系我们</a></li>
+			<li><a href="">帮助疑问</a></li>
+			<li><a href="user-score.html">积分查询</a></li>
+			<li><a href="user-public.html">活动公告</a></li>
+			<li><a href="user-gift.html">礼品列表</a></li>
+			<li style="border-bottom:2px solid #ff4945"><a href="user-login.html"style="color:#ff4945">首页</a></li>
+		</ul>
+	</div>
+ </div>
+</div>
+<div class="box">
+	<div class="box-head">
+		<div class="head-left">
+			<div id="wrapper"><!-- 最外层部分 -->
+		    <div id="banner"><!-- 轮播部分 -->
+		      <ul class="imgList"><!-- 图片部分 -->
+		      <li><a href="#"><img src="../image/test2.png" width="650px" height="370px" alt=""></a></li>
+		      <li><a href="#"><img src="../image/test1.png" width="650px" height="370px" alt=""></a></li>
+		      <li><a href="#"><img src="../image/test3.jpg" width="650px" height="370px" alt=""></a></li>
+		      </ul>
+		      <ul class="indexList"><!-- 图片右下角序号部分 -->
+		        <li class="indexOn">1</li>
+		        <li>2</li>
+		        <li>3</li>
+		      </ul>
+		    </div>
+  </div>
+		</div>
+		<div class="head-right">
+			<div class="head-login" >
+				<p>用户登陆</p>
+				<div class="login-box">
+					<div>
+						<span class="login-span">账号:</span>
+						<input type="text" class="username">
+					</div>
+					<div>
+						<span class="login-span">密码:</span>
+						<input type="text" class="userpassword">
+						<a href="" class="forget">忘记密码？</a>
+					</div>
+					<div style="position:relative">
+						<span class="login-span">验证码:</span>
+						<input type="text" class="usercode">
+						<span class="codes"></span>
+					</div>
+					<div style="position:relative;margin-top: 15px;">
+						<span class="logins">登陆</span>
+						<a href="user-regist.html"><span class="registers">注册</span></a>
+					</div>
+				</div></div>
+			<div class="head-nologin" style="display:none">
+				<div class="activity-head">用户信息</div>
+				<div class="user-content">
+					<div class="avatar">
+						<img src="../image/avatar.jpg">
+					</div>
+					<div class="user-name">
+						1212123
+					</div>
+					<div class="user-level">
+						<span class="level-one">金卡会员</span>
+						<span class="level-two">(剩余</span>
+						<span class="level-three">300</span>
+						<span class="level-four">天）</span>
+					</div>
+					<div class="user-score">
+						<span>可用积分:</span>
+						<span class="score-two">11111</span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="activity">
+				<div class="activity-head">活动公告
+				<a href="" class="mores">更多>></a>
+				</div>
+				<div class="activity-content">
+					<div>1.不打阿萨德阿萨德阿萨德不打阿萨德阿萨德阿萨德不打阿萨德阿萨德阿萨德</div>
+					<div>2.不打阿萨德阿萨德阿萨德不打阿萨德阿萨德阿萨德</div>
+					<div>3.不打阿萨德阿萨德阿萨德不打阿萨德阿萨德阿萨德</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hot-product">
+		<span class="hot-left">热门推荐</span>
+		<a href="" class="hot-right">更多></a>
+	</div>
+	<div class="hot-list">
+		<ul>
+			<li>
+				<dl>
+					<dt><img src="../image/gift.jpg"></dt>
+					<dd class="shop">xx商品</dd>
+					<dd class="jifen">500积分</dd>
+					<dd class="counts">数量<input type="text"></dd>
+					<dd class="cash">立刻兑换</dd>
+				</dl>
+
+			</li>
+			<li>
+				<dl>
+					<dt><img src="../image/gift.jpg"></dt>
+					<dd class="shop">xx商品</dd>
+					<dd class="jifen">500积分</dd>
+					<dd class="counts">数量<input type="text"></dd>
+					<dd class="cash">立刻兑换</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="../image/gift.jpg"></dt>
+					<dd class="shop">xx商品</dd>
+					<dd class="jifen">500积分</dd>
+					<dd class="counts">数量<input type="text"></dd>
+					<dd class="cash">立刻兑换</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="../image/gift.jpg"></dt>
+					<dd class="shop">xx商品</dd>
+					<dd class="jifen">500积分</dd>
+					<dd class="counts">数量<input type="text"></dd>
+					<dd class="cash">立刻兑换</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="../image/gift.jpg"></dt>
+					<dd class="shop">xx商品</dd>
+					<dd class="jifen">500积分</dd>
+					<dd class="counts">数量<input type="text"></dd>
+					<dd class="cash">立刻兑换</dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
+	<div class="hot-product">
+		<span class="hot-leftjing">精品推荐</span>
+		<a href="" class="hot-right">更多></a>
+	</div>
+	<div class="hot-list">
+		<ul>
+			<li>
+				<dl>
+					<dt><img src="../image/gift.jpg"></dt>
+					<dd class="shop">xx商品</dd>
+					<dd class="jifen">500积分</dd>
+					<dd class="counts">数量<input type="text"></dd>
+					<dd class="cash">立刻兑换</dd>
+				</dl>
+
+			</li>
+			<li>
+				<dl>
+					<dt><img src="../image/gift.jpg"></dt>
+					<dd class="shop">xx商品</dd>
+					<dd class="jifen">500积分</dd>
+					<dd class="counts">数量<input type="text"></dd>
+					<dd class="cash">立刻兑换</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="../image/gift.jpg"></dt>
+					<dd class="shop">xx商品</dd>
+					<dd class="jifen">500积分</dd>
+					<dd class="counts">数量<input type="text"></dd>
+					<dd class="cash">立刻兑换</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="../image/gift.jpg"></dt>
+					<dd class="shop">xx商品</dd>
+					<dd class="jifen">500积分</dd>
+					<dd class="counts">数量<input type="text"></dd>
+					<dd class="cash">立刻兑换</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="../image/gift.jpg"></dt>
+					<dd class="shop">xx商品</dd>
+					<dd class="jifen">500积分</dd>
+					<dd class="counts">数量<input type="text"></dd>
+					<dd class="cash">立刻兑换</dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
+	<div class="rules">
+		<span class="core-rule">积分规则</span>
+		<span class="hot-alert">温馨提示</span>
+		<span class="rule-right"></span>
+	</div>
+	<div class="rule-box">
+		<div class="rule-top">
+			<p>1.积分只在同一会员账户中累计，不同账户的积分不能合并；</p>
+			<p>2.每一笔积分从产生之日起2年内有效，过期清零；</p>
+			<p>3.兑换记录和中奖记录请在个人中心-积分商城里面查询；</p>
+			<p style="margin-top:15px;">最终解释权归商家所有</p>
+		</div>
+		<div style="display:none" class="rule-bottom">
+			<p>你好请注意温馨提示</p>
+		</div>
+	</div>
+</div>
+<div class="footer"></div>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script src="../js/login.js"></script>
+<script>
+		//收藏本站代码
+	function AddFavorite(title, url) {
+		try {
+			window.external.addFavorite(url, title);
+		}
+		catch (e) {
+			try {
+				window.sidebar.addPanel(title, url, "");
+			}
+			catch (e) {
+				alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
+			}
+		}
+	}
+	//温馨提示积分规则代码	
+	$(".core-rule").click(function(){
+		$(".rule-top").show()
+		$(".rule-bottom").hide()
+		$(".core-rule").css({"border-top":"2px solid #ff4848","border-bottom":"none"})
+		$(".hot-alert").css({"border-bottom":"1px solid #e5e5e5","border-top":"none"})
+	})
+	$(".hot-alert").click(function(){
+		$(".rule-bottom").show()
+		$(".rule-top").hide()
+		$(".hot-alert").css({"border-top":"2px solid #ff4848","border-bottom":"none"})
+		$(".core-rule").css({"border-bottom":"1px solid #e5e5e5","border-top":"none"})
+	})
+	$(".core-rule").click();
+	//兑奖产品hover效果
+	$(".hot-list li").hover(function(){
+		$(this).addClass("hot-listhover")
+	},function(){
+		$(this).removeClass("hot-listhover")
+	}
+	)
+</script>
+</body>
+</html>

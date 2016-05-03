@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户管理</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/notice.css">
+</head>
+<body>
+<div class="topBox">
+		<div class="topContent">
+			<div class="logo"></div>
+			<span class="exit"></span>
+		</div>
+	</div>
+	<div class="contentBox">
+		<div class="content clear">
+			<ul class="leftBox">
+			<a href=""><li class="gift "><span>礼品管理</span></li></a>
+			<a href=""><li class="count"><span>兑换统计</span></li></a>
+			<a href=""><li class="track"><span>兑换追踪</span></li></a>
+			<a href=""><li class="userManagement active4"><span>用户管理</span></li></a>
+			<a href=""><li class="add_Notice"><span>添加公告</span></li></a>
+		</ul>
+		<div class="rightBox">
+			<div class="addNoticeBox clear">
+				<span class="noticetitle">用户管理</span>
+				<div class="head-right">
+					<input type="text">
+				</div>
+				<span class="chaxun"></span>
+			</div>
+			<div class="giftmg-box">
+				<div class="giftmg-left">
+				<div class="group-head">分组</div>
+				<div class="group-add">
+					<input type="text">
+					<span class="add-button">新建</span>	
+				</div>
+				<div class="group-content">
+					<div class="groups">
+						<span class="groups-left">研发一组</span>
+						<span class="groups-right">25人</span>
+					</div>
+				</div>
+				</div>
+				<div class="giftmg-right">
+					<div class="content-box">
+					<div class="ceshi">
+							<ul class="li-head-org">
+							<li>用户</li>
+							<li>会员等级</li>
+							<li>人员分组</li>
+							<li>剩余积分</li>
+							<li>操作</li>
+					</ul>
+					</div>
+					<div class="content-boxes" id="contentBox">
+						<ul class="li-head-orgs">
+							<li class="org-name">小米豆香锅巴</li>
+							<li class="org-id">200</li>
+							<li class="org-password">200</li>
+							<li class="org-time">推荐</li>
+							<li class="description">
+								<img src="images/description2.png" alt="" class="org-editor">
+							</li>
+						</ul>
+					</div>
+					<div class="pages">
+							<span>第<span class="current-page"></span>页/</span>
+						<span>共<span class="page-count"></span>页,</span>
+						<span>共<span class="content-totals"></span>条</span>
+						<span id="firstPage">首页</span>
+						<span id="prev">上一页</span>
+						<span id="next">下一页</span>
+						<span id="lastPage">尾页</span>
+						<input type="text" class="page-num">
+						<span id="page-jump">跳转</span>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		</div>		
+	</div>
+<div class="bcgs"></div>
+<div class="editor-user">
+	<div class="editors2">编辑用户</div>
+	<div class="form-box">
+		<div>
+			<span class="add-bgc">用户账号：</span>
+			<span class="user-org">小王</span>
+		</div>
+		<div>
+			<span class="add-bgc">会员等级：</span>
+			<span class="user-org">金卡会员</span>
+		</div>
+		<div>
+			<span class="add-bgc">剩余积分：</span>
+			<span class="user-org">1000</span>
+		</div>
+		<div>
+			<span class="add-bgc">人员分组：</span>
+			<select></select>
+		</div>
+		<div>
+			<span class="add-bgc">积分添加：</span>
+			<input type="text" class="a4" id="user-a4">
+		</div>
+		<div>
+			<span class="true">确定</span>
+			<span class="cancel">取消</span>
+		</div>
+	</div>
+</div>
+</body>
+</html>

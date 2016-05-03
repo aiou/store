@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>礼品管理</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/notice.css">
+</head>
+<body>
+<div class="topBox">
+		<div class="topContent">
+			<div class="logo"></div>
+			<span class="exit"></span>
+		</div>
+	</div>
+	<div class="contentBox">
+		<div class="content clear">
+			<ul class="leftBox">
+			<a href=""><li class="gift active1"><span>礼品管理</span></li></a>
+			<a href=""><li class="count"><span>兑换统计</span></li></a>
+			<a href=""><li class="track"><span>兑换追踪</span></li></a>
+			<a href=""><li class="userManagement"><span>用户管理</span></li></a>
+			<a href=""><li class="add_Notice"><span>添加公告</span></li></a>
+		</ul>
+		<div class="rightBox">
+			<div class="addNoticeBox clear">
+				<span class="noticetitle">礼品管理</span>
+			</div>
+			<div class="giftmg-box">
+				<div class="giftmg-left">
+					<a href="javascript:;" class="file">
+						<input type="file" name="" id="">
+					</a>
+					<div class="input-box">
+						<div>物品名称：
+						<i></i>
+						</div>
+						<input type="text" class="name">
+					</div>
+					<div class="input-box">
+						<div>兑换积分：
+						<i></i>
+						</div>
+						<input type="text" class="name">
+					</div>
+					<div class="input-box">
+						<div>总数量：
+						<i></i>
+						</div>
+						<input type="text" class="name">
+					</div>
+					<div class="input-radio">
+						<input type="radio" name="radiochooseCreat" value="yes" id="radio1" checked="checked">
+						<label for="radio1" class="label1">热门</label>
+						<input type="radio" name="radiochooseCreat" value="no" id="radio2">
+						<label for="radio2" class="label2">推荐</label>
+					</div>
+					<div class="submits"></div>
+				</div>
+				<div class="giftmg-right">
+					<div class="content-box">
+					<div class="ceshi">
+							<ul class="li-head-org">
+							<li>物品名称</li>
+							<li>兑换积分</li>
+							<li>总数量</li>
+							<li>属性</li>
+							<li>操作</li>
+					</ul>
+					</div>
+					<div class="content-boxes" id="contentBox">
+						<ul class="li-head-orgs">
+							<li class="org-name">小米豆香锅巴</li>
+							<li class="org-id">200</li>
+							<li class="org-password">200</li>
+							<li class="org-time">推荐</li>
+							<li class="description">
+								<img src="images/description2.png" alt="" class="org-editor">
+								<img src="images/description3.png" alt="" class="org-delete">
+							</li>
+						</ul>
+					</div>
+					<div class="pages">
+							<span>第<span class="current-page"></span>页/</span>
+						<span>共<span class="page-count"></span>页,</span>
+						<span>共<span class="content-totals"></span>条</span>
+						<span id="firstPage">首页</span>
+						<span id="prev">上一页</span>
+						<span id="next">下一页</span>
+						<span id="lastPage">尾页</span>
+						<input type="text" class="page-num">
+						<span id="page-jump">跳转</span>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		</div>		
+	</div>
+</body>
+</html>

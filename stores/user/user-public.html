@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>活动公告</title>
+	<link rel="stylesheet" href="../css/index.css">
+	<script type="text/javascript" src="../js/jquery.js"></script>
+</head>
+<body>
+<div class="head-collect">
+	<div class="collect">
+		欢迎来到xx积分商城
+		<span class="collect-left">服务热线：100-001-1234</span>
+		<span class="collect-right" onclick="AddFavorite('xx积分商城',location.href);">收藏网页</span>
+	</div>
+</div>
+<div class="head-title">
+	<div class="title">
+	<div class="title-left">LOGO</div>
+	<div class="title-right">
+		<ul>
+			<li><a href="">联系我们</a></li>
+			<li><a href="">帮助疑问</a></li>
+			<li><a href="user-score.html">积分查询</a></li>
+			<li style="border-bottom:2px solid #ff4945"><a href="user-public.html" style="color:#ff4945">活动公告</a></li>
+			<li ><a href="user-gift.html" >礼品列表</a></li>
+			<li><a href="user-login.html">首页</a></li>
+		</ul>
+	</div>
+ </div>
+</div>
+<div class='box-gift'>
+	<div class="banner-title">
+		<img src="../image/gift-banner.png">
+	</div>
+	<div class="public-box">
+		<div class="public-head">
+			<img src="../image/public.png">
+		</div>
+		<div class="public-content">
+			<img src="../image/public-right.png">
+			<div class="public-left">积分活动开始啦！！</div>
+			<div class="public-right">2016-02-30 15:30:00</div>
+		</div>
+		<div class="content-open">
+			<div class="open1"><img src="../image/public-bottom.png"><div class="open1-left"></div></div>
+			<div class="open2">积分活动注意事项</div>
+			<div class="open3">2016-03-30 13-26</div>
+			<div class="open4">尊敬的用户：</div>
+			<div class="open5">打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德</div>
+			<div class="open6">xx积分商城</div>
+		</div>
+			<div class="public-content">
+			<img src="../image/public-right.png">
+			<div class="public-left">积分活动开始啦！！</div>
+			<div class="public-right">2016-02-30 15:30:00</div>
+		</div>
+		<div class="content-open">
+			<div class="open1"><img src="../image/public-bottom.png"><div class="open1-left"></div></div>
+			<div class="open2">积分活动注意事项</div>
+			<div class="open3">2016-03-30 13-26</div>
+			<div class="open4">尊敬的用户：</div>
+			<div class="open5">打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德</div>
+			<div class="open6">xx积分商城</div>
+		</div>
+
+	</div>
+
+</div>
+<div class="footer"></div>
+<script type="text/javascript">
+//控制活动公告展示收缩
+$(".public-content").click(function(){
+	$(this).hide()
+	$(this).next().show()
+})
+$(".open1-left").click(function(){
+	$(this).parent().parent().hide();
+	$(this).parent().parent().prev().show()
+
+})
+</script>
+</body>
+</html>
