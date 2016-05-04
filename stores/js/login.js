@@ -39,3 +39,44 @@
     $(".infoList").find("li").removeClass("infoOn").eq(num).addClass("infoOn");
     $(".indexList").find("li").removeClass("indexOn").eq(num).addClass("indexOn");
   }
+  var token;
+  //获取验证码
+  function codes(){
+    // $.getJSON('http://101.200.192.149:80/jfstore/getCaptchaImage',function(data){
+    //   console.log(data)
+    // }
+    // )
+     $.ajax({  
+        url:"http://101.200.192.149:80/jfstore/getCaptchaImage",
+        dataType:'jsonp', 
+        type:"get", 
+        // data:'',  
+        jsonp:'callback', 
+        header:{
+          "X-XSS-Protection": "0",
+          "Content-Type":"image/jpeg"
+        },
+        success:function(result) {  
+           console.log(result)
+        },
+        error:function(result){
+         
+          console.log(1111) 
+          alert(2)
+          console.log(result)
+        }
+    })
+    //  var data=''
+    //  var url1 = "http://101.200.192.149:80/jfstore/getCaptchaImage";
+    // var xmlhttp = new XMLHttpRequest();
+    //     xmlhttp.open("get", url1, false);           
+    //     xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "*");
+    //     xmlhttp.setRequestHeader("Content-Type", "image/jpeg");
+    //     xmlhttp.send(null);
+    //     if(xmlhttp.status==200){
+    //         consolo.log(xmlhttp)
+    //     }else{
+    //       alert(1)
+    //     }
+  }
+  codes()
