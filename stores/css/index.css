@@ -212,6 +212,7 @@ a{
 	position: absolute;
 	right: 14px;
 	bottom: 0px;
+	cursor:pointer;
 }
 .logins{
 	display: inline-block;
@@ -226,6 +227,8 @@ a{
 	cursor: pointer;
 	color: #fff;
 	font-size: 12px;
+	border: 0;
+	font-family: "微软雅黑";
 }
 .registers{
 	display: inline-block;
