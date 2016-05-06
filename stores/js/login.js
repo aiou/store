@@ -93,6 +93,7 @@ var usernames
           localStorage.removeItem("refid")
           localStorage.setItem("token", admintoken)
           localStorage.setItem("refid", refids)
+          addcontent()
         }
         else if(data.code==6){
           $(".alert").html("账号或密码错误！")
