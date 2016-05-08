@@ -1,0 +1,13 @@
+html body{
+	height: 100%;
+	width: 100%;
+	background: #f6615d;
+	padding: 10px;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+div,span,a,p,{
+	font-family: "微软雅黑";
+}

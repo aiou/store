@@ -1,0 +1,83 @@
+body{
+	height: 100%;
+	background: #f6615d;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+div{
+	font-family: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
+}
+span,button,input{
+	font-family: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
+}
+.box{
+	background: #f87875;
+	position: absolute;
+	left: 5%;
+	right: 5%;
+	top: 3%;
+	bottom: 3%;
+	padding: 5% 10%;
+}
+.regist-head{
+	text-align: center;
+	color: #fff;
+	height: 10%;
+	line-height: 50px;
+}
+.box div{
+	overflow: hidden;
+	width: 100%;
+	text-align: center;
+	height: 10%;
+}
+.box input{
+	width: 100%;
+	margin: 0 auto;
+	height: 30px;
+	line-height: 30px;
+	outline: none;
+	border: 0;
+	text-indent: 10px;
+}
+.submit{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background: #ffe462;
+	color: #e97743;
+	text-align: center;
+	border: 0;
+	outline: none;
+	margin-top: 3px;
+}
+.box .bottomimg{
+	height: 25%;
+    margin-top: 5%;
+}
+.bottomimg img{
+	width: 100%;
+	height: 100%;
+}
+.box .code-head{
+	position: relative;
+	text-align: inherit;
+}
+.code-head .write-code{
+	width: 40%;
+	margin: 0;
+}
+.code-head .code-span{
+	    display: block;
+    width: 53%;
+    height: 30px;
+    line-height: 30px;
+    background: #81cc3c;
+    color: #fff;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    text-align: center;
+}

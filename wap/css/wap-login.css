@@ -1,0 +1,113 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+div{
+	font-family: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
+}
+span,button,input{
+	font-family: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
+}
+.container-1{
+	background: #f6625e;
+	padding: 5% 10%;
+}
+.login-head{
+	text-align: center;
+	color: #fee662;
+	height: 30px;
+	line-height: 30px;
+
+}
+.loginimg{
+	    height: 200px;
+    text-align: center;
+}
+.loginimg img{
+	height: 100%;
+}
+.login-content{
+	text-align: center;
+	margin-bottom: 10px;
+}
+.login-content span{
+	color: #fff;
+}
+.login-content .count{
+	color: #fee662;
+	font-size: 18px;
+}
+.login-box{
+	background: #c54e4a;
+	padding: 5% 10%;
+}
+.login-box div{
+	margin-top: 10px;
+}
+.login-box input{
+	width: 100%;
+	margin: 0 auto;
+	height: 30px;
+	line-height: 30px;
+	outline: none;
+	border: 0;
+	text-indent: 10px;
+}
+.submit{
+	    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    background: #ffe462;
+    color: #e97743;
+    text-align: center;
+    border: 0;
+    outline: none;
+    margin-top: 3px;
+}
+.forget a{
+	text-decoration: none;
+	color: #fff
+}
+.forget{
+	position: relative;
+}
+.forget2{
+	position: absolute;
+	right: 0;
+}
+.swiper-container {
+    height: 250px;
+    }
+.swiper-slide img{
+	width: 100%;
+    }
+ .container-2{
+ 	background: #ff8965;
+ 	padding: 50px 10%;
+ }
+ .notice-box{
+ 	position: relative;
+ 	background: #fff7e0;
+ 	height: 300px;
+ 	border-radius: 5px;
+ 	padding: 10px;
+ }
+ .noticeimg{
+ 	text-align: center;
+    height: 50px;
+    width: 100%;
+    color: #d97168;
+ }
+ .noticeimg img{
+ 	height: 50px;
+ }
+ .content{
+ 	margin-bottom: 10px;
+ 	color: #d97168;
+ 	font-size: 13px;
+ }
+ .pc{
+ 	color: #fff;
+ 	text-align: center;
+ 	margin-top: 15px;
+ }
