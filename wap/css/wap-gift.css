@@ -1,0 +1,107 @@
+body{
+	height: 100%;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+div{
+	font-family: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
+}
+span,button,input{
+	font-family: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
+}
+.gift-head{
+	background: #f6625e;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+}
+.return{
+	position: absolute;
+	left: 2px;
+	top: 0px;
+	display: block;
+	width: 50px;
+	height: 40px;
+}
+.gift-head img{
+	position: absolute;
+    left: 13px;
+    top: 10px;
+    height: 20px;
+}
+.notice{
+	height: 170px;
+	position: fixed;
+	top: 40px;
+	width: 100%;
+	z-index: 999;
+}
+.notice img{
+	height: 170px;
+	width: 100%;
+}
+.users{
+	height: 25px;
+    position: fixed;
+    top: 185px;
+    background: black;
+    opacity: 0.6;
+    width: 100%;
+    overflow: hidden;
+}
+.users span{
+	height: 25px;
+}
+.user-left{
+	float: left;
+	height: 25px;
+	color: #fff;
+}
+.user-right{
+	float: right;
+	height: 25px;
+	color: #fff;
+}
+.gift-box{
+	background: #ff908e;
+	padding: 10% 20%;
+	margin-top: 210px;
+	position: relative;
+}
+.gifts dt,.gifts dd{
+	text-align: center;
+
+}
+.gifts dd{
+    margin-top: 5px;
+}
+.gifts{
+	background: #fff;
+	margin-bottom: 5px;
+	padding: 10px;
+}
+.cash {
+    width: 100px;
+    text-align: center;
+    margin: 0 auto;
+    background: #fe4847;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
+    cursor: pointer;
+}
+.counts input{
+	width: 25px;
+}
+.shop{
+	color: #868686;
+}
+.jifen{
+	color: #fe4847;
+}
