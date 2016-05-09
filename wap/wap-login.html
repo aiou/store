@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/wap-login.css">
 	<link rel="stylesheet" href="css/swiper.min.css">
 	<script src="js/swiper.min.js"></script>
+	<script src="js/fastclick.js"></script>
 </head>
 <body>
 <div class="container-1">
@@ -64,6 +65,9 @@
         autoplay: 2500,
         autoplayDisableOnInteraction: false
     });
+ window.addEventListener('load', function () {
+		FastClick.attach(document.body);
+	}, false);
 </script>
 </body>
 </html>

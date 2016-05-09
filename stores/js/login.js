@@ -48,7 +48,7 @@ var usernames
   }
   //获取验证码
   $(".codes").click(function(){
-    $(this).attr("src","http://101.200.192.149:80/jfstore/getCaptchaImage?"+Math.random())
+    $(this).attr("src","http://101.200.192.149:8080/jfstore/captcha/getCaptchaImage?"+Math.random())
     })
   //用户登录验证
   $("html").keyup(function(e){
@@ -69,26 +69,25 @@ var usernames
       timestamp:'',
       code:coder
     }
-    // $.ajax({
-    //   type:"post",
-    //   url:"http://101.200.192.149:80/jfstore/checkCaptcha",
-    //   data:data,
-    //   dataType:"json",
-    //   success:function(result){
-    //     alert(1)
-    //     alert(result)
-    //      $(".logins").attr("disabled",false)
-    //   }
-    // })
     $.ajax({
+      crossDomain:true,
+      xhrFields:{withCredentials:true},
+      type:"post",
+      url:"http://101.200.192.149:8080/jfstore/captcha/checkCaptcha",
+      data:data,
+      dataType:"json",
+      success:function(result){
+        console.log(result)
+         $(".logins").attr("disabled",false)
+           $.ajax({
       type:"get",
-      url:'https://api-test.cloudp.cc:443/cloudpServer/v1/orgs/drpeng-login?adminName='+user+'&adminPass='+password,
+      url:'http://101.200.192.149:8080/jfstore/userLogin?username='+user+'&password='+password,
       dataType:"json",
       success:function(data){
         $(".submits").attr("disabled",false)
         if(data.code==0){       
           admintoken=data.data.token;
-          refids=data.data.refId
+          refids=data.data.refid
           localStorage.removeItem("token")
           localStorage.removeItem("refid")
           localStorage.setItem("token", admintoken)
@@ -107,6 +106,9 @@ var usernames
       }
 
     })
+      }
+    })
+  
   }
 }
 //判断是否登录
@@ -114,7 +116,7 @@ function addcontent(){
   var site1=localStorage.getItem("token");
   var site2=localStorage.getItem("refid");
   if((site1!=='')&&(site2!=='')){
-    $.getJSON('http://101.200.192.149:80/jfstore/showUser?token='+site1+'&id='+site2,function(data){
+    $.getJSON('http://101.200.192.149:8080/jfstore/showUser?token='+site1+'&id='+site2,function(data){
             levels=data.level
             expirats=data.expirationtime
             scores=data.score
