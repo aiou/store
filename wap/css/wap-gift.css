@@ -20,6 +20,7 @@ span,button,input{
     position: fixed;
     width: 100%;
     top: 0px;
+    z-index: 999;
 }
 .return{
 	position: absolute;
@@ -40,7 +41,7 @@ span,button,input{
 	position: fixed;
 	top: 40px;
 	width: 100%;
-	z-index: 999;
+	z-index: 998;
 }
 .notice img{
 	height: 170px;
@@ -53,6 +54,7 @@ span,button,input{
     background: black;
     opacity: 0.6;
     width: 100%;
+    z-index: 999;
     overflow: hidden;
 }
 .users span{
@@ -104,4 +106,42 @@ span,button,input{
 }
 .jifen{
 	color: #fe4847;
+}
+.pages1,.pages2{
+    width: 100%;
+    font-family: "微软雅黑";
+    font-size: 11px;
+    color: #fff;
+    margin-top: 10px;
+}
+.current-page,.page-count,.content-totals{
+    color: red;
+}
+#firstPage,#prev,#next,#page-jump,#lastPage{
+    cursor: pointer;
+    border: 1px solid #c4c4c4;
+    padding: 3px;
+    color: #fff;
+}
+.cant-click{
+    color:#969696; 
+    background:#eeeeee;
+}
+#firstPage{
+    margin-left: 10px;
+}
+.page-num{
+    padding: 3px;
+    width: 28px;
+    margin-left: 20px;
+}
+.bcgs{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #253b52;
+    opacity: 0.5;
+    display: none;
 }
