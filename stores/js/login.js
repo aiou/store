@@ -6,6 +6,7 @@ var expirats
 var scores
 var groupids
 var usernames
+var wsCache = new WebStorageCache();
   var curIndex = 0, //当前index
       imgLen = $(".imgList li").length; //图片总数
      // 定时器自动变换2.5秒每次
@@ -88,10 +89,10 @@ var usernames
         if(data.code==0){       
           admintoken=data.data.token;
           refids=data.data.refid
-          localStorage.removeItem("token")
-          localStorage.removeItem("refid")
-          localStorage.setItem("token", admintoken)
-          localStorage.setItem("refid", refids)
+          wsCache.delete('token');
+          wsCache.delete('refid');
+          wsCache.set('token',admintoken , {exp : 10});
+          wsCache.set('refid',refids , {exp : 20});
           addcontent()
         }
         else if(data.code==6){
@@ -113,8 +114,9 @@ var usernames
 }
 //判断是否登录
 function addcontent(){
-  var site1=localStorage.getItem("token");
-  var site2=localStorage.getItem("refid");
+  wsCache.deleteAllExpires();
+  var site1=wsCache.get("token");
+  var site2=wsCache.get("refid");
   if((site1!=='')&&(site2!=='')){
     $.getJSON('http://101.200.192.149:8080/jfstore/showUser?token='+site1+'&id='+site2,function(data){
             levels=data.level
