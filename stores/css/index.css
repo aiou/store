@@ -309,7 +309,6 @@ a{
 	top: 16px;
 }
 .hot-list,.gift-list{
-	height: 240px;
 	width: 960px;
 	margin: 0 auto;
 	margin-top: 20px;
@@ -329,17 +328,30 @@ a{
 	cursor: pointer;
 	/*background: url(../image/red-bcg.jpg) no-repeat 0px 0px;*/
 }
-.gift-list li{
+.gift-list .li1{
+	float: left;
+    margin-bottom: 20px;
+    width: 178px;
+    margin-right: 14px;
+    /* border: 2px solid #ff4848; */
+    list-style: none;
+    height: 240px;
+    cursor: pointer;
+    background: url(../image/hot-white.jpg) no-repeat 0px 0px;
+}
+.gift-list .li2{
 	float: left;
 	width: 178px;
-    margin-right: 17px;
+    margin-right: 14px;
+     margin-bottom: 20px;
 	/*border: 2px solid #ff4848;*/
 	list-style: none;
 	height: 240px;
+	background: #fff;
 	cursor: pointer;
-	background: url(../image/hot-white.jpg) no-repeat 0px 0px;
+	/*background: url(../image/red-bcg.jpg) no-repeat 0px 0px;*/
 }
-.hot-list .hot-listhover{
+.gift-list .hot-listhover{
 	background: url(../image/red-bcg.jpg) no-repeat 0px 0px;
 }
 .gift-list .gift-listhover{

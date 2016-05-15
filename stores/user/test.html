@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户首页</title>
+	<link rel="stylesheet" href="../css/index.css">
+	<link rel="stylesheet" href="../css/lunbo.css">
+	
+</head>
+<body>
+<button class="button">111111111</button>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script src="../js/web-storage-cache.js"></script>
+<script>
+var wsCache = new WebStorageCache();
+  wsCache.deleteAllExpires();
+// setInterval(alert(wsCache.get("token")),1000);
+$(".button").click(function(){
+wsCache.set('token',1 , {exp : 10});
+wsCache.set('refid',22, {exp : 20});
+})
+</script>
+</body>
+</html>

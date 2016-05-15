@@ -37,7 +37,7 @@
 		<div class="public-head">
 			<img src="../image/public.png">
 		</div>
-		<div class="public-content">
+		<!-- <div class="public-content">
 			<img src="../image/public-right.png">
 			<div class="public-left">积分活动开始啦！！</div>
 			<div class="public-right">2016-02-30 15:30:00</div>
@@ -60,9 +60,9 @@
 			<div class="open2">积分活动注意事项</div>
 			<div class="open3">2016-03-30 13-26</div>
 			<div class="open4">尊敬的用户：</div>
-			<div class="open5">打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德打阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德</div>
+			<div id="open5"></div>
 			<div class="open6">xx积分商城</div>
-		</div>
+		</div> -->
 
 	</div>
 
@@ -70,15 +70,38 @@
 <div class="footer"></div>
 <script type="text/javascript">
 //控制活动公告展示收缩
-$(".public-content").click(function(){
+
+$.getJSON("http://101.200.192.149:8080/jfstore/notices",function(data){
+	var totals=data.data.length
+	html=''
+	for (var i = 0; i<totals; i++) {
+		html+='<div class="public-content">'
+		html+='<img src="../image/public-right.png">'
+		html+='<div class="public-left">'+data.data[i].title+'</div>'
+		html+='<div class="public-right">'+data.data[i].time+'</div>'
+		html+='</div>'
+		html+='<div class="content-open">'
+		html+='<div class="open1"><img src="../image/public-bottom.png"><div class="open1-left"></div></div>'
+		html+='<div class="open2">'+data.data[i].title+'</div>'
+		html+='<div class="open3">'+data.data[i].time+'</div>'
+		html+='<div class="open4">尊敬的用户：</div>'
+		html+='<div id="open5">'+data.data[i].content+'</div>'
+		html+='<div class="open6">xx积分商城</div>'
+		html+='</div>'
+	};
+	$(".public-box").append(html)
+	$(".public-content").click(function(){
 	$(this).hide()
 	$(this).next().show()
-})
-$(".open1-left").click(function(){
+	})
+	$(".open1-left").click(function(){
 	$(this).parent().parent().hide();
 	$(this).parent().parent().prev().show()
 
 })
+})
+
+
 </script>
 </body>
 </html>
