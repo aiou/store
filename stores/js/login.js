@@ -134,6 +134,11 @@ function addcontent(){
 }
 }
 addcontent()
+//退出按钮
+function exit(){
+   wsCache.deleteAllExpires();
+   window.location.href="user-login.html"
+}
 //首页产品列表
 var meetingRoomData;//所有会议室
 function paging_mode(start,end){

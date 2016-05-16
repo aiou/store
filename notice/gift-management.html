@@ -16,11 +16,11 @@
 	<div class="contentBox">
 		<div class="content clear">
 			<ul class="leftBox">
-			<a href=""><li class="gift active1"><span>礼品管理</span></li></a>
-			<a href=""><li class="count"><span>兑换统计</span></li></a>
-			<a href=""><li class="track"><span>兑换追踪</span></li></a>
-			<a href=""><li class="userManagement"><span>用户管理</span></li></a>
-			<a href=""><li class="add_Notice"><span>添加公告</span></li></a>
+			<a href="gift-management.html"><li class="gift active1"><span>礼品管理</span></li></a>
+			<a href="exchange-total.html"><li class="count"><span>兑换统计</span></li></a>
+			<a href="exchange-track.html"><li class="track"><span>兑换追踪</span></li></a>
+			<a href="user-management.html"><li class="userManagement"><span>用户管理</span></li></a>
+			<a href="notice.html"><li class="add_Notice"><span>添加公告</span></li></a>
 		</ul>
 		<div class="rightBox">
 			<div class="addNoticeBox clear">
@@ -97,5 +97,37 @@
 		</div>
 		</div>		
 	</div>
+<div class="bcgs"></div>
+<div class="editor-user"style="height:340px">
+	<div class="editors2">编辑礼品</div>
+	<div class="form-box">
+		<div>
+			<span class="add-bgc">物品名称：</span>
+			<input type="text">
+		</div>
+		<div>
+			<span class="add-bgc">兑换积分：</span>
+			<input type="text">
+		</div>
+		<div>
+			<span class="add-bgc">总数量：</span>
+			<input type="text">
+		</div>
+		<div>
+			<span class="add-bgc">属性：</span>
+			<select>
+				<option value="1">热门</option>
+				<option value="2">推荐</option>
+			</select>
+		</div>
+		<div>
+			<span class="true">确定</span>
+			<span class="cancel">取消</span>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/web-storage-cache.js"></script>
+<script type="text/javascript" src="js/gift-management.js"></script>
 </body>
 </html>

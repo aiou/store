@@ -5,13 +5,15 @@
 	<title>礼品兑换</title>
 	<link rel="stylesheet" href="../css/index.css">
 	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script src="../js/web-storage-cache.js"></script>
+	<script type="text/javascript" src="../js/gift.js"></script>
 </head>
 <body>
 <div class="head-collect">
 	<div class="collect">
 		欢迎来到xx积分商城
 		<span class="collect-left">服务热线：100-001-1234</span>
-		<span class="collect-right" onclick="AddFavorite('xx积分商城',location.href);">收藏网页</span>
+		<span class="exit" onclick="exit();"></span>
 	</div>
 </div>
 <div class="head-title">
@@ -34,7 +36,7 @@
 		<img src="../image/gift-banner.png">
 	</div>
 	<div class="gift-list">
-		<ul>
+		<ul id="contentBox">
 			<li class="li1">
 				<dl>
 					<dt><img src="../image/gift.jpg"></dt>
@@ -109,23 +111,20 @@
 				</dl>
 			</li>
 		</ul>
+	<div class="pages">
+	<span>第<span class="current-page"></span>页/</span>
+	<span>共<span class="page-count"></span>页,</span>
+	<span>共<span class="content-totals"></span>条</span>
+	<span id="firstPage">首页</span>
+	<span id="prev">上一页</span>
+	<span id="next">下一页</span>
+	<span id="lastPage">尾页</span>
+	<input type="text" class="page-num">
+	<span id="page-jump">跳转</span>
+</div>
 	</div>
 </div>
+
 <div class="footer"></div>
-<script type="text/javascript">
-	//兑奖产品hover效果
-	$(".li1").hover(function(){
-		$(this).addClass("gift-listhover")
-	},function(){
-		$(this).removeClass("gift-listhover")
-	}
-	)
-	$(".li2").hover(function(){
-		$(this).addClass("hot-listhover")
-	},function(){
-		$(this).removeClass("hot-listhover")
-	}
-	)
-</script>
 </body>
 </html>

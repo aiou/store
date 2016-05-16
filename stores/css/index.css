@@ -312,7 +312,9 @@ a{
 	width: 960px;
 	margin: 0 auto;
 	margin-top: 20px;
-	  font-size: 13px;
+	font-size: 13px;
+	position: relative;
+	padding-bottom: 30px;
 }
 .hot-list ul,.gift-list{
 	overflow: hidden;
@@ -722,4 +724,44 @@ a{
 	position: absolute;
 	left: 9px;
 	top: 16px;
+}
+.exit{
+	position: absolute;
+    display: block;
+    width: 70px;
+    height: 30px;
+    background: url(../image/tuichu.png) no-repeat 0px 0px;
+    right: 20px;
+    top: 2px;
+    cursor: pointer;
+}
+.pages{
+        position: absolute;
+    bottom: 2px;
+    width: 550px;
+    left: 50%;
+    margin-left: -260px;
+    font-family: "微软雅黑";
+    font-size: 13px;
+}
+.current-page,.page-count,.content-totals{
+    color: red;
+}
+#firstPage,#prev,#next,#page-jump,#lastPage{
+    cursor: pointer;
+    border: 1px solid #c4c4c4;
+    padding: 3px;
+    color: #646464;
+}
+.cant-click{
+    color:#969696; 
+    background:#eeeeee;
+}
+#firstPage{
+    margin-left: 10px;
+}
+.page-num{
+    padding: 3px;
+    width: 28px;
+    margin-left: 20px;
 }

@@ -12,7 +12,7 @@
 	<div class="collect">
 		欢迎来到潘氏积分商城home
 		<span class="collect-left">服务热线：100-001-1234</span>
-		<span class="collect-right" onclick="AddFavorite('xx积分商城',location.href);">收藏网页</span>
+		<span class="exit" onclick="exit();"></span>
 	</div>
 </div>
 <div class="head-title">
@@ -165,19 +165,19 @@
 <script src="../js/login.js"></script>
 <script>
 		//收藏本站代码
-	function AddFavorite(title, url) {
-		try {
-			window.external.addFavorite(url, title);
-		}
-		catch (e) {
-			try {
-				window.sidebar.addPanel(title, url, "");
-			}
-			catch (e) {
-				alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
-			}
-		}
-	}
+	// function AddFavorite(title, url) {
+	// 	try {
+	// 		window.external.addFavorite(url, title);
+	// 	}
+	// 	catch (e) {
+	// 		try {
+	// 			window.sidebar.addPanel(title, url, "");
+	// 		}
+	// 		catch (e) {
+	// 			alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
+	// 		}
+	// 	}
+	// }
 	//温馨提示积分规则代码	
 	$(".core-rule").click(function(){
 		$(".rule-top").show()

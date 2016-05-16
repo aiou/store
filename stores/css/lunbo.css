@@ -16,5 +16,5 @@ ul,li{list-style: none;}
   .infoList li{display: none;}
   .infoList .infoOn{display: inline;color: white;}
   .indexList{position: absolute;right: 10px;bottom: 5px;z-index: 30;}
-  .indexList li{float: left;margin-right: 5px;padding: 2px 4px;border: 2px solid black;background: grey;cursor: pointer;}
+  .indexList li{float: left;margin-right: 5px;padding: 2px 4px;background: #fff;cursor: pointer;}
   .indexList .indexOn{background: red;font-weight: bold;color: white;}

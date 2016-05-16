@@ -11,7 +11,7 @@
 	<div class="collect">
 		欢迎来到潘氏积分商城
 		<span class="collect-left">服务热线：100-001-1234</span>
-		<span class="collect-right" onclick="AddFavorite('xx积分商城',location.href);">收藏网页</span>
+		<span class="exit" onclick="exit();"></span>
 	</div>
 </div>
 <div class="head-title">
@@ -53,5 +53,15 @@
 </div>
 <div class="records">兑奖记录<img src="../image/record.png"></div>
 </div>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script src="../js/web-storage-cache.js"></script>
+<script type="text/javascript">
+	//退出按钮
+var wsCache = new WebStorageCache();
+function exit(){
+   wsCache.deleteAllExpires();
+   window.location.href="user-login.html"
+}
+</script>
 </body>
 </html>

@@ -11,7 +11,7 @@
 	<div class="collect">
 		欢迎来到xx积分商城
 		<span class="collect-left">服务热线：100-001-1234</span>
-		<span class="collect-right" onclick="AddFavorite('xx积分商城',location.href);">收藏网页</span>
+		<span class="exit" onclick="exit();"></span>
 	</div>
 </div>
 <div class="head-title">
@@ -68,6 +68,7 @@
 
 </div>
 <div class="footer"></div>
+<script src="../js/web-storage-cache.js"></script>
 <script type="text/javascript">
 //控制活动公告展示收缩
 
@@ -100,7 +101,12 @@ $.getJSON("http://101.200.192.149:8080/jfstore/notices",function(data){
 
 })
 })
-
+//退出按钮
+var wsCache = new WebStorageCache();
+function exit(){
+   wsCache.deleteAllExpires();
+   window.location.href="user-login.html"
+}
 
 </script>
 </body>
