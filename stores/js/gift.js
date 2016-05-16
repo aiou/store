@@ -138,75 +138,75 @@ function paging_mode(start,end){
 		}
 	}
 //会议室列表跳到首页
-	$("#firstPage").click(function(){
-		var currentPage = $(".current-page").html();//当前页码
-		var pageCount = $(".page-count").html();//总页数
-		var countTotal = $(".content-totals").html();//总条数
-		if(currentPage==1 || currentPage==null){
-			return;
-		}
-		paging_mode(0,currentCount);
-		$(".current-page").html(1);
-	});
-	//前一页
-	$("#prev").click(function(){
-		var currentPage = $(".current-page").html();//当前页码
-		var pageCount = $(".page-count").html();//总页数
-		var countTotal = $(".content-totals").html();//总条数
-		if(currentPage==1){
-			openAlertWin("当前为第一页");
-			return;
-		}
-		paging_mode((currentPage-2)*currentCount,(currentPage-1)*currentCount);
-		$(".current-page").html(parseInt(currentPage)-1);//当前页码	
-	});
-	//下一页
-	$("#next").click(function(){
-		var currentPage = $(".current-page").html();//当前页码
-		var pageCount = $(".page-count").html();//总页数
-		var countTotal = $(".content-totals").html();//总条数
-		if(currentPage == totalPage){
-			openAlertWin("已经是最后一页");
-			return ; 
-		}
-		if(pageCount-currentPage==1){
-			paging_mode(currentPage*currentCount,totals);
-		}else{
-			paging_mode(currentPage*currentCount,(parseInt(currentPage)+1)*currentCount);
-		}
-		$(".current-page").html(parseInt(currentPage)+1);//当前页码
-	});
-	//会议室列表跳到尾页
-	$("#lastPage").click(function(){
-		var currentPage = $(".current-page").html();//当前页码
-		var pageCount = $(".page-count").html();//总页数
-		var countTotal = $(".content-totals").html();//总条数
-		if(currentPage == pageCount){
-			console.log("已经是尾页");
-			return;
-		}
-		paging_mode((pageCount-1)*currentCount,totals);
-		$(".current-page").html(pageCount);//当前页码
-	});
-	//按输入框值跳转页码
-	$("#page-jump").click(function(){
-		var currentPage = $(".current-page").html();//当前页码
-		var pageCount = $(".page-count").html();//总页数
-		var countTotal = $(".content-totals").html();//总条数
-		var str = $(".page-num").val();    
+  $("#firstPage").click(function(){
+    var currentPage = $(".current-page").html();//当前页码
+    var pageCount = $(".page-count").html();//总页数
+    var countTotal = $(".content-totals").html();//总条数
+    if(currentPage==1 || currentPage==null){
+      return;
+    }
+    paging_mode(0,currentCount);
+    $(".current-page").html(1);
+  });
+  //前一页
+  $("#prev").click(function(){
+    var currentPage = $(".current-page").html();//当前页码
+    var pageCount = $(".page-count").html();//总页数
+    var countTotal = $(".content-totals").html();//总条数
+    if(currentPage==1){
+      alert("当前为第一页");
+      return;
+    }
+    paging_mode((currentPage-2)*currentCount,(currentPage-1)*currentCount);
+    $(".current-page").html(parseInt(currentPage)-1);//当前页码 
+  });
+  //下一页
+  $("#next").click(function(){
+    var currentPage = $(".current-page").html();//当前页码
+    var pageCount = $(".page-count").html();//总页数
+    var countTotal = $(".content-totals").html();//总条数
+    if(currentPage == totalPage){
+      alert("已经是最后一页");
+      return ; 
+    }
+    if(pageCount-currentPage==1){
+      paging_mode(currentPage*currentCount,totals);
+    }else{
+      paging_mode(currentPage*currentCount,(parseInt(currentPage)+1)*currentCount);
+    }
+    $(".current-page").html(parseInt(currentPage)+1);//当前页码
+  });
+  //会议室列表跳到尾页
+  $("#lastPage").click(function(){
+    var currentPage = $(".current-page").html();//当前页码
+    var pageCount = $(".page-count").html();//总页数
+    var countTotal = $(".content-totals").html();//总条数
+    if(currentPage == pageCount){
+      console.log("已经是尾页");
+      return;
+    }
+    paging_mode((pageCount-1)*currentCount,totals);
+    $(".current-page").html(pageCount);//当前页码
+  });
+  //按输入框值跳转页码
+  $("#page-jump").click(function(){
+    var currentPage = $(".current-page").html();//当前页码
+    var pageCount = $(".page-count").html();//总页数
+    var countTotal = $(".content-totals").html();//总条数
+    var str = $(".page-num").val();    
         if(str.length!=0){    
-        	var reg=/^[0-9]*$/;     
-	        if(reg.test(str)){
-	        	if( str>0 && str<=pageCount){
-		        	if(str == pageCount){
-		        		paging_mode((str-1)*currentCount,countTotal); 
-		        	}else{
-		        		paging_mode((str-1)*currentCount,str*currentCount);   
-		        	}
-		        	$(".current-page").html(str);
-		        	
-	        	}
-	        }
-    	$(".page-num").val("");
-    	}
-	});
+          var reg=/^[0-9]*$/;     
+          if(reg.test(str)){
+            if( str>0 && str<=pageCount){
+              if(str == pageCount){
+                paging_mode((str-1)*currentCount,countTotal); 
+              }else{
+                paging_mode((str-1)*currentCount,str*currentCount);   
+              }
+              $(".current-page").html(str);
+              
+            }
+          }
+      $(".page-num").val("");
+      }
+  });

@@ -269,12 +269,12 @@ a{
 }
 .activity-content{
 	height: 135px;
-	padding:5px;
+	padding:10px;
 	background: #fff;
 }
 .activity-content div{
-	font-size: 12px;
-	line-height: 26px;
+	font-size: 13px;
+	line-height: 31px;
 }
 .hot-product{
 	height: 55px;
@@ -323,12 +323,10 @@ a{
 	float: left;
 	width: 178px;
     margin-right: 17px;
-	/*border: 2px solid #ff4848;*/
 	list-style: none;
 	height: 240px;
-	background: #fff;
 	cursor: pointer;
-	/*background: url(../image/red-bcg.jpg) no-repeat 0px 0px;*/
+	background: url(../image/hot-white.jpg) no-repeat 0px 0px;
 }
 .gift-list .li1{
 	float: left;
@@ -353,10 +351,22 @@ a{
 	cursor: pointer;
 	/*background: url(../image/red-bcg.jpg) no-repeat 0px 0px;*/
 }
-.gift-list .hot-listhover{
+.jingpin-list li{
+	float: left;
+	width: 178px;
+    margin-right: 17px;
+	list-style: none;
+	height: 240px;
+	cursor: pointer;
+	background: #fff;
+}
+/*.hot-list .hot-listhover{
+	background: url(../image/red-bcg.jpg) no-repeat 0px 0px;
+}*/
+.gift-list .li2:hover,.jingpin-list li:hover{
 	background: url(../image/red-bcg.jpg) no-repeat 0px 0px;
 }
-.gift-list .gift-listhover{
+.gift-list .li1:hover,.hot-list li:hover{
 	background: url(../image/hot-red.jpg) no-repeat 0px 0px;
 }
 .hot-list li:last-child,.gift-list li:last-child{
@@ -763,5 +773,10 @@ a{
 .page-num{
     padding: 3px;
     width: 28px;
-    margin-left: 20px;
+    margin-left: 20px
+}
+.activity-content div{
+text-overflow: ellipsis; 
+overflow: hidden; 
+white-space: nowrap; 
 }

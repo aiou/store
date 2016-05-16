@@ -205,4 +205,29 @@ function paging_mode(start,end){
       alert("服务器内部错误")
     }
   });
-  
+  //控制活动公告展示收缩
+
+$.getJSON("http://101.200.192.149:8080/jfstore/notices",function(result){
+ 
+  html=''
+  for (var i = 0; i<3; i++) {
+    html+='<a href="user-public.html">'
+    html+='<div>'+result.data[i].title+'</div>'
+    html+='</a>'
+    console.log(html)
+  }
+  $(".activity-content").append(html)
+})
+$(".core-rule").click(function(){
+    $(".rule-top").show()
+    $(".rule-bottom").hide()
+    $(".core-rule").css({"border-top":"2px solid #ff4848","border-bottom":"none"})
+    $(".hot-alert").css({"border-bottom":"1px solid #e5e5e5","border-top":"none"})
+  })
+  $(".hot-alert").click(function(){
+    $(".rule-bottom").show()
+    $(".rule-top").hide()
+    $(".hot-alert").css({"border-top":"2px solid #ff4848","border-bottom":"none"})
+    $(".core-rule").css({"border-bottom":"1px solid #e5e5e5","border-top":"none"})
+  })
+  $(".core-rule").click();

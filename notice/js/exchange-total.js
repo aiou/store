@@ -10,3 +10,8 @@ if((site1==null)||(site2==null)){
 }
 $("#datatime1").datetimepicker();
 $("#datatime2").datetimepicker();
+//退出按钮
+function exit(){
+   wsCache.deleteAllExpires();
+   window.location.href="user-login.html"
+}	
