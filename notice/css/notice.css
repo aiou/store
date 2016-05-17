@@ -518,3 +518,24 @@ margin-bottom: -25px;
 .ztree li span.button.ico_docu{
     background: url(image/personal.png) no-repeat 0px 0px;
 }
+.head{
+    height: 110px;
+    width: 100%;
+    background: #fff;
+    }
+.head-box{
+    width: 960px;
+    margin:0 auto;
+    line-height: 110px;
+    color: #626262;
+    font-size: 18px;
+}
+.login-content{
+    height: 860px;
+    background: url(../images/bcg.jpg);
+    background-size:cover;
+}
+.login-footer{
+    background: #fff;
+    height: 110px;
+}
