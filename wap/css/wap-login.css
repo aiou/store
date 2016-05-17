@@ -91,6 +91,7 @@ span,button,input{
  	height: 300px;
  	border-radius: 5px;
  	padding: 10px;
+ 	overflow: scroll;
  }
  .noticeimg{
  	text-align: center;

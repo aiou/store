@@ -140,7 +140,8 @@ function exit(){
    window.location.href="user-login.html"
 }
 //首页产品列表
-var meetingRoomData;//所有会议室
+var meetingRoomData;
+var meetingRoomDatas//所有会议室
 function paging_mode(start,end){
     document.getElementById("contentBox").innerHTML="";
     for(var i=start;i<end;i++){
@@ -188,16 +189,27 @@ function paging_mode(start,end){
   
   MeetingRoom.prototype.duihuan = function(){
    alert(this.ids)
+    if((site1==null)||(site2==null)){
+    alert("请先登录")
+    return flase;
+   }
+   else{
+
+   }
   }
   function firstShowList(data){
     meetingRoomData = data.data;
     totals = meetingRoomData.length;
+    if(totals<=5){
+      paging_mode(0,totals);
+    }else{
       paging_mode(0,5);
+    }
   }
   //获取所有会议室详细信息
   $.ajax({
     type: "get",
-    url:'http://101.200.192.149:8080/jfstore/products',
+    url:'http://101.200.192.149:8080/jfstore/rm',
     success: function(data){
       firstShowList(data);
     },
@@ -205,8 +217,82 @@ function paging_mode(start,end){
       alert("服务器内部错误")
     }
   });
-  //控制活动公告展示收缩
+  //精品列表
+   $.ajax({
+    type: "get",
+    url:'http://101.200.192.149:8080/jfstore/jp',
+    success: function(data){
+      firstShowLists(data);
+    },
+    error: function(erro){
+      alert("服务器内部错误")
+    }
+  });
+  function firstShowLists(data){
+    meetingRoomDatas = data.data;
+    totals = meetingRoomDatas.length;
+    if(totals<=5){
+      paging_modes(0,totals);
+    }else{
+      paging_modes(0,5);
+    }
+  }
+  function paging_modes(start,end){
+    document.getElementById("contentBox1").innerHTML="";
+    for(var i=start;i<end;i++){
+      var new_meetingrooms = new MeetingRooms(meetingRoomDatas[i]);
+    }
+  }
+  function MeetingRooms(meetingroom_data){
+    //DATA
+    this.ids = meetingroom_data.id;
+    this.names= meetingroom_data.name;
+    this.imgs= meetingroom_data.img;
+    this.needscores = meetingroom_data.needscore;
+    this.totalss = meetingroom_data.totals;
+    this.lbs = meetingroom_data.lb;
+    //DOM
+    this.ul_element = document.createElement("li");
+    this.li_name = document.createElement("dl");
+    this.li_num = document.createElement("dt");
+    this.img1 = document.createElement("img");
+    this.img1.src = this.imgs;
+    this.li_cap = document.createElement("dd");
+    this.li_cap.innerHTML = this.names;
+    this.li_cap.className = "shop";
+    this.li_org = document.createElement("dd");
+    this.li_org.innerHTML = this.needscores;
+    this.li_org.className = "jifen";
+    this.li_data = document.createElement("dd");
+    this.li_data.innerHTML = "数量";
+    this.li_data.className = "counts";
+    this.li_inputs = document.createElement("input");
+    this.li_opation = document.createElement("dd");
+    this.li_opation.innerHTML = "立刻兑换";
+    this.li_opation.className = "cash";
+    this.li_opation.addEventListener("click",this.duihuan.bind(this),false);
+    this.ul_element.appendChild(this.li_name);
+    this.li_name.appendChild(this.li_num);
+    this.li_name.appendChild(this.li_cap)
+    this.li_name.appendChild(this.li_org)
+    this.li_name.appendChild(this.li_data)
+    this.li_name.appendChild(this.li_opation)
+    this.li_num.appendChild(this.img1)
+    this.li_data.appendChild(this.li_inputs)
+    document.getElementById("contentBox1").appendChild(this.ul_element);
+  }
+  
+  MeetingRooms.prototype.duihuan = function(){
+   alert(this.ids)
+    if((site1==null)||(site2==null)){
+    alert("请先登录")
+    return flase;
+   }
+   else{
 
+   }
+  }
+  //控制活动公告展示收缩
 $.getJSON("http://101.200.192.149:8080/jfstore/notices",function(result){
  
   html=''

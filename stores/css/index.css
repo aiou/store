@@ -308,7 +308,7 @@ a{
 	right: 16px;
 	top: 16px;
 }
-.hot-list,.gift-list{
+.hot-list,.gift-list,.jingpin-list{
 	width: 960px;
 	margin: 0 auto;
 	margin-top: 20px;
@@ -354,7 +354,7 @@ a{
 .jingpin-list li{
 	float: left;
 	width: 178px;
-    margin-right: 17px;
+    margin-right: 14px;
 	list-style: none;
 	height: 240px;
 	cursor: pointer;
