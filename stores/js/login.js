@@ -78,40 +78,45 @@ var wsCache = new WebStorageCache();
       data:data,
       dataType:"json",
       success:function(result){
-        console.log(result)
-         $(".logins").attr("disabled",false)
+        console.log(result) 
+        $(".logins").attr("disabled",false)
+       if(result=='true'){       
            $.ajax({
-      type:"get",
-      url:'http://101.200.192.149:8080/jfstore/userLogin?username='+user+'&password='+password,
-      dataType:"json",
-      success:function(data){
-        $(".submits").attr("disabled",false)
-        if(data.code==0){       
-          admintoken=data.data.token;
-          refids=data.data.refid
-          wsCache.delete('token');
-          wsCache.delete('refid');
-          wsCache.set('token',admintoken , {exp : 86400});
-          wsCache.set('refid',refids , {exp :86400});
-          addcontent()
+                  type:"get",
+                  url:'http://101.200.192.149:8080/jfstore/userLogin?username='+user+'&password='+password,
+                  dataType:"json",
+                   success:function(data){
+                           $(".submits").attr("disabled",false)
+                          if(data.code==0){       
+                           admintoken=data.data.token;
+                           refids=data.data.refid
+                           wsCache.delete('token');
+                           wsCache.delete('refid');
+                           wsCache.set('token',admintoken , {exp : 86400});
+                          wsCache.set('refid',refids , {exp :86400});
+            addcontent()
+          }
+          else if(data.code==6){
+            alert("账号或密码错误！")
+          }
+          else if(data.code==999){
+            alert("服务器内部错误！")
+          }
+        },
+        error:function(data){
+          alert("错误")
         }
-        else if(data.code==6){
-          $(".alert").html("账号或密码错误！")
-        }
-        else if(data.code==999){
-          $(".alert").html("服务器内部错误！")
-        }
-      },
-      error:function(data){
-        alert("错误")
-      }
 
-    })
+      })
+           }
+      else{
+        alert("验证码错误！")
+        }
       }
-    })
-  
+      })
+    
+    }
   }
-}
 //判断是否登录
 function addcontent(){
   wsCache.deleteAllExpires();
@@ -137,6 +142,8 @@ addcontent()
 //退出按钮
 function exit(){
    wsCache.deleteAllExpires();
+  wsCache.delete('token');
+  wsCache.delete('refid');
    window.location.href="user-login.html"
 }
 //首页产品列表

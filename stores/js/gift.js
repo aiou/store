@@ -16,6 +16,8 @@
 var wsCache = new WebStorageCache();
 function exit(){
    wsCache.deleteAllExpires();
+    wsCache.delete('token');
+  wsCache.delete('refid');
    window.location.href="user-login.html"
 }
  wsCache.deleteAllExpires();

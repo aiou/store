@@ -8,7 +8,9 @@ console.log(site1)
 //退出按钮
 function exit(){
    wsCache.deleteAllExpires();
-   window.location.href="user-login.html"
+    wsCache.delete('tokencom');
+    wsCache.delete('refidcom');
+   window.location.href="login.html"
 }
 if((site1==null)||(site2==null)){
 	//window.location.href="www.baidu.com"

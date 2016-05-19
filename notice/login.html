@@ -6,6 +6,12 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/notice.css">
 </head>
+<style>
+	body{
+		background: url(images/bcg.jpg);
+		background-size: cover;
+	}
+</style>
 <body>
 <div class="head">
 	<div class="head-box">
@@ -13,7 +19,33 @@
 		欢迎来到xx企业管理平台	
 	</div>
 </div>
-<div class="login-content"></div>
-<div class="login-footer"></div>
+<div class="login-content">
+	<div class="login-left"></div>
+	<div class="login-right">
+		<div class="login-wenan">账号：</div>
+		<div>
+			<input type="text" placeholder="请输入用于注册的手机号码" class="username" maxlength="11">
+		</div>
+		<div class="login-wenan">
+			密码：
+		</div>
+		<div>
+			<input type="password" placeholder="请输入登录密码" class="userpassword">
+		</div>
+		<div class="login-wenan">
+			验证码：
+		</div>
+		<div style="position:relative">
+			<input type="text" class="usercode">
+			<img src="http://101.200.192.149:8080/jfstore/captcha/getCaptchaImage" alt="看不清？点击切换下一张图片"title="看不清？点击切换下一张" class="codes">
+		</div>
+		<div class="logins">
+			<img src="images/login.png">
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/web-storage-cache.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
 </body>
 </html>
