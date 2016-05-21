@@ -23,6 +23,7 @@ var currentCount = 10;//每一页显示的条数
 var admin_token; //全局token
 var nowId = 0;//全局会议室ID
 var alias_roomNum = 0;
+var group
 //分页显示公用方法
 function paging_mode(start,end){
 document.getElementById("contentBox").innerHTML="";
@@ -34,9 +35,9 @@ function MeetingRoom(meetingroom_data){
 		//DATA
 		 this.ids = meetingroom_data.id;
 		 this.names= meetingroom_data.name;
-		 this.imgs= meetingroom_data.img;
-		 this.needscores = meetingroom_data.needscore;
-		 this.totalss = meetingroom_data.totals;
+		 this.levels= meetingroom_data.img;
+		 this.groups = meetingroom_data.needscore;
+		 this.scores = meetingroom_data.totals;
 		 this.lbs = meetingroom_data.lb;
 		//DOM
 		this.ul_element = document.createElement("ul");
@@ -45,19 +46,13 @@ function MeetingRoom(meetingroom_data){
 		this.li_name.innerHTML = this.names;
 		this.li_name.className = "org-name";
 		this.li_num = document.createElement("li");
-		this.li_num.innerHTML = this.needscores;
+		this.li_num.innerHTML = this.levels;
 		this.li_num.className = "org-id";
 		this.li_cap = document.createElement("li");
-		this.li_cap.innerHTML = this.totalss;
+		this.li_cap.innerHTML = this.groups;
 		this.li_cap.className = "org-password";
 		this.li_org = document.createElement("li");
-		if(this.lbs==1){
-			type="热门"
-		}
-		else{
-			type="推荐"
-		}
-		this.li_org.innerHTML = type;
+		this.li_org.innerHTML = this.scores;
 		this.li_org.className = "org-time";
 		this.li_option = document.createElement("li");
 		this.li_option.className = "description";
@@ -65,12 +60,7 @@ function MeetingRoom(meetingroom_data){
 		this.img1.src = "images/description2.png";
 		this.img1.title = "编辑"
 		this.img1.addEventListener("click",this.updateRoom.bind(this),false);
-		this.img2 = document.createElement("img");
-		this.img2.src = "images/description3.png";
-		this.img2.title = "删除"
-		this.img2.addEventListener("click",this.deleteRoom.bind(this),false);
 		this.li_option.appendChild(this.img1);
-		this.li_option.appendChild(this.img2);
 		this.ul_element.appendChild(this.li_name);
 		this.ul_element.appendChild(this.li_num);
 		this.ul_element.appendChild(this.li_cap);
@@ -83,16 +73,25 @@ function MeetingRoom(meetingroom_data){
 		$(".editor-user").show();
 		nowId = this.id;
 		types  =this.lbs
-		$(".com-name").val(this.names)
-		$(".com-score").val(this.needscores)
-		$(".com-count").val(this.totalss)
-		$(".com-name").val(this.names)
-		 for(var i=0;i<$("#com-select option").length;i++) {  
-			if($("#com-select option").eq(i).val() ==types) {   	
-			$("#com-select option").eq(i).attr('selected',true);  
-			break;  
+		group=this.groups
+		$(".user-name").html(this.names)
+		$(".user-level").html(this.levels)
+		$(".user-score").html(this.scores)
+		$.getJSON('https://api.cloudp.cc:443/cloudpServer/v1/orgs/vmrs/getAllIvr_theme?token='+admin_token,function(data){
+          	 						var departmentcount=data.data.length
+       		                        html='';
+       		                        for (var i = 0; i <departmentcount; i++) {
+
+       			                    html+='<option id="'+data.data[i].id+'"value="'+data.data[i].uuid+'">'+data.data[i].name+'</option>'
+       		                            };   
+       		                        $('#user-select').append(html) 
+       		                       	for(var i=0;i<$("#user-select option").length;i++) {  
+				            			if($("#user-select option").eq(i).val() == th2) {   	
+				                		$("user-select option").eq(i).attr('selected',true);  
+				                		break;  
 				            }  
-				        }
+				        } 
+          	 				})
 	}
 	MeetingRoom.prototype.deleteRoom = function(){
 		var deleteID = this.id;
@@ -228,11 +227,9 @@ function MeetingRoom(meetingroom_data){
 	});
 //编辑礼品
 $(".true").click(function(){
-	var a=$(".com-name").val()
-	var b=$(".com-score").val()
-	var c=$(".com-count").val()
-	var d=$("#com-select option:selected").val()
-	if((a=='')||(b=='')||(c=='')||(d=='')){
+	var c=$("#user-a4").val()
+	var d=$("#user-select option:selected").val()
+	if((c=='')||(d=='')){
 		alert("请完善信息")
 		return false
 	}
@@ -251,7 +248,7 @@ $(".true").click(function(){
 		if(xmlhttp.status==200){
 		var codes=JSON.parse(xmlhttp.responseText)
 		if(codes.code==0){
-		alert("创建成功")
+		alert("编辑成功")
 		window.location.reload()
 		}
 		}
@@ -298,4 +295,77 @@ $(".submits").click(function(){
 		}
 	}
 
+})
+//显示分组
+$.getJSON("http://101.200.192.149:8080/jfstore/notices",function(result){
+  html=''
+  for (var i = 0; i<3; i++) {
+     htm+='div class="groups">'
+	 htm+='<span class="groups-left">'+研发一组+'</span>'
+	 htm+='<span class="groups-right">'+25人+'</span>'
+	 htm+='</div>'
+  }
+  $(".group-content").append(html)
+})
+//新建分组
+$(".add-button").click(function(){
+	var a=$.trim($(".add-group").val())
+	if(a==''){
+		alert("请输入名称")
+		return false
+	}
+	else{
+			var data={
+			title:a,
+			content:b
+		}
+		var url1 = 'http://101.200.192.149:8080/jfstore/addnotices';
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("POST", url1, false);           
+								        // xmlhttp.setRequestHeader("token", this.token);
+		xmlhttp.setRequestHeader("Content-Type", "application/json");
+		xmlhttp.send(JSON.stringify(data));
+
+		if(xmlhttp.status==200){
+		var codes=JSON.parse(xmlhttp.responseText)
+		if(codes.code==0){
+		alert("创建成功")
+		window.location.reload()
+		}
+		}
+		else{
+		alert("服务器内部错误")
+		}
+	}
+})
+//查询
+$(".chaxun").click(function(){
+		var organId = $("user-chaxun").val();
+		if((organId==null)||(organId=='')){
+			location.reload()
+			return false
+		}
+		else{
+		var url ='https://api.cloudp.cc:443/cloudpServer/v1/orgs/name/'+organId+'?token='+admin_token;
+		$.ajax({
+			type:"get",
+			url:url,
+			success: function(data){
+					if(data.code==0){
+					if(data.data.length==0){
+						alert("没有符合条件的会议室")
+							location.reload()
+						return;
+					}
+				}else{
+					alert(data.mes);
+				}
+				firstShowList(data);
+			
+			},
+			error: function(erro){
+				alert(erro);
+			}
+		})
+		}
 })

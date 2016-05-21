@@ -6,8 +6,8 @@ var codeLength = 6;//验证码长度
 var sendflag = false;
 var code
 var message
-var username
 function sendMessage(){  
+    
     curCount = count;  
     var tel=$("#userPhone").val();//手机号码  
     if(tel != ""){  
@@ -22,7 +22,6 @@ function sendMessage(){
             dataType:"json",
             url:'http://101.200.192.149:8080/jfstore/jfstore/sms?mobile='+tel,
             success:function(data){
-                    $("#btnSendCode1").removeAttr("disabled");
                     if(data.code==0){
                     $("#userPhone").attr("disabled",true)
                     $("#btnSendCode").attr("disabled",true)
@@ -45,22 +44,22 @@ function sendMessage(){
         })
 }
 else{
-     $(".input-alert1").show()
+            $(".input-alert1").show()
             $(".input-alert1").html( '请填写手机号码');
-            setTimeout('hideAlertWin()',2000); 
+            setTimeout('hideAlertWin()',2000);  
 }
 }
 function SetRemainTime(){  
     if(curCount == 0){                  
         window.clearInterval(InterValObj);//停止计时器  
-        $("#btnSendCode1").removeAttr("disabled");//启用按钮  
-        $("#btnSendCode1").val("重新发送验证码"); 
+        $("#btnSendCode").removeAttr("disabled");//启用按钮  
+        $("#btnSendCode").val("重新发送验证码"); 
         $('#msg').html("请输入手机验证码");
         code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效  
     }  
     else{  
         curCount--;  
-        $("#btnSendCode1").val( "("+curCount + "s)重新获取");  
+        $("#btnSendCode").val( "("+curCount + "s)重新获取");  
     }  
 } 
 function hideAlertWin(){
@@ -69,33 +68,23 @@ function hideAlertWin(){
     $(".input-alert3").hide()
     $(".input-alert4").hide()
 }
-$(".next-button").click(function(){
-     var a=$.trim($("#userPhone").val())
-     var b=$.trim($("#codeStr").val())
-     if((a=='')||(b=='')){
-        $(".input-alert2").show()
-        $(".input-alert2").html("请完善信息")
-         setTimeout('hideAlertWin()',2000); 
-         return false
-    }
-      else if(b!==code){
-        $(".input-alert2").show()
-        $(".input-alert2").html("验证码错误")
-         setTimeout('hideAlertWin()',2000); 
-         return false
-    }
-    else{
-        username=$.trim($("#userPhone").val())
-        $(".registcontent1").hide()
-        $(".registcontent2").show()
-        $(".registcontent3").hide()
-    }
-})
-$(".next-button2").click(function(){
+$(".regist-button").click(function(){
+    var a=$.trim($("#userPhone").val())
+    var b=$.trim($("#codeStr").val())
     var c=$.trim($(".password1").val())
     var d=$.trim($(".password2").val())
     var test=/[a-z0-9]{6,16}/ ;
-    if(!c.match(test)){
+    console.log(a)
+    console.log(b)
+    console.log(c)
+    console.log(d)
+    if((a=='')||(b=='')||(c=='')||(d=='')){
+        $(".input-alert4").show()
+        $(".input-alert4").html("请完善信息")
+         setTimeout('hideAlertWin()',2000); 
+         return false
+    }
+    else if(!c.match(test)){
          $(".input-alert3").show()
         $(".input-alert3").html("密码格式不对")
          setTimeout('hideAlertWin()',2000); 
@@ -112,15 +101,21 @@ $(".next-button2").click(function(){
          $(".input-alert4").html("两次输入密码不一致")
          setTimeout('hideAlertWin()',2000); 
          return false
-    } 
+    }    
+    else if(b!==code){
+        $(".input-alert2").show()
+        $(".input-alert2").html("验证码错误")
+         setTimeout('hideAlertWin()',2000); 
+         return false
+    }
     else{
-      var data={
-             "username":username,
-             "password":d
+        var data={
+             "username":a,
+             "password":c
         }
-        var url1 = 'http://101.200.192.149:8080/jfstore/updatepass';
+        var url1 = 'http://101.200.192.149:8080/jfstore/addUser';
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("PUT", url1, false);           
+        xmlhttp.open("POST", url1, false);           
                                         // xmlhttp.setRequestHeader("token", this.token);
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify(data));
@@ -129,9 +124,8 @@ $(".next-button2").click(function(){
         var codes=JSON.parse(xmlhttp.responseText)
         console.log(codes.mes)
         if(codes.code==0){
-            $(".registcontent1").hide()
-            $(".registcontent2").hide()
-            $(".registcontent3").show()
+            $(".input-alert4").show()
+            $(".input-alert4").html("恭喜你 注册成功！")
         }
         else{
             $(".input-alert4").show()
@@ -142,6 +136,5 @@ $(".next-button2").click(function(){
             $(".input-alert4").show()
             $(".input-alert4").html("服务器内部错误")
         }
-
-    }  
+    }
 })

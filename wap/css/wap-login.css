@@ -10,7 +10,7 @@ span,button,input{
 }
 .container-1{
 	background: #f6625e;
-	padding: 5% 10%;
+	padding: 5% 3%;
 }
 .login-head{
 	text-align: center;
@@ -20,15 +20,21 @@ span,button,input{
 
 }
 .loginimg{
-	    height: 200px;
+	    height: 282px;
     text-align: center;
+    background: url(../image/wap-login.png) no-repeat center center;
+    position: relative;
+    background-size: 100%;
 }
 .loginimg img{
 	height: 100%;
 }
 .login-content{
-	text-align: center;
-	margin-bottom: 10px;
+	    text-align: center;
+    position: absolute;
+    margin-bottom: 10px;
+    bottom: 5px;
+    width: 100%;
 }
 .login-content span{
 	color: #fff;
@@ -76,10 +82,11 @@ span,button,input{
 	right: 0;
 }
 .swiper-container {
-    height: 250px;
+    height: 210px;
     }
 .swiper-slide img{
 	width: 100%;
+	height: 100%;
     }
  .container-2{
  	background: #ff8965;
@@ -88,10 +95,9 @@ span,button,input{
  .notice-box{
  	position: relative;
  	background: #fff7e0;
- 	height: 300px;
+ 	min-height: 300px;
  	border-radius: 5px;
  	padding: 10px;
- 	overflow: scroll;
  }
  .noticeimg{
  	text-align: center;
@@ -103,12 +109,85 @@ span,button,input{
  	height: 50px;
  }
  .content{
- 	margin-bottom: 10px;
  	color: #d97168;
- 	font-size: 13px;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
  }
  .pc{
  	color: #fff;
  	text-align: center;
  	margin-top: 15px;
  }
+ .bcgs{
+ 	position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: black;
+    opacity: 0.6;
+    z-index: 99;
+    display: none;
+ }
+ .alerts,.alerts-delet,.alerts-add,.page{
+    width: 70%;
+    height: 210px;
+    position: absolute;
+    margin-left: -35%;
+    left: 50%;
+    top: 17%;
+    background: #fff;
+    border-radius: 5px;
+     display: none; 
+    z-index: 999;
+}
+.alert-head{
+    height: 40px;
+    background:#f6625e;
+    line-height: 40px;
+    text-indent: 35px;
+    color: #ffffff;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    position: relative;
+    border-radius: 5px 5px 0px 0px;
+}
+.img-right,.delet-right,.add-right,.page-right{
+    position: absolute;
+    right: 6px;
+    top: 8px;
+    height: 25px;
+}
+.img-left{
+    position: absolute;
+    left: 10px;
+        top: 10px;
+    height: 21px;
+}
+.alert-content{
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+    font-family: "微软雅黑";
+    font-size: 12px;
+
+}
+.alert-bottom span{
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    height: 20px;
+    line-height: 20px;
+    width: 80px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.alert-sure,.delet-sure,.add-sure,.page-sure{
+    background:#f6625e;
+    color: #fff; 
+
+}
+.alert-bottom{
+    text-align: center;
+}

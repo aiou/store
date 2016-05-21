@@ -59,6 +59,7 @@ span,button,input{
 }
 .users span{
 	height: 25px;
+    line-height: 25px;
 }
 .user-left{
 	float: left;
@@ -70,23 +71,35 @@ span,button,input{
 	height: 25px;
 	color: #fff;
 }
-.gift-box{
+#gift-box{
 	background: #ff908e;
-	padding: 10% 20%;
+	padding: 10% 15%;
 	margin-top: 210px;
 	position: relative;
+    padding-bottom: 0px;
 }
 .gifts dt,.gifts dd{
 	text-align: center;
+    height: 25px;
+    line-height: 25px;
 
 }
+
 .gifts dd{
     margin-top: 5px;
+    text-align: center;
+
 }
 .gifts{
 	background: #fff;
 	margin-bottom: 5px;
 	padding: 10px;
+}
+.gifts dt{
+     height: 150px;
+}
+.gifts dt img{
+    height: 100%;
 }
 .cash {
     width: 100px;
@@ -99,7 +112,13 @@ span,button,input{
     cursor: pointer;
 }
 .counts input{
-	width: 25px;
+	width: 30px;
+    position: absolute;
+    height: 20px;
+    line-height: 25px;
+    top: 1px;
+    margin-left: 4px;
+
 }
 .shop{
 	color: #868686;
@@ -108,11 +127,14 @@ span,button,input{
 	color: #fe4847;
 }
 .pages1,.pages2{
-    width: 100%;
-    font-family: "微软雅黑";
+        font-family: "微软雅黑";
     font-size: 11px;
     color: #fff;
     margin-top: 10px;
+    margin: 0 auto;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
 }
 .current-page,.page-count,.content-totals{
     color: red;
@@ -128,7 +150,7 @@ span,button,input{
     background:#eeeeee;
 }
 #firstPage{
-    margin-left: 10px;
+    margin-left: 1px;
 }
 .page-num{
     padding: 3px;
@@ -144,4 +166,13 @@ span,button,input{
     background: #253b52;
     opacity: 0.5;
     display: none;
+}
+.gifts .counts{
+    position: relative;
+    width: 68px;
+    margin: 0 auto;
+    text-align: left;
+}
+.wap-giftbox{
+    background: #ff908e;
 }

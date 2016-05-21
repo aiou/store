@@ -27,11 +27,20 @@
 				<span class="noticetitle">添加公告</span>
 				<a href="#" id="addNotice"><img src="images/addnotice_btn.png"></a>
 			</div>
-			<ul class="noticeUl">
-				<li><div class="noticeName"><p class="noticeText">积分商城上线啦</p></div><span class="noticeTime">2014-09-10 10：00</span><a href="#" class="editNotice">编辑</a></li>
-				<li><div class="noticeName"><p class="noticeText">积分商城上线啦</p></div><span class="noticeTime">2014-09-10 10：00</span><a href="#" class="editNotice">编辑</a></li>
-				<li><div class="noticeName"><p class="noticeText">积分商城上线啦</p></div><span class="noticeTime">2014-09-10 10：00</span><a href="#" class="editNotice">编辑</a></li>
+			<ul id="noticeUl">
+				
 			</ul>
+				<div class="pages">
+				<span>第<span class="current-page"></span>页/</span>
+				<span>共<span class="page-count"></span>页,</span>
+				<span>共<span class="content-totals"></span>条</span>
+				<span id="firstPage">首页</span>
+				<span id="prev">上一页</span>
+				<span id="next">下一页</span>
+				<span id="lastPage">尾页</span>
+				<input type="text" class="page-num">
+				<span id="page-jump">跳转</span>
+			</div>
 		</div>
 		</div>		
 	</div>
@@ -41,31 +50,33 @@
 	<div class="form-box">
 		<div>
 			<span>标题：</span>
-			<input type="text">
+			<input type="text" class="add-title">
 		</div>
 		<div class="positions">
 			<div>内容：</div>
-			<textarea name="" id="" cols="30" rows="10"></textarea>
-			<span class="true">确定</span>
-			<span class="cancel">取消</span>
+			<textarea id="add-content" cols="30" rows="10"></textarea>
+			<span class="trues">确定</span>
+			<span class="cancels">取消</span>
 		</div>
 	</div>
 </div>
 <div class="editor-notice">
-	<div class="add-head">新建公告</div>
+	<div class="add-head">编辑公告</div>
 	<div class="form-box">
 		<div>
 			<span>标题：</span>
-			<input type="text">
+			<input type="text" class="editor-title">
 		</div>
 		<div class="positions">
 			<div>内容：</div>
-			<textarea name="" id="" cols="30" rows="10"></textarea>
+			<textarea id="editor-content" cols="30" rows="10" ></textarea>
 			<span class="true">确定</span>
 			<span class="cancel">取消</span>
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/web-storage-cache.js"></script>
+<script type="text/javascript" src="js/notice.js"></script>
 </body>
 </html>

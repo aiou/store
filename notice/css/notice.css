@@ -38,15 +38,15 @@ body{font-family:"Microsoft Yahei";}
 .active2{background:url(../images/count2.png) no-repeat 37px center #fff;border-left:5px solid #fb4e3d}
 .active3{background:url(../images/track2.png) no-repeat 37px center #fff;border-left:5px solid #fb4e3d}
 .active4{background:url(../images/userManagement2.png) no-repeat 37px center #fff;border-left:5px solid #fb4e3d}
-.rightBox{float:right;width:989px;}
+.rightBox{float:right;width:989px; position: relative;}
 .addNoticeBox{width:989px;height:60px;border-bottom:1px solid #dcdcdc;background:#fff;position: relative;}
 .noticetitle{float:left;margin-left:28px;padding-top:21px;color:#656565;font-size:16px;height:20px;line-height:20px;}
 #addNotice{float:right;margin-right:18px;padding-top:16px;width:59px;height:29px;}
-.noticeUl{padding-left:27px;width:929px;padding-right:33px;}
-.noticeUl li{height:45px;}
-.noticeUl li .noticeName{float:left;width:685px;overflow:hidden;background:url(../images/notice_Bg.jpg) repeat-x left center;}
-.noticeUl li .noticeTime{float:left;width:145px;margin-left:20px;margin-right:38px;height:45px;line-height:45px;text-align:center;overflow:hidden;font-size:14px;}
-.editNotice{float:left;color:#2c67c5;font-size:16px;width:40px;height:45px;line-height:45px;text-align:center;overflow:hidden;}
+#noticeUl{padding-left:27px;width:929px;padding-right:33px;height:728px;}
+#noticeUl li{height:45px;}
+#noticeUl li .noticeName{float:left;width:685px;overflow:hidden;background:url(../images/notice_Bg.jpg) repeat-x left center;}
+#noticeUl li .noticeTime{float:left;width:145px;margin-left:20px;margin-right:38px;height:45px;line-height:45px;text-align:center;overflow:hidden;font-size:14px;}
+.editNotice{float:left;color:#2c67c5;font-size:16px;width:40px;height:45px;line-height:45px;text-align:center;overflow:hidden;cursor: pointer;}
 .noticeText{float:left;background:#f0f0f0;height:45px;line-height:45px;font-size:16px;max-width:670px;padding-right:15px;overflow:hidden;}
 .giftmg-box{
 	padding: 10px;
@@ -292,7 +292,7 @@ ul{
     margin-left: 3px;
     height: 210px;
 }
-.form-box .true{
+.form-box .true,.form-box .trues{
     position: relative;
     top: 32px;
     display: inline-block;
@@ -306,7 +306,7 @@ ul{
     border-radius: 4px;
     height: 30px;
 }
-.form-box .cancel{
+.form-box .cancel,.form-box .cancels{
     background: #969696;
      position: relative;
     top: 32px;
@@ -537,12 +537,13 @@ margin-bottom: -25px;
     margin: 0 auto;
 }
 .login-right{
-   width: 400px;
-    height: 454px;
+    width: 314px;
+    height: 331px;
     background: url(../images/loginbcg.png);
     padding-right: 40px;
     padding-left: 40px;
-    float: right; 
+    float: right;
+    padding-top: 121px; 
 }
 .login-right div{
     margin-bottom: 10px;  
@@ -559,9 +560,10 @@ margin-bottom: -25px;
 }
 .codes{
     position: absolute;
-    right: 79px;
+    right: 8px;
     height: 32px;
     top: 1px;
+    cursor: pointer;
 }
 .logins{
     cursor:pointer;   

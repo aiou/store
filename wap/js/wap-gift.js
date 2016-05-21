@@ -1,36 +1,31 @@
-	var currentCount = 20;//每一页显示的条数
-	//兑奖产品hover效果
-	$(".li1").hover(function(){
-		$(this).addClass("gift-listhover")
-	},function(){
-		$(this).removeClass("gift-listhover")
-	}
-	)
-	$(".li2").hover(function(){
-		$(this).addClass("hot-listhover")
-	},function(){
-		$(this).removeClass("hot-listhover")
-	}
-	)
-	//退出按钮
+var currentCount = 5;//每一页显示的条数
+window.addEventListener('load', function () {
+		FastClick.attach(document.body);
+}, false);
+var site1
+var site2
 var wsCache = new WebStorageCache();
+wsCache.deleteAllExpires();
+site1=wsCache.get("tokenwap");
+site2=wsCache.get("refidwap");
+$.getJSON('http://101.200.192.149:8080/jfstore/showUser?token='+site1+'&id='+site2,function(data){
+            usernames=data.username
+            userscores=data.score
+            $(".user-name").html(usernames)
+            $(".user-score").html(userscores)
+          })
+//退出按钮
 function exit(){
    wsCache.deleteAllExpires();
-    wsCache.delete('token');
-  wsCache.delete('refid');
-   window.location.href="user-login.html"
+   window.location.href="wap-login.html"
 }
- wsCache.deleteAllExpires();
- var site1=wsCache.get("token");
- var site2=wsCache.get("refid");
- var meetingRoomData;//所有会议室
 function paging_mode(start,end){
-    document.getElementById("contentBox").innerHTML="";
+    document.getElementById("gift-box").innerHTML="";
     for(var i=start;i<end;i++){
       var new_meetingroom = new MeetingRoom(meetingRoomData[i]);
     }
   }
-  function MeetingRoom(meetingroom_data){
+ function MeetingRoom(meetingroom_data){
     //DATA
     this.ids = meetingroom_data.id;
     this.names= meetingroom_data.name;
@@ -39,9 +34,8 @@ function paging_mode(start,end){
     this.totalss = meetingroom_data.totals;
     this.lbs = meetingroom_data.lb;
     //DOM
-    if(this.lbs==1){
-   	this.ul_element = document.createElement("li");
-   	this.ul_element.className="li1"
+   	this.ul_element = document.createElement("div");
+   	this.ul_element.className="gifts"
     this.li_name = document.createElement("dl");
     this.li_num = document.createElement("dt");
     this.img1 = document.createElement("img");
@@ -68,42 +62,8 @@ function paging_mode(start,end){
     this.li_name.appendChild(this.li_opation)
     this.li_num.appendChild(this.img1)
     this.li_data.appendChild(this.li_inputs)
-    document.getElementById("contentBox").appendChild(this.ul_element);
-  }
-  else{
-  	this.ul_element = document.createElement("li");
-  	this.ul_element.className="li2"
-    this.li_name = document.createElement("dl");
-    this.li_num = document.createElement("dt");
-    this.img1 = document.createElement("img");
-    this.img1.src = this.imgs;
-    this.li_cap = document.createElement("dd");
-    this.li_cap.innerHTML = this.names;
-    this.li_cap.className = "shop";
-    this.li_org = document.createElement("dd");
-    this.li_org.innerHTML = this.needscores+"积分";
-    this.li_org.className = "jifen";
-    this.li_data = document.createElement("dd");
-    this.li_data.innerHTML = "数量";
-    this.li_data.className = "counts";
-    this.li_inputs = document.createElement("input");
-    this.li_opation = document.createElement("dd");
-    this.li_opation.innerHTML = "立刻兑换";
-    this.li_opation.className = "cash";
-    this.li_opation.addEventListener("click",this.duihuan.bind(this),false);
-    this.ul_element.appendChild(this.li_name);
-    this.li_name.appendChild(this.li_num);
-    this.li_name.appendChild(this.li_cap)
-    this.li_name.appendChild(this.li_org)
-    this.li_name.appendChild(this.li_data)
-    this.li_name.appendChild(this.li_opation)
-    this.li_num.appendChild(this.img1)
-    this.li_data.appendChild(this.li_inputs)
-    document.getElementById("contentBox").appendChild(this.ul_element);
-  }
-    }
-  
-  
+    document.getElementById("gift-box").appendChild(this.ul_element);   
+   }
   MeetingRoom.prototype.duihuan = function(){
    alert(this.ids)
    if((site1==null)||(site2==null)){

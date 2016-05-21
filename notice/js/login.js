@@ -1,4 +1,8 @@
 var wsCache = new WebStorageCache();
+  //获取验证码
+  $(".codes").click(function(){
+    $(this).attr("src","http://101.200.192.149:8080/jfstore/captcha/getCaptchaImage?"+Math.random())
+    })
 //用户登录验证
   $("html").keyup(function(e){
       if(e.keyCode==13){

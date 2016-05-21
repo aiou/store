@@ -35,24 +35,24 @@
 						<div>物品名称：
 						<i></i>
 						</div>
-						<input type="text" class="name">
+						<input type="text" class="add-name">
 					</div>
 					<div class="input-box">
 						<div>兑换积分：
 						<i></i>
 						</div>
-						<input type="text" class="name">
+						<input type="text" class="add-score">
 					</div>
 					<div class="input-box">
 						<div>总数量：
 						<i></i>
 						</div>
-						<input type="text" class="name">
+						<input type="text" class="add-count">
 					</div>
 					<div class="input-radio">
-						<input type="radio" name="radiochooseCreat" value="yes" id="radio1" checked="checked">
+						<input type="radio" name="radiochooseCreat" value="1" id="radio1" checked="checked">
 						<label for="radio1" class="label1">热门</label>
-						<input type="radio" name="radiochooseCreat" value="no" id="radio2">
+						<input type="radio" name="radiochooseCreat" value="0" id="radio2">
 						<label for="radio2" class="label2">推荐</label>
 					</div>
 					<div class="submits"></div>
@@ -103,21 +103,21 @@
 	<div class="form-box">
 		<div>
 			<span class="add-bgc">物品名称：</span>
-			<input type="text">
+			<input type="text" class="com-name">
 		</div>
 		<div>
 			<span class="add-bgc">兑换积分：</span>
-			<input type="text">
+			<input type="text" class="com-score">
 		</div>
 		<div>
 			<span class="add-bgc">总数量：</span>
-			<input type="text">
+			<input type="text" class="com-count">
 		</div>
 		<div>
 			<span class="add-bgc">属性：</span>
-			<select>
+			<select id="com-select">
 				<option value="1">热门</option>
-				<option value="2">推荐</option>
+				<option value="0">推荐</option>
 			</select>
 		</div>
 		<div>

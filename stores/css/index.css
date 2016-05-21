@@ -195,9 +195,15 @@ a{
 }
 .username{
 	width: 200px;
+	text-indent: 10px;
+	height: 25px;
+	line-height: 25px;
 }
 .userpassword,.usercode{
 	width: 120px;
+	text-indent: 10px;
+	height: 25px;
+	line-height: 25px;
 }
 .forget{
 	font-size: 12px;
@@ -208,7 +214,7 @@ a{
 	display: inline-block;
 	width: 70px;
 	border: 1px solid black;
-	height: 19px;
+	height: 25px;
 	position: absolute;
 	right: 14px;
 	bottom: 0px;
@@ -372,11 +378,12 @@ a{
 .hot-list li:last-child,.gift-list li:last-child{
 	margin-right: 0px;
 }
-.hot-list dt,.gift-list dt{
+.hot-list dt,.gift-list dt,.jingpin-list dt{
 	text-align: center;
 	margin-top: 3px;
+	height: 123px;
 }
-.hot-list dd,.gift-list dd{
+.hot-list dd,.gift-list dd,.jingpin-list dd{
 	margin-top: 6px;
 }
 .hot-list dd:last-child{
@@ -598,6 +605,15 @@ a{
 	width: 510px;
 	margin: 0 auto;
 	margin-top: 5px;
+	position: relative;
+	margin-bottom: 30px;
+}
+.regist-bottom1 div{
+	width: 370px;
+	margin: 0 auto;
+	margin-top: 5px;
+	position: relative;
+	margin-bottom: 30px;
 }
 .regist-bottom span{
 	display: inline-block;
@@ -607,6 +623,11 @@ a{
 	line-height: 35px;
 	margin-right: 5px;
 }
+.next img{
+	position: absolute;
+    left: 106px;
+    cursor: pointer;
+}
 .regist-bottom input{
 	width: 250px;
 	height: 35px;
@@ -614,10 +635,29 @@ a{
 	outline: none;
 	border: 1px solid #dbdbdb;
 }
-.input-alert{
+.regist-bottom .input-alert1,.regist-bottom .input-alert2,.regist-bottom .input-alert3,.regist-bottom .input-alert4{
 	width: 510px;
-	margin: 0 auto;
-	text-indent: 140px;
+    margin: 0 auto;
+    text-indent: 92px;
+    display: none; 
+    height: 30px;
+    line-height: 30px;
+    left: 20px;
+    position: absolute;
+    top: 38px;
+    color: red;
+}
+.regist-bottom1 .input-alert1,.regist-bottom1 .input-alert2,.regist-bottom1 .input-alert3,.regist-bottom1 .input-alert4{
+	width: 510px;
+    margin: 0 auto;
+    text-indent: 92px;
+    display: none; 
+    height: 30px;
+    line-height: 30px;
+    left: 20px;
+    position: absolute;
+    top: 38px;
+    color: red;
 }
 .code-message input{
 	width: 120px;
@@ -626,7 +666,7 @@ a{
 .code-message{
 	position: relative;
 }
- .code-message .send-message{
+/* .code-message .send-message{
 	position: absolute;
 	height: 35px;
 	line-height: 35px;
@@ -635,6 +675,44 @@ a{
 	color: #ff5555;
 	border: 1px solid #ff5555;
 	cursor: pointer;
+}*/
+#btnSendCode {
+    display: block;
+    position: absolute;
+    color: #ff5555;
+    height: 35px;
+    background: #fff;
+    border-radius: 5px;
+    width: 120px;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    font-family: "微软雅黑";
+    font-size: 11px;
+    top: 2px;
+    right: 140px;
+    border: 1px solid #ff5555;
+}
+#btnSendCode1 {
+    display: block;
+    position: absolute;
+    color: #ff5555;
+    height: 35px;
+    background: #fff;
+    border-radius: 5px;
+    width: 120px;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    font-family: "微软雅黑";
+    font-size: 11px;
+    top: 2px;
+    right: 1px;
+    border: 1px solid #ff5555;
 }
 .regist-bottom .regist-button{
 	 display: inline-block;

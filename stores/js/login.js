@@ -173,7 +173,7 @@ function paging_mode(start,end){
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
     this.li_org = document.createElement("dd");
-    this.li_org.innerHTML = this.needscores;
+    this.li_org.innerHTML = this.needscores+"积分";
     this.li_org.className = "jifen";
     this.li_data = document.createElement("dd");
     this.li_data.innerHTML = "数量";
@@ -268,7 +268,7 @@ function paging_mode(start,end){
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
     this.li_org = document.createElement("dd");
-    this.li_org.innerHTML = this.needscores;
+    this.li_org.innerHTML = this.needscores+"积分";
     this.li_org.className = "jifen";
     this.li_data = document.createElement("dd");
     this.li_data.innerHTML = "数量";
@@ -307,7 +307,6 @@ $.getJSON("http://101.200.192.149:8080/jfstore/notices",function(result){
     html+='<a href="user-public.html">'
     html+='<div>'+result.data[i].title+'</div>'
     html+='</a>'
-    console.log(html)
   }
   $(".activity-content").append(html)
 })
