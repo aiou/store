@@ -1,4 +1,31 @@
 //轮播图
+ $.ajax({
+  type:"get",
+  dataType:"json",
+  url:"http://101.200.192.149:8080/jfstore/listallimg",
+  async: false,
+  success:function(data){
+        var totals=data.data.length
+  html=''
+ for (var i = 0; i<totals; i++) {
+  var url='http://101.200.192.149:8080/jfstore/img/'+data.data[i].imgpath
+  html+='<div class="swiper-slide"><img src="'+url+'"></div>'
+ }
+ $(".swiper-wrapper").append(html)
+  }
+ })
+
+ var wsCache = new WebStorageCache();
+ var swiper = new Swiper('.swiper-container', {
+        // pagination: '.swiper-pagination',
+        // nextButton: '.swiper-button-next',
+        // prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: false
+    });
 var admintoken;
 var refids
 var levels
@@ -7,46 +34,6 @@ var scores
 var groupids
 var usernames
 var wsCache = new WebStorageCache();
-  var curIndex = 0, //当前index
-      imgLen = $(".imgList li").length; //图片总数
-     // 定时器自动变换2.5秒每次
-  var autoChange = setInterval(function(){ 
-    if(curIndex < imgLen-1){ 
-     curIndex ++; 
-    }else{ 
-      curIndex = 0;
-    }
-    //调用变换处理函数
-    changeTo(curIndex); 
-  },2500);
-  //对右下角按钮index进行事件绑定处理等
-  $(".indexList").find("li").each(function(item){ 
-    $(this).hover(function(){ 
-      clearInterval(autoChange);
-      changeTo(item);
-      curIndex = item;
-    },function(){ 
-      autoChangeAgain();
-    });
-  });
-  //清除定时器时候的重置定时器--封装
-  function autoChangeAgain(){ 
-      autoChange = setInterval(function(){ 
-      if(curIndex < imgLen-1){ 
-        curIndex ++;
-      }else{ 
-        curIndex = 0;
-      }
-    //调用变换处理函数
-      changeTo(curIndex); 
-    },2500);
-    }
-  function changeTo(num){ 
-    var goLeft = num * 650;
-    $(".imgList").animate({left: "-" + goLeft + "px"},500);
-    $(".infoList").find("li").removeClass("infoOn").eq(num).addClass("infoOn");
-    $(".indexList").find("li").removeClass("indexOn").eq(num).addClass("indexOn");
-  }
   //获取验证码
   $(".codes").click(function(){
     $(this).attr("src","http://101.200.192.149:8080/jfstore/captcha/getCaptchaImage?"+Math.random())
@@ -56,6 +43,9 @@ var wsCache = new WebStorageCache();
       if(e.keyCode==13){
         $(".logins").click();  
       }}) 
+    function getLocalTime(nS) {     
+    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ')
+}
   function logins(){
     var user=$.trim($(".username").val())
     var password=$.trim($(".userpassword").val())
@@ -123,15 +113,16 @@ function addcontent(){
   var site1=wsCache.get("token");
   var site2=wsCache.get("refid");
   if((site1!=='')&&(site2!=='')){
-    $.getJSON('http://101.200.192.149:8080/jfstore/showUser?token='+site1+'&id='+site2,function(data){
-            levels=data.level
-            expirats=data.expirationtime
-            scores=data.score
-            groupids=data.groupid
-            usernames=data.username
+    $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
+            levels=data.data.level
+            expirats=data.data.expirationtime.toString().substring(0,10)
+            scores=data.data.score
+            groupids=data.data.groupid
+            usernames=data.data.username
+            var datas=getLocalTime(expirats)
             $(".user-name").html(usernames)
             $(".level-one").html(levels)
-            $(".level-three").html(expirats)
+            $(".level-three").html(datas)
             $(".score-two").html(scores) 
             $(".head-login").hide()
             $(".head-nologin").show()
@@ -277,7 +268,7 @@ function paging_mode(start,end){
     this.li_opation = document.createElement("dd");
     this.li_opation.innerHTML = "立刻兑换";
     this.li_opation.className = "cash";
-    this.li_opation.addEventListener("click",this.duihuan.bind(this),false);
+    this.li_opation.addEventListener("click",this.duihuan1.bind(this),false);
     this.ul_element.appendChild(this.li_name);
     this.li_name.appendChild(this.li_num);
     this.li_name.appendChild(this.li_cap)
@@ -289,7 +280,7 @@ function paging_mode(start,end){
     document.getElementById("contentBox1").appendChild(this.ul_element);
   }
   
-  MeetingRooms.prototype.duihuan = function(){
+  MeetingRooms.prototype.duihuan1 = function(){
    alert(this.ids)
     if((site1==null)||(site2==null)){
     alert("请先登录")

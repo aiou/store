@@ -24,16 +24,17 @@
 	<div class="contentBox">
 		<div class="content clear">
 			<ul class="leftBox">
-			<a href="gift-management.html"><li class="gift"><span>礼品管理</span></li></a>
-			<a href="exchange-total.html"><li class="count active2"><span>兑换统计</span></li></a>
-			<a href="exchange-track.html"><li class="track"><span>兑换追踪</span></li></a>
-			<a href="user-management.html"><li class="userManagement"><span>用户管理</span></li></a>
-			<a href="notice.html"><li class="add_Notice"><span>添加公告</span></li></a>
-		</ul>
+				<li class="gift"><a href="gift-management.html"><span>礼品管理</span></a></li>
+				<li class="count active2"><a href="exchange-total.html"><span>兑换统计</span></a></li>
+				<li class="track"><a href="exchange-track.html"><span>兑换追踪</span></a></li>
+				<li class="userManagement"><a href="user-management.html"><span>用户管理</span></a></li>
+				<li class="add_Notice"><a href="notice.html"><span>添加公告</span></a></li>
+				<li class="add_Img"><a href="img.html"><span>添加图片</span></a></li>
+			</ul>
 		<div class="rightBox">
 			<div class="addNoticeBox clear">
 				<span class="noticetitle">兑换统计</span>
-				<div class="head-right">
+				<div class="head-right" style="display:none">
 					<input type="text" id="datatime1" placeholder="点击获取日期">
 					<i></i>
 					<input type="text" id="datatime2" placeholder="点击获取日期">
@@ -44,22 +45,14 @@
 					<div class="content-box">
 					<div class="ceshi">
 							<ul class="li-head-exchange">
-							<li>物品名称</li>
-							<li>兑换积分</li>
-							<li>总数量</li>
-							<li>属性</li>
+							<li>用户名</li>
+							<li>兑换礼品</li>
+							<li>兑换数量</li>
+							<li>礼品积分</li>
 							<li>兑换时间</li>
 					</ul>
 					</div>
 					<div class="content-boxes" id="contentBox">
-						<ul class="li-head-exchanges">
-							<li class="org-name">小米豆香锅巴</li>
-							<li class="org-id">200</li>
-							<li class="org-password">200</li>
-							<li class="org-time">推荐</li>
-							<li class="description">2010-04-03 14:00
-							</li>
-						</ul>
 					</div>
 					<div class="pages">
 							<span>第<span class="current-page"></span>页/</span>

@@ -251,7 +251,7 @@ a{
 	font-size: 12px;
 }
 .activity{
-	margin-top: 8px;
+	margin-top: 27px;
 
 }
 .activity-head{
@@ -274,7 +274,7 @@ a{
     width: 48px;
 }
 .activity-content{
-	height: 135px;
+	height: 119px;
 	padding:10px;
 	background: #fff;
 }
@@ -734,6 +734,8 @@ a{
 	width: 960px;
 	margin: 0 auto;
 	min-height: 510px;
+	position: relative;
+	height: 
 }
 .public-head{
 	height: 50px;
@@ -924,4 +926,98 @@ a{
 text-overflow: ellipsis; 
 overflow: hidden; 
 white-space: nowrap; 
+}
+.giftmg-box {
+    padding: 10px;
+    overflow: hidden;
+    position: relative;
+    height: 745px;
+    width: 976px;
+    margin: 0 auto;
+}
+.content-box{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.content-box div:first-child {
+    background: #fe7877;
+}
+.content-box div {
+    height: 40px;
+    line-height: 40px;
+}
+.li-head-exchange,.li-head-org,.li-head-track{
+    overflow: hidden;
+    background: #ffe7dd;
+}
+ul{
+    list-style: none;
+}
+.li-head-exchange li,.li-head-exchanges li{
+    width: 190px;
+    float: left;
+    font-family: '微软雅黑';
+    font-size: 13px;
+    text-align: center;
+    height: 40px;
+}
+.li-head-org li,.li-head-orgs li{
+    width: 140px;
+    float: left;
+    font-family: '微软雅黑';
+    font-size: 13px;
+    text-align: center;
+    height: 40px;
+}
+.li-head-track li,.li-head-tracks li{
+    width: 150px;
+    float: left;
+    font-family: '微软雅黑';
+    font-size: 13px;
+    text-align: center;
+    height: 40px;
+}
+.content-box .li-head-exchange li:first-child,.content-box .li-head-exchanges li:first-child {
+    width: 190px;
+}
+.content-box .li-head-org li:first-child,.content-box .li-head-orgs li:first-child{
+    width: 160px;
+}
+.content-box .li-head-track li:first-child,.content-box .li-head-tracks li:first-child {
+    width: 190px;
+}
+.description img{
+    margin-left: 10px;
+    cursor: pointer;
+}
+.pages{
+    position: absolute;
+    bottom: 30px;
+    width: 420px;
+    left:50%;
+    margin-left: -210px;
+    font-family: "微软雅黑";
+    font-size: 13px;
+}
+.current-page,.page-count,.content-totals{
+    color: red;
+}
+#firstPage,#prev,#next,#page-jump,#lastPage{
+    cursor: pointer;
+    border: 1px solid #c4c4c4;
+    padding: 3px;
+    color: #646464;
+}
+.cant-click{
+    color:#969696; 
+    background:#eeeeee;
+}
+#firstPage{
+    margin-left: 10px;
+}
+.page-num{
+    padding: 3px;
+    width: 28px;
+    margin-left: 20px;
 }

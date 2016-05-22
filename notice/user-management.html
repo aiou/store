@@ -16,19 +16,20 @@
 	<div class="contentBox">
 		<div class="content clear">
 			<ul class="leftBox">
-			<a href="gift-management.html"><li class="gift "><span>礼品管理</span></li></a>
-			<a href="exchange-total.html"><li class="count"><span>兑换统计</span></li></a>
-			<a href="exchange-track.html"><li class="track"><span>兑换追踪</span></li></a>
-			<a href="user-management.html"><li class="userManagement active4"><span>用户管理</span></li></a>
-			<a href="notice.html"><li class="add_Notice"><span>添加公告</span></li></a>
-		</ul>
+				<li class="gift "><a href="gift-management.html"><span>礼品管理</span></a></li>
+				<li class="count"><a href="exchange-total.html"><span>兑换统计</span></a></li>
+				<li class="track"><a href="exchange-track.html"><span>兑换追踪</span></a></li>
+				<li class="userManagement active4"><a href="user-management.html"><span>用户管理</span></a></li>
+				<li class="add_Notice"><a href="notice.html"><span>添加公告</span></a></li>
+				<li class="add_Img"><a href="img.html"><span>添加图片</span></a></li>
+			</ul>
 		<div class="rightBox">
 			<div class="addNoticeBox clear">
 				<span class="noticetitle">用户管理</span>
-				<div class="head-right">
+				<div class="head-right" style="display:none">
 					<input type="text" class="user-chaxun">
 				</div>
-				<span class="chaxun"></span>
+				<span class="chaxun" style="display:none"></span>
 			</div>
 			<div class="giftmg-box">
 				<div class="giftmg-left">
@@ -37,11 +38,7 @@
 					<input type="text" class="add-group">
 					<span class="add-button">新建</span>	
 				</div>
-				<div class="group-content">
-					<div class="groups">
-						<span class="groups-left">研发一组</span>
-						<span class="groups-right">25人</span>
-					</div>
+				<div id="group-content">
 				</div>
 				</div>
 				<div class="giftmg-right">

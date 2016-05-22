@@ -1,7 +1,8 @@
 var site1
 var site2
 var type
-var types
+var group
+var nowId
 var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
 site1=wsCache.get("tokencom");
@@ -15,7 +16,34 @@ function exit(){
    window.location.href="login.html"
 }
 if((site1==null)||(site2==null)){
-	//window.location.href="www.baidu.com"
+	window.location.href="login.html"
+}
+else{
+		//获取所有会议室详细信息
+	var meetingRoomNum = "";
+	var displayName = "";
+	$.ajax({
+		type: "get",
+		url:'http://101.200.192.149:8080/jfstore/listalluser',
+		success: function(data){
+			firstShowList(data);
+		},
+		error: function(erro){
+			alert("获取所有会议室失败");
+		}
+	});
+	$.ajax({
+		type: 'get',
+		url: 'http://101.200.192.149:8080/jfstore/listgroup',
+		success: function(data){
+		for(var i=0;i<data.data.length;i++){
+		 	var room_alias = new RoomAlias(data.data[i]);
+		}
+	},
+		error: function(erro){
+				alert("获取分组失败");
+			}
+		});
 }
 var organizationData;//所有机构
 var meetingRoomData;//所有会议室
@@ -34,22 +62,22 @@ document.getElementById("contentBox").innerHTML="";
 function MeetingRoom(meetingroom_data){
 		//DATA
 		 this.ids = meetingroom_data.id;
-		 this.names= meetingroom_data.name;
-		 this.levels= meetingroom_data.img;
-		 this.groups = meetingroom_data.needscore;
-		 this.scores = meetingroom_data.totals;
-		 this.lbs = meetingroom_data.lb;
+		 this.usernames= meetingroom_data.username;
+		 this.levels= meetingroom_data.level;
+		 this.groupnames = meetingroom_data.groupName;
+		 this.scores = meetingroom_data.score;
+		 this.groupids= meetingroom_data.id;
 		//DOM
 		this.ul_element = document.createElement("ul");
 		this.ul_element.className = "li-head-orgs";
 		this.li_name = document.createElement("li");
-		this.li_name.innerHTML = this.names;
+		this.li_name.innerHTML = this.usernames;
 		this.li_name.className = "org-name";
 		this.li_num = document.createElement("li");
 		this.li_num.innerHTML = this.levels;
 		this.li_num.className = "org-id";
 		this.li_cap = document.createElement("li");
-		this.li_cap.innerHTML = this.groups;
+		this.li_cap.innerHTML = this.groupnames;
 		this.li_cap.className = "org-password";
 		this.li_org = document.createElement("li");
 		this.li_org.innerHTML = this.scores;
@@ -71,59 +99,26 @@ function MeetingRoom(meetingroom_data){
 		MeetingRoom.prototype.updateRoom = function(){
 		$(".bcgs").show();
 		$(".editor-user").show();
-		nowId = this.id;
-		types  =this.lbs
-		group=this.groups
-		$(".user-name").html(this.names)
+		nowId = this.ids;
+		group=this.groupids
+		$(".user-name").html(this.usernames)
 		$(".user-level").html(this.levels)
 		$(".user-score").html(this.scores)
-		$.getJSON('https://api.cloudp.cc:443/cloudpServer/v1/orgs/vmrs/getAllIvr_theme?token='+admin_token,function(data){
+		$.getJSON('http://101.200.192.149:8080/jfstore/listgroup',function(data){
           	 						var departmentcount=data.data.length
        		                        html='';
        		                        for (var i = 0; i <departmentcount; i++) {
 
-       			                    html+='<option id="'+data.data[i].id+'"value="'+data.data[i].uuid+'">'+data.data[i].name+'</option>'
+       			                    html+='<option id="'+data.data[i].id+'"value="'+data.data[i].uuid+'">'+data.data[i].groupName+'</option>'
        		                            };   
        		                        $('#user-select').append(html) 
        		                       	for(var i=0;i<$("#user-select option").length;i++) {  
-				            			if($("#user-select option").eq(i).val() == th2) {   	
+				            			if($("#user-select option").eq(i).val() ==group) {   	
 				                		$("user-select option").eq(i).attr('selected',true);  
 				                		break;  
 				            }  
 				        } 
           	 				})
-	}
-	MeetingRoom.prototype.deleteRoom = function(){
-		var deleteID = this.id;
-		if(confirm("确定要删除该会议室？")){
-			$.ajax({
-			type: 'delete',
-			url: 'https://api-test.cloudp.cc:443/cloudpServer/v1/orgs/vmrs/'+this.id+'?token='+admin_token,
-			success: function(data){
-				for(var i=0;i<meetingRoomData.length;i++){
-					if(deleteID == meetingRoomData[i].id){
-						meetingRoomData.splice($.inArray(meetingRoomData[i],meetingRoomData),1);
-						var a = parseInt($(".current-page").html());
-						var b = $(".page-count").html();
-						var c = $(".content-totals").html();
-						var d =  Math.ceil(meetingRoomData.length/currentCount);
-						if(a<d){
-							paging_mode((a-1)*currentCount,a*currentCount);
-						}else{
-							paging_mode((a-1)*currentCount,meetingRoomData.length);
-							$(".page-count").html(d);
-						}
-						totals = meetingRoomData.length;
-						$(".content-totals").html(meetingRoomData.length);
-					}
-				}
-			},
-			error: function(erro){
-				alert("删除会议室失败");
-			}
-		});
-		}
-		
 	}
 //首次加载会议室列表
 	function firstShowList(data){
@@ -139,19 +134,7 @@ function MeetingRoom(meetingroom_data){
 			paging_mode(0,currentCount);
 		}
 	}
-	//获取所有会议室详细信息
-	var meetingRoomNum = "";
-	var displayName = "";
-	$.ajax({
-		type: "get",
-		url:'http://101.200.192.149:8080/jfstore/products',
-		success: function(data){
-			firstShowList(data);
-		},
-		error: function(erro){
-			alert("获取所有会议室失败");
-		}
-	});
+
 //会议室列表跳到首页
 	$("#firstPage").click(function(){
 		var currentPage = $(".current-page").html();//当前页码
@@ -262,7 +245,7 @@ $(".cancel").click(function(){
 	$(".editor-user").hide()
 })
 $(".submits").click(function(){
-	var a=
+	// var a=
 	var b=$(".add-name").val()
 	var c=$(".add-score").val()
 	var d=$(".add-count").val()
@@ -297,16 +280,43 @@ $(".submits").click(function(){
 
 })
 //显示分组
-$.getJSON("http://101.200.192.149:8080/jfstore/notices",function(result){
-  html=''
-  for (var i = 0; i<3; i++) {
-     htm+='div class="groups">'
-	 htm+='<span class="groups-left">'+研发一组+'</span>'
-	 htm+='<span class="groups-right">'+25人+'</span>'
-	 htm+='</div>'
-  }
-  $(".group-content").append(html)
-})
+
+function RoomAlias(room_alias){
+		this.ids = room_alias.id;
+		this.groupNames = room_alias.groupName;
+		this.div1 = document.createElement("div");
+		this.div1.className = "groups";
+		this.div2 = document.createElement("span");
+		this.div2.className="groups-left"
+		this.div2.innerHTML = this.groupNames;
+		this.div3 = document.createElement("span");
+		this.div3.className="groups-right"		
+		this.div3.addEventListener("click",this.delete.bind(this),false);
+		this.div1.appendChild(this.div2);
+		this.div1.appendChild(this.div3);
+		$("#group-content").append(this.div1);
+	}
+RoomAlias.prototype.delete = function(){
+		var deletid=this.ids
+		$.ajax({
+			type:"DELETE",
+			url:'http://101.200.192.149:8080/jfstore/delgroup?id='+deletid,
+			dataType:"json",
+			success:function(data){
+				if(data.code==0){
+				alert("删除分组成功")
+				window.location.reload()
+				}
+				else{
+				alert("删除分组失败")
+				}
+			},
+			error:function(data){
+				alert("服务器内部错误")
+			}			
+	})
+	}
+
 //新建分组
 $(".add-button").click(function(){
 	var a=$.trim($(".add-group").val())
@@ -315,11 +325,10 @@ $(".add-button").click(function(){
 		return false
 	}
 	else{
-			var data={
-			title:a,
-			content:b
+	var data={
+			groupName:a
 		}
-		var url1 = 'http://101.200.192.149:8080/jfstore/addnotices';
+		var url1 = 'http://101.200.192.149:8080/jfstore/addgroup';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("POST", url1, false);           
 								        // xmlhttp.setRequestHeader("token", this.token);
@@ -329,8 +338,11 @@ $(".add-button").click(function(){
 		if(xmlhttp.status==200){
 		var codes=JSON.parse(xmlhttp.responseText)
 		if(codes.code==0){
-		alert("创建成功")
+		alert("添加分组成功")
 		window.location.reload()
+		}
+		else{
+		alert("添加分组失败")
 		}
 		}
 		else{

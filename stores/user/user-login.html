@@ -5,6 +5,7 @@
 	<title>用户首页</title>
 	<link rel="stylesheet" href="../css/index.css">
 	<link rel="stylesheet" href="../css/lunbo.css">
+	<link rel="stylesheet" href="../css/swiper.min.css">
 	
 </head>
 <body>
@@ -33,20 +34,14 @@
 <div class="box">
 	<div class="box-head">
 		<div class="head-left">
-			<div id="wrapper"><!-- 最外层部分 -->
-		    <div id="banner"><!-- 轮播部分 -->
-		      <ul class="imgList"><!-- 图片部分 -->
-		      <li><a href="#"><img src="../image/test2.png" width="650px" height="370px" alt=""></a></li>
-		      <li><a href="#"><img src="../image/test1.png" width="650px" height="370px" alt=""></a></li>
-		      <li><a href="#"><img src="../image/test3.jpg" width="650px" height="370px" alt=""></a></li>
-		      </ul>
-		      <ul class="indexList"><!-- 图片右下角序号部分 -->
-		        <li class="indexOn">1</li>
-		        <li>2</li>
-		        <li>3</li>
-		      </ul>
-		    </div>
-  </div>
+		<div class="swiper-container">
+        <div class="swiper-wrapper">
+<!--             <div class="swiper-slide"><img src="image/test1.png"></div>
+            <div class="swiper-slide"><img src="image/wap-exchange.jpg"></div> -->
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+</div>
 		</div>
 		<div class="head-right">
 			<div class="head-login" >
@@ -159,6 +154,7 @@
 </div>
 <div class="footer"></div>
 <script type="text/javascript" src="../js/jquery.js"></script>
+<script src="../js/swiper.min.js"></script>
 <script src="../js/web-storage-cache.js"></script>
 <script src="../js/login.js"></script>
 <script>

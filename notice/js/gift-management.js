@@ -13,9 +13,25 @@ function exit(){
     wsCache.delete('tokencom');
     wsCache.delete('refidcom');
    window.location.href="login.html"
+
 }
 if((site1==null)||(site2==null)){
-	//window.location.href="www.baidu.com"
+	 window.location.href="login.html"
+}
+else{
+		//获取所有会议室详细信息
+	var meetingRoomNum = "";
+	var displayName = "";
+	$.ajax({
+		type: "get",
+		url:'http://101.200.192.149:8080/jfstore/products',
+		success: function(data){
+			firstShowList(data);
+		},
+		error: function(erro){
+			alert("获取所有会议室失败");
+		}
+	});
 }
 var organizationData;//所有机构
 var meetingRoomData;//所有会议室
@@ -96,7 +112,7 @@ function MeetingRoom(meetingroom_data){
 	}
 	MeetingRoom.prototype.deleteRoom = function(){
 		var deleteID = this.id;
-		if(confirm("确定要删除该会议室？")){
+		if(confirm("确定要删除该物品？")){
 			$.ajax({
 			type: 'delete',
 			url: 'https://api-test.cloudp.cc:443/cloudpServer/v1/orgs/vmrs/'+this.id+'?token='+admin_token,
@@ -140,19 +156,7 @@ function MeetingRoom(meetingroom_data){
 			paging_mode(0,currentCount);
 		}
 	}
-	//获取所有会议室详细信息
-	var meetingRoomNum = "";
-	var displayName = "";
-	$.ajax({
-		type: "get",
-		url:'http://101.200.192.149:8080/jfstore/products',
-		success: function(data){
-			firstShowList(data);
-		},
-		error: function(erro){
-			alert("获取所有会议室失败");
-		}
-	});
+
 //会议室列表跳到首页
 	$("#firstPage").click(function(){
 		var currentPage = $(".current-page").html();//当前页码
@@ -265,21 +269,23 @@ $(".cancel").click(function(){
 	$(".editor-user").hide()
 })
 $(".submits").click(function(){
-	var a=
+	// var a=
 	var b=$(".add-name").val()
 	var c=$(".add-score").val()
 	var d=$(".add-count").val()
 	var e=$("input[name='radiochooseCreat']:checked").val()
-	if((a=='')||(b=='')||(c=='')||(d=='')||(e=='')){
+	if((b=='')||(c=='')||(d=='')||(e=='')){
 		alert("请完善信息")
 		return false
 	}
 	else{
 			var data={
-			title:a,
-			content:b
+			 		  "name": b,
+					  "needscore": c,
+					  "totals": d,
+					  "lb": e
 		}
-		var url1 = 'http://101.200.192.149:8080/jfstore/addnotices';
+		var url1 = 'http://101.200.192.149:8080/jfstore/addpro';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("POST", url1, false);           
 								        // xmlhttp.setRequestHeader("token", this.token);
@@ -289,7 +295,7 @@ $(".submits").click(function(){
 		if(xmlhttp.status==200){
 		var codes=JSON.parse(xmlhttp.responseText)
 		if(codes.code==0){
-		alert("创建成功")
+		alert("添加成功")
 		window.location.reload()
 		}
 		}

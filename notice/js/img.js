@@ -1,7 +1,7 @@
 var site1
 var site2
 var noticeid
-var currentCount=10;
+var currentCount=8;
 var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
 site1=wsCache.get("tokencom");
@@ -12,16 +12,13 @@ function exit(){
   wsCache.delete('refidcom');
    window.location.href="login.html"
 }
-function getLocalTime(nS) {     
-    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ')
-}
 if((site1==null)||(site2==null)){
 	window.location.href="login.html"
 }
 else{
 	  $.ajax({
     type: "get",
-    url:'http://101.200.192.149:8080/jfstore/notices',
+    url:'http://101.200.192.149:8080/jfstore/listallimg',
     success: function(data){
       firstShowList(data);
     },
@@ -31,7 +28,7 @@ else{
   });
 }
  function paging_mode(start,end){
-    document.getElementById("noticeUl").innerHTML="";
+    document.getElementById("contentBox").innerHTML="";
     for(var i=start;i<end;i++){
       var new_meetingroom = new MeetingRoom(meetingRoomData[i]);
     }
@@ -39,37 +36,44 @@ else{
   function MeetingRoom(meetingroom_data){
     //DATA
     this.ids = meetingroom_data.id;
-    this.titles= meetingroom_data.title;
-    this.times= meetingroom_data.time.toString().substring(0,10);
-    this.contents = meetingroom_data.content;
+    this.imgpaths= meetingroom_data.imgpath;
+    var a="http://101.200.192.149:8080/jfstore/img/"+this.imgpaths
     //DOM
-    var datas=getLocalTime(this.times)
    	this.ul_element = document.createElement("li");
-    this.li_name = document.createElement("div");
-    this.li_name.className="noticeName";
-    this.li_namep=document.createElement("p")
-    this.li_namep.className="noticeText";
-    this.li_namep.innerHTML=this.titles;
-    this.li_num = document.createElement("span");
-    this.li_num.className="noticeTime"
-    this.li_num.innerHTML=datas
-    this.li_cap = document.createElement("span");
-    this.li_cap.innerHTML = "编辑";
-    this.li_cap.className = "editNotice";
-    this.li_cap.addEventListener("click",this.editor.bind(this),false);
+    this.li_name = document.createElement("img");
+    this.li_name.src=a;
+    this.div1=document.createElement("div")
+    this.div1.className="boxes"
+    this.imgs=document.createElement("img")
+    this.imgs.src="images/delete.png"
+    this.ul_element.addEventListener("click",this.delete.bind(this),false);
     this.ul_element.appendChild(this.li_name);
-    this.li_name.appendChild(this.li_namep);
-    this.ul_element.appendChild(this.li_num);
-    this.ul_element.appendChild(this.li_cap);
-    document.getElementById("noticeUl").appendChild(this.ul_element);
+    this.ul_element.appendChild(this.div1);
+    this.div1.appendChild(this.imgs);
+    document.getElementById("contentBox").appendChild(this.ul_element);
 }
-  MeetingRoom.prototype.editor = function(){
+  MeetingRoom.prototype.delete = function(){
  	noticeid=this.ids
- 	$(".bcgs").show()
- 	$(".editor-notice").show()
- 	$(".editor-title").val(this.titles)
- 	$("#editor-content").val(this.contents)
+  if(confirm("确定要删除该图片？")){
+    $.ajax({
+      type:"DELETE",
+      url:'http://101.200.192.149:8080/jfstore/delimg?id='+noticeid,
+      dataType:"json",
+      success:function(data){
+        if(data.code==0){
+        alert("删除成功")
+        window.location.reload()
+        }
+        else{
+        alert("删除失败")
+        }
+      },
+      error:function(data){
+        alert("服务器内部错误")
+      }     
+    })
   }
+ } 
   //首次加载会议室列表
 	function firstShowList(data){
 		meetingRoomData = data.data;
@@ -157,84 +161,32 @@ else{
       $(".page-num").val("");
       }
   });
-  //编辑公告提交
-$(".true").click(function(){
-  
-	var a=$(".editor-title").val()
-	var b=$("#editor-content").val()
-	if((a=='')||(b=='')){
-		alert("请完善信息")
-		return false
-	}
-	else{
-    var data={
-          "id": noticeid,
-          "title": a,
-          "content": b
-    }
-    var url1 = 'http://101.200.192.149:8080/jfstore/updatenotices';
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("PUT", url1, false);           
-                        // xmlhttp.setRequestHeader("token", this.token);
-    xmlhttp.setRequestHeader("Content-Type", "application/json");
-    xmlhttp.send(JSON.stringify(data));
 
-    if(xmlhttp.status==200){
-    var codes=JSON.parse(xmlhttp.responseText)
-    if(codes.code==0){
-    alert("编辑成功")
-    window.location.reload()
-    }
-    else{
-      alert(codes)
-    }
-    }
-    else{
-    alert("服务器内部错误")
-    }
-	}
+$(function () {
+            $(".buttons").click(function () {
+                ajaxFileUpload();
+            })
 })
-$(".cancel").click(function(){
-	$(".bcgs").hide()
-	$(".editor-notice").hide()
-})
-//新建公告
-$("#addNotice").click(function(){
-	$(".bcgs").show()
-	$(".add-notice").show()
-})
-$(".trues").click(function(){
-	var a=$(".add-title").val()
-	var b=$("#add-content").val()
-	if((a=='')||(b=='')){
-		alert("请完善信息")
-		return false
-	}
-	else{
-		var data={
-			title:a,
-			content:b
-		}
-		var url1 = 'http://101.200.192.149:8080/jfstore/addnotices';
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("POST", url1, false);           
-								        // xmlhttp.setRequestHeader("token", this.token);
-		xmlhttp.setRequestHeader("Content-Type", "application/json");
-		xmlhttp.send(JSON.stringify(data));
-
-		if(xmlhttp.status==200){
-		var codes=JSON.parse(xmlhttp.responseText)
-		if(codes.code==0){
-		alert("创建成功")
-		window.location.reload()
-		}
-		}
-		else{
-		alert("服务器内部错误")
-		}
-	}
-})
-$(".cancels").click(function(){
-	$(".bcgs").hide()
-	$(".add-notice").hide()
-})
+        function ajaxFileUpload() {
+            $.ajaxFileUpload
+            (
+                {   
+                    url: 'http://101.200.192.149:8080/jfstore/uploadadimg', //用于文件上传的服务器端请求地址
+                    type: 'post',
+                    secureuri: false, //是否需要安全协议，一般设置为false
+                    fileElementId: 'file1', //文件上传域的ID
+                    dataType: 'text', //返回值类型 一般设置为json
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+                      console.log(data)
+                        $("#img1").show();
+                      
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                        alert(e);
+                    }
+                }
+            )
+            return false;
+        }

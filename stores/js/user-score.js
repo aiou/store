@@ -1,24 +1,31 @@
-var site1
-var site2
-var currentCount=10;
-var usernames
 var wsCache = new WebStorageCache();
+var currentCount=10
+ wsCache.deleteAllExpires();
+ site1=wsCache.get("token");
+site2=wsCache.get("refid");
 function exit(){
    wsCache.deleteAllExpires();
-    wsCache.delete('tokencom');
-    wsCache.delete('refidcom');
-   window.location.href="login.html"
+  wsCache.delete('token');
+  wsCache.delete('refid');
+   window.location.href="user-login.html"
 }
-wsCache.deleteAllExpires();
-site1=wsCache.get("tokencom");
-site2=wsCache.get("refidcom");
-console.log(site1)
 if((site1==null)||(site2==null)){
-	window.location.href="login.html"
+	alert("请先登录")
+	window.location.href="user-login.html"
 }
 else{
-		//获取所有会议室详细信息
-	var meetingRoomNum = "";
+	 $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
+            levels=data.data.level
+            expirats=data.data.expirationtime.toString().substring(0,10)
+            scores=data.data.score
+            groupids=data.data.groupid
+            usernames=data.data.username
+            $(".score-top").html(usernames)
+            $(".level-ones").html(levels)
+            $(".level-three").html(expirats)
+            $(".shengyu-total").html(scores) 
+          })
+	 	var meetingRoomNum = "";
 	var displayName = "";
 	$.ajax({
 		type: "get",
@@ -31,10 +38,6 @@ else{
 		}
 	});
 }
-// $("#datatime1").datetimepicker();
-// $("#datatime2").datetimepicker();
-//退出按钮
-
 function getLocalTime(nS) {     
     return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ')
 }
@@ -90,63 +93,6 @@ function MeetingRoom(meetingroom_data){
 		this.ul_element.appendChild(this.li_option);
 		document.getElementById("contentBox").appendChild(this.ul_element);
 	}
-		MeetingRoom.prototype.updateRoom = function(){
-		$(".bcgs").show();
-		$(".editor-user").show();
-		nowId = this.id;
-		types  =this.lbs
-		group=this.groups
-		$(".user-name").html(this.names)
-		$(".user-level").html(this.levels)
-		$(".user-score").html(this.scores)
-		$.getJSON('https://api.cloudp.cc:443/cloudpServer/v1/orgs/vmrs/getAllIvr_theme?token='+admin_token,function(data){
-          	 						var departmentcount=data.data.length
-       		                        html='';
-       		                        for (var i = 0; i <departmentcount; i++) {
-
-       			                    html+='<option id="'+data.data[i].id+'"value="'+data.data[i].uuid+'">'+data.data[i].name+'</option>'
-       		                            };   
-       		                        $('#user-select').append(html) 
-       		                       	for(var i=0;i<$("#user-select option").length;i++) {  
-				            			if($("#user-select option").eq(i).val() == th2) {   	
-				                		$("user-select option").eq(i).attr('selected',true);  
-				                		break;  
-				            }  
-				        } 
-          	 				})
-	}
-	MeetingRoom.prototype.deleteRoom = function(){
-		var deleteID = this.id;
-		if(confirm("确定要删除该会议室？")){
-			$.ajax({
-			type: 'delete',
-			url: 'https://api-test.cloudp.cc:443/cloudpServer/v1/orgs/vmrs/'+this.id+'?token='+admin_token,
-			success: function(data){
-				for(var i=0;i<meetingRoomData.length;i++){
-					if(deleteID == meetingRoomData[i].id){
-						meetingRoomData.splice($.inArray(meetingRoomData[i],meetingRoomData),1);
-						var a = parseInt($(".current-page").html());
-						var b = $(".page-count").html();
-						var c = $(".content-totals").html();
-						var d =  Math.ceil(meetingRoomData.length/currentCount);
-						if(a<d){
-							paging_mode((a-1)*currentCount,a*currentCount);
-						}else{
-							paging_mode((a-1)*currentCount,meetingRoomData.length);
-							$(".page-count").html(d);
-						}
-						totals = meetingRoomData.length;
-						$(".content-totals").html(meetingRoomData.length);
-					}
-				}
-			},
-			error: function(erro){
-				alert("删除会议室失败");
-			}
-		});
-		}
-		
-	}
 //首次加载会议室列表
 	function firstShowList(data){
 		meetingRoomData = data.data;
@@ -161,6 +107,7 @@ function MeetingRoom(meetingroom_data){
 			paging_mode(0,currentCount);
 		}
 	}
+	//获取所有会议室详细信息
 
 //会议室列表跳到首页
 	$("#firstPage").click(function(){

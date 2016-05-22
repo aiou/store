@@ -23,6 +23,8 @@ body{font-family:"Microsoft Yahei";}
 .leftBox{float:left;width:188px;border-right:1px solid #dddddd;}
 .leftBox li{height:60px;line-height:60px;border-bottom:1px solid #ddd;font-size:16px;font-family:"Microsoft Yahei";color:#000;cursor:pointer;}
 .leftBox li span{float:right;margin-right:46px;}
+.leftBox li a{display: block;width:100%;height:100%;color:#000}
+.leftBox li a:hover,.leftBox li a:visited{color:#000}
 .gift{width:183px;background:url(../images/gift1.png) no-repeat 37px center;border-left:5px solid #f0f0f0}
 .gift:hover{background:url(../images/gift2.png) no-repeat 37px center #fff;border-left:5px solid #fb4e3d}
 .count{width:183px;background:url(../images/count1.png) no-repeat 37px center;border-left:5px solid #f0f0f0}
@@ -33,11 +35,18 @@ body{font-family:"Microsoft Yahei";}
 .userManagement:hover{background:url(../images/userManagement2.png) no-repeat 37px center #fff;border-left:5px solid #fb4e3d}
 .add_Notice{width:183px;background:url(../images/add_Notice1.png) no-repeat 37px center;border-left:5px solid #f0f0f0}
 .add_Notice:hover{background:url(../images/add_Notice2.png) no-repeat 37px center #ffffff;border-left:5px solid #fb4e3d}
+
+.add_Img{width:183px;background:url(../images/img-gray.png) no-repeat 37px center;border-left:5px solid #f0f0f0}
+.add_Img:hover{background:url(../images/img-pink.png) no-repeat 37px center #ffffff;border-left:5px solid #fb4e3d}
+
 .active{width:183px;background:url(../images/add_Notice2.png) no-repeat 37px center #fff;border-left:5px solid #fb4e3d}
 .active1{background:url(../images/gift2.png) no-repeat 37px center #fff;border-left:5px solid #fb4e3d}
 .active2{background:url(../images/count2.png) no-repeat 37px center #fff;border-left:5px solid #fb4e3d}
 .active3{background:url(../images/track2.png) no-repeat 37px center #fff;border-left:5px solid #fb4e3d}
 .active4{background:url(../images/userManagement2.png) no-repeat 37px center #fff;border-left:5px solid #fb4e3d}
+
+.active5{background:url(../images/img-pink.png) no-repeat 37px center #fff;border-left:5px solid #fb4e3d}
+
 .rightBox{float:right;width:989px; position: relative;}
 .addNoticeBox{width:989px;height:60px;border-bottom:1px solid #dcdcdc;background:#fff;position: relative;}
 .noticetitle{float:left;margin-left:28px;padding-top:21px;color:#656565;font-size:16px;height:20px;line-height:20px;}
@@ -56,15 +65,14 @@ body{font-family:"Microsoft Yahei";}
 }
 .giftmg-left{
 	float: left;
-	width: 200px;
+	width: 220px;
 	margin-right: 10px;
 	background: #fff;
 	border: 1px solid #dcdcdc;
-    padding-bottom: 30px;
 }
 .giftmg-right{
 	float: left;
-	width: 750px;
+	width: 730px;
     position: relative;
     height: 720px;
 }
@@ -188,7 +196,7 @@ ul{
     width: 190px;
 }
 .content-box .li-head-org li:first-child,.content-box .li-head-orgs li:first-child{
-    width: 190px;
+    width: 160px;
 }
 .content-box .li-head-track li:first-child,.content-box .li-head-tracks li:first-child {
     width: 190px;
@@ -390,11 +398,12 @@ ul{
     cursor: pointer;
     text-align: center;
 }
-.group-content{
-    height: 480px;
+#group-content{
+    height: 602px;
     padding-left: 5px;
     padding-right: 5px;
     background: #fff;
+    overflow-y:scroll;
 }
 .groups{
     height: 40px;
@@ -415,8 +424,8 @@ ul{
     width: 50px;
     height: 40px;
     line-height: 40px;
-    color: #7d7d7d;
-    text-indent: 10px;
+    background:url(../images/description3.png) no-repeat center center;
+    cursor: pointer;
 }
 .editor-user{
       width: 350px;
@@ -568,4 +577,50 @@ margin-bottom: -25px;
 .logins{
     cursor:pointer;   
     margin-top: 20px; 
+}
+#img-box{
+    padding: 20px;
+    height: 690px;
+}
+.imgnow{
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+}
+.img-head ul{
+    overflow: hidden;
+}
+.img-head ul li{
+   float: left;
+    width: 223px;
+    height: 180px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background: #fff;
+    position: relative;
+}
+.img-head ul li:hover .boxes{
+    display:block
+}
+.img-head li img{
+    width: 100%;
+    height: 100%;
+
+}
+.boxes{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    background:black;
+    text-align: center;
+    left: 0;
+    top: 0;
+    display: none;
+}
+#contentBox div img{
+        width: 50px;
+    margin-top: 62px;
+    height: 50px;
 }

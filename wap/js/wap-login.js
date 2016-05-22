@@ -1,3 +1,19 @@
+ $.ajax({
+  type:"get",
+  dataType:"json",
+  url:"http://101.200.192.149:8080/jfstore/listallimg",
+  async: false,
+  success:function(data){
+        var totals=data.data.length
+  html=''
+ for (var i = 0; i<totals; i++) {
+  var url='http://101.200.192.149:8080/jfstore/img/'+data.data[i].imgpath
+  html+='<div class="swiper-slide"><img src="'+url+'"></div>'
+  console.log(html)
+ }
+ $(".swiper-wrapper").append(html)
+  }
+ })
 var wsCache = new WebStorageCache();
  var swiper = new Swiper('.swiper-container', {
         // pagination: '.swiper-pagination',
@@ -14,7 +30,6 @@ var wsCache = new WebStorageCache();
 	}, false);
  var wsCache = new WebStorageCache();
  $.getJSON("http://101.200.192.149:8080/jfstore/notices",function(result){
- 
   html=''
   for (var i = 0; i<3; i++) {
     html+='<div class="content">'+result.data[i].content+'</div>'
