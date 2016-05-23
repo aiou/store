@@ -73,9 +73,9 @@ span,button,input{
 }
 #gift-box{
 	background: #ff908e;
-	padding: 10% 15%;
-	margin-top: 210px;
-	position: relative;
+    padding: 11% 19%;
+    margin-top: 210px;
+    position: relative;
     padding-bottom: 0px;
 }
 .gifts dt,.gifts dd{
@@ -91,12 +91,19 @@ span,button,input{
 
 }
 .gifts{
-	background: #fff;
-	margin-bottom: 5px;
-	padding: 10px;
+	    background: #fff;
+    margin-bottom: 5px;
+    /* padding: 18%; */
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    margin-bottom: 10px;
 }
 .gifts dt{
-     height: 150px;
+     height: 120px;
+    width: 80%;
+    margin: 0 auto;
 }
 .gifts dt img{
     height: 100%;

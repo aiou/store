@@ -137,9 +137,11 @@ a{
 	text-align: center;
 }
 .user-level span{
-	display: inline-block;
-	height: 20px;
-	line-height: 20px;
+	    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    width: 28px;
+    overflow: hidden;
 }
 .level-one{
 	text-indent: 35px;
@@ -369,9 +371,9 @@ a{
 	background: #fff;
 }
 .jingpin-list li dt,.hot-list li dt,.gift-list li dt{
-	padding-top: 2px;
-	padding-left: 10px;
-	padding-right: 10px;
+	    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 .jingpin-list li img,.hot-list li img,.gift-list li img{
 	width: 100%;
@@ -395,7 +397,7 @@ a{
 	height: 115px;
 }
 .hot-list dd,.gift-list dd,.jingpin-list dd{
-	margin-top: 6px;
+	margin-top: 3px;
 }
 .hot-list dd:last-child{
 	margin-top: 11px;
@@ -1031,4 +1033,7 @@ ul{
     padding: 3px;
     width: 28px;
     margin-left: 20px;
+}
+form .files{
+	padding: 10px;
 }

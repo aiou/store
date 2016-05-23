@@ -53,12 +53,19 @@ var nowId = 0;//全局会议室ID
 var alias_roomNum = 0;
 var group
 //分页显示公用方法
+function gets(results){
+	 $.ajaxSettings.async = false
+	 $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+results,function(data){
+		  usernames=data.data.username	 	
+		 })
+}
 function paging_mode(start,end){
 document.getElementById("contentBox").innerHTML="";
 	for(var i=start;i<end;i++){
 		 var new_meetingroom = new MeetingRoom(meetingRoomData[i]);
 		}
 	}
+
 function MeetingRoom(meetingroom_data){
 		//DATA
 		 this.ids = meetingroom_data.id;
@@ -68,6 +75,15 @@ function MeetingRoom(meetingroom_data){
 		 this.scores = meetingroom_data.score;
 		 this.groupids= meetingroom_data.id;
 		//DOM
+		if(this.levels==undefined){
+			this.levels=''
+		}
+		if(this.groupids==undefined){
+			this.groupids=''
+		}
+		if(this.scores==undefined){
+			this.scores=''
+		}
 		this.ul_element = document.createElement("ul");
 		this.ul_element.className = "li-head-orgs";
 		this.li_name = document.createElement("li");
@@ -77,7 +93,7 @@ function MeetingRoom(meetingroom_data){
 		this.li_num.innerHTML = this.levels;
 		this.li_num.className = "org-id";
 		this.li_cap = document.createElement("li");
-		this.li_cap.innerHTML = this.groupnames;
+		this.li_cap.innerHTML = this.groupids;
 		this.li_cap.className = "org-password";
 		this.li_org = document.createElement("li");
 		this.li_org.innerHTML = this.scores;

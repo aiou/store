@@ -624,3 +624,49 @@ margin-bottom: -25px;
     margin-top: 62px;
     height: 50px;
 }
+.add-img{
+    width: 200px;
+    z-index: 999;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    margin-left: -100px;
+    height: 170px;
+    margin-top: -200px;
+    font-size: 13px;
+    font-family: ' 微软雅黑';
+    padding: 10px 20px;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    display: none;
+}
+.buttons{
+     cursor: pointer;
+    background: #ff4848;
+    border-radius: 4px;
+    height: 30px;
+    outline: none;
+    padding: 0;
+    width: 85px;
+    border:0;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+    display: inline-block;
+
+}
+.cancel{
+       background: #969696;
+    position: relative;
+    top: 2px;
+    display: inline-block;
+    width: 81px;
+    color: rgb(255, 255, 255);
+    font-family: '微软雅黑';
+    line-height: 30px;
+    right: -28px;
+    cursor: pointer;
+    border-radius: 4px;
+    height: 30px;
+    text-align: center;
+}

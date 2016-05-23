@@ -21,7 +21,7 @@
 			<ul class="leftBox">
 				<li class="gift"><a href="gift-management.html"><span>礼品管理</span></a></li>
 				<li class="count"><a href="exchange-total.html"><span>兑换统计</span></a></li>
-				<li class="track"><a href="exchange-track.html"><span>兑换追踪</span></a></li>
+				<li class="track" style="display:none"><a href="exchange-track.html"><span>兑换追踪</span></a></li>
 				<li class="userManagement"><a href="user-management.html"><span>用户管理</span></a></li>
 				<li class="add_Notice"><a href="notice.html"><span>添加公告</span></a></li>
 				<li class="add_Img active5"><a href="img.html"><span>添加图片</span></a></li>
@@ -50,18 +50,21 @@
 						<span id="lastPage">尾页</span>
 						<input type="text" class="page-num">
 						<span id="page-jump">跳转</span>
-					</div>
-				
+					</div>				
 				</div>
+				<div class="imgnow">上传首页轮播图</div>
+				<form name="form1" method="post" enctype="multipart/form-data" action='http://101.200.192.149:8080/jfstore/uploadadimg' target="nm_iframe" accept="image/*">
+					<input type="file" style="outline:none" class="files" name="file"/>
+		        <input type="submit" name="Submit" value="添加"onclick="check()" style="padding:10px"/>
+				</form>
 			</div>
 				
 		</div>
 		</div>		
 	</div>
-	 <img id="image"src=""/ style="width:30px;">
-	 <input type="file"onchange="selectImage(this);"/>
-<br/>
- <input type="button"onclick="uploadImage();"value="提交"/>
+
+<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>  
+</iframe>
 <div class="bcgs"></div>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/web-storage-cache.js"></script>

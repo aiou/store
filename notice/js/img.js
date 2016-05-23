@@ -161,100 +161,12 @@ else{
       $(".page-num").val("");
       }
   });
-
-// $(function () {
-//             $(".buttons").click(function () {
-//                 ajaxFileUpload();
-//             })
-// })
-//         function ajaxFileUpload() {
-//             $.ajaxFileUpload
-//             (
-//                 {   
-//                     url: 'http://101.200.192.149:8080/jfstore/uploadadimg', //用于文件上传的服务器端请求地址
-//                     type: 'post',
-//                     secureuri: false, //是否需要安全协议，一般设置为false
-//                     fileElementId: 'file1', //文件上传域的ID
-//                     dataType: 'text', //返回值类型 一般设置为json
-//                     success: function (data, status)  //服务器成功响应处理函数
-//                     {
-//                       console.log(data)
-//                         $("#img1").show();
-                      
-//                     },
-//                     error: function (data, status, e)//服务器响应失败处理函数
-//                     {
-//                         alert(e);
-//                     }
-//                 }
-//             )
-//             return false;
-//         }
-
-    // $(".dropz").dropzone({
-    //     url: "http://101.200.192.149:8080/jfstore/uploadadimg",
-    //     addRemoveLinks: true,
-    //     dictRemoveLinks: "1",
-    //     dictCancelUpload: "222",
-    //     maxFiles: 10,
-    //     maxFilesize: 5,
-    //     acceptedFiles: "image/*",
-    //     init: function() {
-    //         this.on("success", function(file) {
-    //           alert(1)
-    //             console.log("File " + file.name + "uploaded");
-    //         });
-    //         this.on("removedfile", function(file) {
-    //             console.log("File " + file.name + "removed");
-    //         });
-    //     }
-    // });
-var image = '';
- function selectImage(file){
- if(!file.files || !file.files[0]){
-return;
-}
- var reader = new FileReader();
- reader.onload = function(evt){
- document.getElementById('image').src = evt.target.result;
- image = evt.target.result;
-}
-reader.readAsDataURL(file.files[0]);
-}
- function uploadImage(){
-
-$.ajax({
-
-type:'POST',
-
- url: 'http://101.200.192.149:8080/jfstore/uploadadimg', 
-
- data: {image: image},
-
- async: false,
-
- dataType: 'json',
-
- success: function(data){
-
-if(data.success){
-
-alert('上传成功');
-
-}else{
-
-alert('上传失败');
-
-}
-
-},
-
- error: function(err){
-console.log(err)
-alert('网络故障');
-
-}
-
-});
-
+function check(){
+  var a=$(".files").val()
+  if(a==''){
+    alert("请选择图片")
+  }
+  else{
+    alert("上传成功，请刷新")
+  }
 }

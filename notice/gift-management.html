@@ -18,7 +18,7 @@
 			<ul class="leftBox">
 				<li class="gift active1"><a href="gift-management.html"><span>礼品管理</span></a></li>
 				<li class="count"><a href="exchange-total.html"><span>兑换统计</span></a></li>
-				<li class="track"><a href="exchange-track.html"><span>兑换追踪</span></a></li>
+				<li class="track" style="display:none"><a href="exchange-track.html"><span>兑换追踪</span></a></li>
 				<li class="userManagement"><a href="user-management.html"><span>用户管理</span></a></li>
 				<li class="add_Notice"><a href="notice.html"><span>添加公告</span></a></li>
 				<li class="add_Notice"><a href="img.html"><span>添加图片</span></a></li>
@@ -29,9 +29,6 @@
 			</div>
 			<div class="giftmg-box">
 				<div class="giftmg-left" style="padding-bottom: 20px;">
-					<a href="javascript:;" class="file">
-						<input type="file" name="" id="">
-					</a>
 					<div class="input-box">
 						<div>物品名称：
 						<i></i>
@@ -127,6 +124,19 @@
 		</div>
 	</div>
 </div>
+<div class="add-img">
+			<form name="form1" method="post" enctype="multipart/form-data" action="" target="nm_iframe" id="forms" accept="image/*">
+				<div style="margin-top:50px;">
+				<input type="file" style="outline:none" class="files" name="file"/>	
+				</div>				
+				<div style="margin-top:50px;position:relative">
+				<input type="button" name="Submit" value="添加" class="buttons"/>
+				<span class="cancel">取消</span>
+				</div>		        
+				</form>
+</div>
+<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>  
+</iframe>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/web-storage-cache.js"></script>
 <script type="text/javascript" src="js/gift-management.js"></script>

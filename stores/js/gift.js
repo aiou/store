@@ -111,6 +111,7 @@ function paging_mode(start,end){
    var needscores=this.needscores
     if((site1==null)||(site2==null)){
     alert("请先登录")
+    return false
    }
    if(exchangenumbers==''){
     alert("请填写数量")

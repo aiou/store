@@ -19,7 +19,7 @@ span,button,input{
 	right: 5%;
 	top: 3%;
 	bottom: 3%;
-	padding: 5% 10%;
+	padding: 0 10%;
 }
 .regist-head{
 	text-align: center;
@@ -36,16 +36,16 @@ span,button,input{
 .box input{
 	width: 100%;
 	margin: 0 auto;
-	height: 30px;
-	line-height: 30px;
+	height: 35px;
+	line-height: 35px;
 	outline: none;
 	border: 0;
 	text-indent: 10px;
 }
 .submit{
 	width: 100%;
-	height: 30px;
-	line-height: 30px;
+	height: 35px;
+	line-height: 35px;
 	background: #ffe462;
 	color: #e97743;
 	text-align: center;
@@ -54,8 +54,8 @@ span,button,input{
 	margin-top: 3px;
 }
 .box .bottomimg{
-	height: 25%;
-    margin-top: 5%;
+	height: 30%;
+    margin-top: 10%;
 }
 .bottomimg img{
 	width: 100%;
@@ -70,11 +70,11 @@ span,button,input{
 	margin: 0;
 }
 #btnSendCode {
-        display: block;
+    display: block;
     position: absolute;
     color: #fff;
-    height: 30px;
-    background: #81cc3c;
+    height: 35px;
+    background: #29ad35;
     border-radius: 5px;
     width: 53%;
     text-align: center;
@@ -86,6 +86,7 @@ span,button,input{
     font-size: 11px;
     top: 0px;
     right: 0px;
+    line-height: 35px;
 }
 .bcgs{
  	position: absolute;

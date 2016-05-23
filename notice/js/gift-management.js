@@ -2,11 +2,14 @@ var site1
 var site2
 var type
 var types
+var nowIdadd
+var url
 var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
 site1=wsCache.get("tokencom");
 site2=wsCache.get("refidcom");
 console.log(site1)
+
 //退出按钮
 function exit(){
    wsCache.deleteAllExpires();
@@ -85,8 +88,13 @@ function MeetingRoom(meetingroom_data){
 		this.img2.src = "images/description3.png";
 		this.img2.title = "删除"
 		this.img2.addEventListener("click",this.deleteRoom.bind(this),false);
+		this.img3 = document.createElement("img");
+		this.img3.src = "images/description6.png";
+		this.img3.title = "添加"
+		this.img3.addEventListener("click",this.add.bind(this),false);
 		this.li_option.appendChild(this.img1);
 		this.li_option.appendChild(this.img2);
+		this.li_option.appendChild(this.img3);
 		this.ul_element.appendChild(this.li_name);
 		this.ul_element.appendChild(this.li_num);
 		this.ul_element.appendChild(this.li_cap);
@@ -97,7 +105,7 @@ function MeetingRoom(meetingroom_data){
 		MeetingRoom.prototype.updateRoom = function(){
 		$(".bcgs").show();
 		$(".editor-user").show();
-		nowId = this.id;
+		nowId = this.ids;
 		types  =this.lbs
 		$(".com-name").val(this.names)
 		$(".com-score").val(this.needscores)
@@ -142,6 +150,33 @@ function MeetingRoom(meetingroom_data){
 		}
 		
 	}
+	MeetingRoom.prototype.add = function(){
+		nowIdadd = this.ids;
+		$(".bcgs").show()
+		$(".add-img").show()
+		url='http://101.200.192.149:8080/jfstore/uploadimg?id='+nowIdadd
+		console.log(url)
+		$(".buttons").click(function(){
+			$(".bcgs").hide()
+			 $(".add-img").hide() 
+			 document.getElementById("forms").action = url;
+			 var a=$(".files").val()
+			  if(a==''){
+			    alert("请选择图片")
+			  }
+			 else{
+			 	alert("上传商品图片成功")
+  			    document.getElementById("forms").submit();
+  			      return false;
+  			  
+  			}
+		})
+
+	}
+$(".cancel").click(function(){
+	$(".bcgs").hide()
+	$(".add-img").hide()
+})
 //首次加载会议室列表
 	function firstShowList(data){
 		meetingRoomData = data.data;

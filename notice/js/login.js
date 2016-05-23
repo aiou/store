@@ -9,9 +9,10 @@ var wsCache = new WebStorageCache();
         $(".logins").click();  
       }}) 
   $(".logins").click(function(){
-    var user=$.trim($(".username").val())
-    var password=$.trim($(".userpassword").val())
-    var coder=$.trim($(".usercode").val())
+    console.log(0)
+    var user=$(".username").val()
+    var password=$(".userpassword").val()
+    var coder=$(".usercode").val()
     if((user=='')||(password=='')||(coder=='')){
       alert("请完善信息")
       return false
@@ -21,6 +22,7 @@ var wsCache = new WebStorageCache();
       timestamp:'',
       code:coder
     }
+    console.log(coder)
     $.ajax({
       crossDomain:true,
       xhrFields:{withCredentials:true},

@@ -29,7 +29,7 @@ function sendMessage(){
                     if(data.code==0){
                     $("#userPhone").attr("disabled",true)
                     $("#btnSendCode").attr("disabled",true) 
-                    InterValObj = window.setInterval(SetRemainTime, 2000); 
+                    InterValObj = window.setInterval(SetRemainTime, 1000); 
                     $(".bcgs").show()
                     $(".alerts").show()
                     $(".alert-content").html('手机验证码已发送');
