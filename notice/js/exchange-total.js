@@ -49,22 +49,25 @@ document.getElementById("contentBox").innerHTML="";
 function gets(results){
 	 $.ajaxSettings.async = false
 	 $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+results,function(data){
-	 	 console.log(data.data.username)
 		  usernames=data.data.username	 	
 		 })
 }
 function MeetingRoom(meetingroom_data){
 		//DATA
-
-		 this.ids = meetingroom_data.id;
+		var datas
+		 this.ids = meetingroom_data.userId;
 		 this.products= meetingroom_data.productName;
 		 this.numbers = meetingroom_data.exchangeNumber;
 		 this.scores = meetingroom_data.needScore;
-		 this.times = meetingroom_data.exchangeTime.toString().substring(0,10);
-		 var datas=getLocalTime(this.times)
-		 gets(this.ids)
-		 console.log(usernames)
-		
+		 this.times=meetingroom_data.exchangeTime
+		 if((this.times=='')||(this.times==undefined)){
+		 	datas=''
+		 }
+		 else{
+		 	this.times = meetingroom_data.exchangeTime.toString().substring(0,10);
+            datas=getLocalTime(this.times)
+		 }		 
+		 gets(this.ids)	
 		//DOM
 		this.ul_element = document.createElement("ul");
 		this.ul_element.className = "li-head-exchanges";
@@ -88,7 +91,9 @@ function MeetingRoom(meetingroom_data){
 		this.ul_element.appendChild(this.li_cap);
 		this.ul_element.appendChild(this.li_org);
 		this.ul_element.appendChild(this.li_option);
+		console.log(datas)
 		document.getElementById("contentBox").appendChild(this.ul_element);
+
 	}
 		MeetingRoom.prototype.updateRoom = function(){
 		$(".bcgs").show();

@@ -100,6 +100,7 @@ span,button,input{
 }
 .gifts dt img{
     height: 100%;
+    width: 100%;
 }
 .cash {
     width: 100px;
@@ -118,6 +119,7 @@ span,button,input{
     line-height: 25px;
     top: 1px;
     margin-left: 4px;
+    text-align: center;
 
 }
 .shop{
@@ -175,4 +177,83 @@ span,button,input{
 }
 .wap-giftbox{
     background: #ff908e;
+}
+.user-score,.user-name{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.bcgs{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: black;
+    opacity: 0.6;
+    z-index: 999;
+    display: none;
+ }
+ .alerts,.alerts-delet,.alerts-add,.page{
+    width: 70%;
+    height: 210px;
+    position: fixed;
+    margin-left: -35%;
+    left: 50%;
+    top: 17%;
+    background: #fff;
+    border-radius: 5px;
+     display: none; 
+    z-index: 999;
+}
+.alert-head{
+    height: 40px;
+    background:#f6625e;
+    line-height: 40px;
+    text-indent: 35px;
+    color: #ffffff;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    position: relative;
+    border-radius: 5px 5px 0px 0px;
+}
+.img-right,.delet-right,.add-right,.page-right{
+    position: absolute;
+    right: 6px;
+    top: 8px;
+    height: 25px;
+}
+.img-left{
+    position: absolute;
+    left: 10px;
+        top: 10px;
+    height: 21px;
+}
+.alert-content{
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+    font-family: "微软雅黑";
+    font-size: 12px;
+
+}
+.alert-bottom span{
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    height: 20px;
+    line-height: 20px;
+    width: 80px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.alert-sure,.delet-sure,.add-sure,.page-sure{
+    background:#f6625e;
+    color: #fff; 
+
+}
+.alert-bottom{
+    text-align: center;
+}
+.hiddens{
+    overflow: hidden;
 }

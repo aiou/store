@@ -32,6 +32,7 @@ function paging_mode(start,end){
   }
   function MeetingRoom(meetingroom_data){
     //DATA
+    var url="http://101.200.192.149:8080/jfstore/img/"
     this.ids = meetingroom_data.id;
     this.names= meetingroom_data.name;
     this.imgs= meetingroom_data.img;
@@ -45,7 +46,7 @@ function paging_mode(start,end){
     this.li_name = document.createElement("dl");
     this.li_num = document.createElement("dt");
     this.img1 = document.createElement("img");
-    this.img1.src = this.imgs;
+    this.img1.src = url+this.imgs;
     this.li_cap = document.createElement("dd");
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
@@ -76,7 +77,7 @@ function paging_mode(start,end){
     this.li_name = document.createElement("dl");
     this.li_num = document.createElement("dt");
     this.img1 = document.createElement("img");
-    this.img1.src = this.imgs;
+    this.img1.src = url+this.imgs;
     this.li_cap = document.createElement("dd");
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
@@ -105,13 +106,43 @@ function paging_mode(start,end){
   
   
   MeetingRoom.prototype.duihuan = function(){
-   alert(this.ids)
-   if((site1==null)||(site2==null)){
-   	alert("请先登录")
-   	return flase;
+   var productnames=this.names
+    var exchangenumbers=$.trim(this.li_inputs.value)
+   var needscores=this.needscores
+    if((site1==null)||(site2==null)){
+    alert("请先登录")
+   }
+   if(exchangenumbers==''){
+    alert("请填写数量")
    }
    else{
+    var data={
+      productName:productnames,
+      exchangeNumber:exchangenumbers,
+      needScore:needscores,
+      userId:site2
+      }
+      console.log(data)
+    var url1 = 'http://101.200.192.149:8080/jfstore/insertexchange';
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", url1, false);           
+                        // xmlhttp.setRequestHeader("token", this.token);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(data));
 
+    if(xmlhttp.status==200){
+    var codes=JSON.parse(xmlhttp.responseText)
+    if(codes.code==0){
+    alert("兑换成功")
+    window.location.reload()
+    }
+    else{
+      alert(codes.mes)
+    }
+    }
+    else{
+    alert("服务器内部错误")
+    }
    }
   }
   //获取所有会议室详细信息

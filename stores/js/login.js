@@ -33,6 +33,8 @@ var expirats
 var scores
 var groupids
 var usernames
+var site1
+var site2
 var wsCache = new WebStorageCache();
   //获取验证码
   $(".codes").click(function(){
@@ -110,8 +112,8 @@ var wsCache = new WebStorageCache();
 //判断是否登录
 function addcontent(){
   wsCache.deleteAllExpires();
-  var site1=wsCache.get("token");
-  var site2=wsCache.get("refid");
+site1=wsCache.get("token");
+ site2=wsCache.get("refid");
   if((site1!=='')&&(site2!=='')){
     $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
             levels=data.data.level
@@ -148,6 +150,7 @@ function paging_mode(start,end){
   }
   function MeetingRoom(meetingroom_data){
     //DATA
+    var url="http://101.200.192.149:8080/jfstore/img/"
     this.ids = meetingroom_data.id;
     this.names= meetingroom_data.name;
     this.imgs= meetingroom_data.img;
@@ -159,7 +162,7 @@ function paging_mode(start,end){
     this.li_name = document.createElement("dl");
     this.li_num = document.createElement("dt");
     this.img1 = document.createElement("img");
-    this.img1.src = this.imgs;
+    this.img1.src = url+this.imgs;
     this.li_cap = document.createElement("dd");
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
@@ -170,6 +173,7 @@ function paging_mode(start,end){
     this.li_data.innerHTML = "数量";
     this.li_data.className = "counts";
     this.li_inputs = document.createElement("input");
+    this.li_inputs.className="inputcounts"
     this.li_opation = document.createElement("dd");
     this.li_opation.innerHTML = "立刻兑换";
     this.li_opation.className = "cash";
@@ -186,13 +190,43 @@ function paging_mode(start,end){
   }
   
   MeetingRoom.prototype.duihuan = function(){
-   alert(this.ids)
+   var productnames=this.names
+    var exchangenumbers=$.trim(this.li_inputs.value)
+   var needscores=this.needscores
     if((site1==null)||(site2==null)){
     alert("请先登录")
-    return flase;
+   }
+   if(exchangenumbers==''){
+    alert("请填写数量")
    }
    else{
+    var data={
+      productName:productnames,
+      exchangeNumber:exchangenumbers,
+      needScore:needscores,
+      userId:site2
+      }
+      console.log(data)
+    var url1 = 'http://101.200.192.149:8080/jfstore/insertexchange';
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", url1, false);           
+                        // xmlhttp.setRequestHeader("token", this.token);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(data));
 
+    if(xmlhttp.status==200){
+    var codes=JSON.parse(xmlhttp.responseText)
+    if(codes.code==0){
+    alert("兑换成功")
+    window.location.reload()
+    }
+    else{
+      alert(codes.mes)
+    }
+    }
+    else{
+    alert("服务器内部错误")
+    }
    }
   }
   function firstShowList(data){
@@ -243,6 +277,7 @@ function paging_mode(start,end){
   }
   function MeetingRooms(meetingroom_data){
     //DATA
+    var url="http://101.200.192.149:8080/jfstore/img/"
     this.ids = meetingroom_data.id;
     this.names= meetingroom_data.name;
     this.imgs= meetingroom_data.img;
@@ -254,7 +289,7 @@ function paging_mode(start,end){
     this.li_name = document.createElement("dl");
     this.li_num = document.createElement("dt");
     this.img1 = document.createElement("img");
-    this.img1.src = this.imgs;
+    this.img1.src = url+this.imgs;
     this.li_cap = document.createElement("dd");
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
@@ -265,6 +300,7 @@ function paging_mode(start,end){
     this.li_data.innerHTML = "数量";
     this.li_data.className = "counts";
     this.li_inputs = document.createElement("input");
+    this.li_inputs.className="inputcounts1"
     this.li_opation = document.createElement("dd");
     this.li_opation.innerHTML = "立刻兑换";
     this.li_opation.className = "cash";
@@ -281,13 +317,43 @@ function paging_mode(start,end){
   }
   
   MeetingRooms.prototype.duihuan1 = function(){
-   alert(this.ids)
+    var productnames=this.names
+  var exchangenumbers=$.trim(this.li_inputs.value)
+   var needscores=this.needscores
     if((site1==null)||(site2==null)){
     alert("请先登录")
-    return flase;
+   }
+   if(exchangenumbers==''){
+    alert("请填写数量")
    }
    else{
+    var data={
+      productName:productnames,
+      exchangeNumber:exchangenumbers,
+      needScore:needscores,
+      userId:site2
+      }
+      console.log(data)
+    var url1 = 'http://101.200.192.149:8080/jfstore/insertexchange';
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", url1, false);           
+                        // xmlhttp.setRequestHeader("token", this.token);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(data));
 
+    if(xmlhttp.status==200){
+    var codes=JSON.parse(xmlhttp.responseText)
+    if(codes.code==0){
+    alert("兑换成功")
+    window.location.reload()
+    }
+    else{
+      alert(codes.mes)
+    }
+    }
+    else{
+    alert("服务器内部错误")
+    }
    }
   }
   //控制活动公告展示收缩

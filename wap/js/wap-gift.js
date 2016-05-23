@@ -8,13 +8,30 @@ var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
 site1=wsCache.get("tokenwap");
 site2=wsCache.get("refidwap");
-$.getJSON('http://101.200.192.149:8080/jfstore/showUser?token='+site1+'&id='+site2,function(data){
-            usernames=data.username
-            userscores=data.score
+$.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){ 
+  console.log(data)
+
+            usernames=data.data.username
+            userscores=data.data.score
             $(".user-name").html(usernames)
             $(".user-score").html(userscores)
           })
 //退出按钮
+function hideAlertWin(){
+    $(".bcgs").hide()
+    $(".alerts").hide()
+    $("body,html").removeClass("hiddens");
+}
+$(".img-right").click(function(){
+    $(".bcgs").hide()
+    $(".alerts").hide()
+    $("body,html").removeClass("hiddens");
+})
+$(".alert-sure").click(function(){
+    $(".bcgs").hide()
+    $(".alerts").hide()
+    $("body,html").removeClass("hiddens");
+})
 function exit(){
    wsCache.deleteAllExpires();
    window.location.href="wap-login.html"
@@ -27,6 +44,7 @@ function paging_mode(start,end){
   }
  function MeetingRoom(meetingroom_data){
     //DATA
+    var url="http://101.200.192.149:8080/jfstore/img/"
     this.ids = meetingroom_data.id;
     this.names= meetingroom_data.name;
     this.imgs= meetingroom_data.img;
@@ -39,7 +57,7 @@ function paging_mode(start,end){
     this.li_name = document.createElement("dl");
     this.li_num = document.createElement("dt");
     this.img1 = document.createElement("img");
-    this.img1.src = this.imgs;
+    this.img1.src = url+this.imgs;
     this.li_cap = document.createElement("dd");
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
@@ -65,13 +83,69 @@ function paging_mode(start,end){
     document.getElementById("gift-box").appendChild(this.ul_element);   
    }
   MeetingRoom.prototype.duihuan = function(){
-   alert(this.ids)
-   if((site1==null)||(site2==null)){
-   	alert("请先登录")
-   	return flase;
+  var productnames=this.names
+    var exchangenumbers=$.trim(this.li_inputs.value)
+   var needscores=this.needscores
+    if((site1==null)||(site2==null)){
+        $(".bcgs").show()
+        $(".alerts").show()
+        $(".alert-content").html("请先登录");
+         $("body,html").addClass("hiddens");
+        setTimeout('hideAlertWin()',2000); 
+       }
+   if(exchangenumbers==''){
+        $(".bcgs").show()
+        $(".alerts").show()
+        $("body,html").addClass("hiddens");
+        $(".alert-content").html("请填写数量");
+        setTimeout('hideAlertWin()',2000); 
    }
    else{
+    var data={
+      productName:productnames,
+      exchangeNumber:exchangenumbers,
+      needScore:needscores,
+      userId:site2
+      }
+      console.log(data)
+    var url1 = 'http://101.200.192.149:8080/jfstore/insertexchange';
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", url1, false);           
+                        // xmlhttp.setRequestHeader("token", this.token);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(data));
 
+    if(xmlhttp.status==200){
+    var codes=JSON.parse(xmlhttp.responseText)
+    if(codes.code==0){
+    $(".bcgs").show()
+    $(".alerts").show()
+     $("body,html").addClass("hiddens");
+    $(".alert-content").html("恭喜你，兑换成功！");
+    $(".alert-sure").click(function(){
+      window.location.reload()
+    })
+    
+    }
+    else{
+      $("body,html").addClass("hiddens");
+      $(".bcgs").show()
+      $(".alerts").show()
+      $(".alert-content").html(codes.mes);
+      $(".alert-sure").click(function(){
+      window.location.reload()
+    }) 
+    }
+    }
+    else{
+       $("body,html").addClass("hiddens");
+      $(".bcgs").show()
+      $(".alerts").show()
+      $(".alert-content").html("服务器内部错误");
+      $(".alert-sure").click(function(){
+      window.location.reload()
+    }) 
+    }
    }
   }
   //获取所有会议室详细信息
@@ -82,7 +156,10 @@ function paging_mode(start,end){
       firstShowList(data);
     },
     error: function(erro){
-      alert("服务器内部错误")
+       $("body,html").addClass("hiddens");
+      $(".bcgs").show()
+      $(".alerts").show()
+      $(".alert-content").html("服务器内部错误");
     }
   });
   //首次加载会议室列表
@@ -111,12 +188,26 @@ function paging_mode(start,end){
     $(".current-page").html(1);
   });
   //前一页
+   function getScrollTop() {
+        var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+        return scrollTop;
+    }
+ 
+    function setScrollTop(scroll_top) {
+        document.documentElement.scrollTop = scroll_top;
+        window.pageYOffset = scroll_top;
+        document.body.scrollTop = scroll_top;
+    }
   $("#prev").click(function(){
+      setScrollTop(0)
     var currentPage = $(".current-page").html();//当前页码
     var pageCount = $(".page-count").html();//总页数
     var countTotal = $(".content-totals").html();//总条数
     if(currentPage==1){
-      alert("当前为第一页");
+       $("body,html").addClass("hiddens");
+      $(".bcgs").show()
+      $(".alerts").show()
+      $(".alert-content").html("当前为第一页");
       return;
     }
     paging_mode((currentPage-2)*currentCount,(currentPage-1)*currentCount);
@@ -124,11 +215,15 @@ function paging_mode(start,end){
   });
   //下一页
   $("#next").click(function(){
+     setScrollTop(0)
     var currentPage = $(".current-page").html();//当前页码
     var pageCount = $(".page-count").html();//总页数
     var countTotal = $(".content-totals").html();//总条数
     if(currentPage == totalPage){
-      alert("已经是最后一页");
+       $("body,html").addClass("hiddens");
+      $(".bcgs").show()
+      $(".alerts").show()
+      $(".alert-content").html("已经是最后一页");
       return ; 
     }
     if(pageCount-currentPage==1){
@@ -140,6 +235,7 @@ function paging_mode(start,end){
   });
   //会议室列表跳到尾页
   $("#lastPage").click(function(){
+    setScrollTop(0)
     var currentPage = $(".current-page").html();//当前页码
     var pageCount = $(".page-count").html();//总页数
     var countTotal = $(".content-totals").html();//总条数
@@ -152,6 +248,7 @@ function paging_mode(start,end){
   });
   //按输入框值跳转页码
   $("#page-jump").click(function(){
+    setScrollTop(0)
     var currentPage = $(".current-page").html();//当前页码
     var pageCount = $(".page-count").html();//总页数
     var countTotal = $(".content-totals").html();//总条数

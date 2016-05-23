@@ -58,15 +58,19 @@ function gets(results){
 }
 function MeetingRoom(meetingroom_data){
 		//DATA
-
-		 this.ids = meetingroom_data.id;
+		 this.ids = meetingroom_data.userId;
 		 this.products= meetingroom_data.productName;
 		 this.numbers = meetingroom_data.exchangeNumber;
 		 this.scores = meetingroom_data.needScore;
-		 this.times = meetingroom_data.exchangeTime.toString().substring(0,10);
-		 var datas=getLocalTime(this.times)
-		 gets(this.ids)
-		 console.log(usernames)
+		 this.times = meetingroom_data.exchangeTime;
+		 if((this.times=='')||(this.times==undefined)){
+		 	datas=''
+		 }
+		 else{
+		 	this.times = meetingroom_data.exchangeTime.toString().substring(0,10);
+            datas=getLocalTime(this.times)
+		 }		 
+		 gets(this.ids)	
 		
 		//DOM
 		this.ul_element = document.createElement("ul");
