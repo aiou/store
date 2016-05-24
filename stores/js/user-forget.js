@@ -22,7 +22,6 @@ function sendMessage(){
             dataType:"json",
             url:'http://101.200.192.149:8080/jfstore/jfstore/sms?mobile='+tel,
             success:function(data){
-                    $("#btnSendCode1").removeAttr("disabled");
                     if(data.code==0){
                     $("#userPhone").attr("disabled",true)
                     $("#btnSendCode").attr("disabled",true)
