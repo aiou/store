@@ -3,6 +3,7 @@ var site2
 var type
 var types
 var nowIdadd
+var nowId 
 var url
 var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
@@ -103,14 +104,13 @@ function MeetingRoom(meetingroom_data){
 		document.getElementById("contentBox").appendChild(this.ul_element);
 	}
 		MeetingRoom.prototype.updateRoom = function(){
-		$(".bcgs").show();
-		$(".editor-user").show();
+			$(".bcgs").show()
+			$(".editor-user").show()
 		nowId = this.ids;
 		types  =this.lbs
 		$(".com-name").val(this.names)
 		$(".com-score").val(this.needscores)
 		$(".com-count").val(this.totalss)
-		$(".com-name").val(this.names)
 		 for(var i=0;i<$("#com-select option").length;i++) {  
 			if($("#com-select option").eq(i).val() ==types) {   	
 			$("#com-select option").eq(i).attr('selected',true);  
@@ -119,32 +119,22 @@ function MeetingRoom(meetingroom_data){
 				        }
 	}
 	MeetingRoom.prototype.deleteRoom = function(){
-		var deleteID = this.id;
+		var deleteID = this.ids;
 		if(confirm("确定要删除该物品？")){
 			$.ajax({
 			type: 'delete',
-			url: 'https://api-test.cloudp.cc:443/cloudpServer/v1/orgs/vmrs/'+this.id+'?token='+admin_token,
+			url: 'http://101.200.192.149:8080/jfstore/delpro?id='+deleteID,
 			success: function(data){
-				for(var i=0;i<meetingRoomData.length;i++){
-					if(deleteID == meetingRoomData[i].id){
-						meetingRoomData.splice($.inArray(meetingRoomData[i],meetingRoomData),1);
-						var a = parseInt($(".current-page").html());
-						var b = $(".page-count").html();
-						var c = $(".content-totals").html();
-						var d =  Math.ceil(meetingRoomData.length/currentCount);
-						if(a<d){
-							paging_mode((a-1)*currentCount,a*currentCount);
-						}else{
-							paging_mode((a-1)*currentCount,meetingRoomData.length);
-							$(".page-count").html(d);
-						}
-						totals = meetingRoomData.length;
-						$(".content-totals").html(meetingRoomData.length);
-					}
+				if(data.code==0){
+					alert("删除礼品成功")
+					window.location.reload()
+				}
+				else{
+					alert(data.code)
 				}
 			},
 			error: function(erro){
-				alert("删除会议室失败");
+				alert("删除礼品失败");
 			}
 		});
 		}
@@ -276,11 +266,15 @@ $(".true").click(function(){
 		return false
 	}
 	else{
-			var data={
-			title:a,
-			content:b
+		var data={
+			  id: nowId ,
+			  name: a,
+			  needscore: b,
+			  totals: c,
+			  lb: d
 		}
-		var url1 = 'http://101.200.192.149:8080/jfstore/addnotices';
+		console.log(data)
+		var url1 = 'http://101.200.192.149:8080/jfstore/updatepro';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("PUT", url1, false);           
 								        // xmlhttp.setRequestHeader("token", this.token);
@@ -290,8 +284,11 @@ $(".true").click(function(){
 		if(xmlhttp.status==200){
 		var codes=JSON.parse(xmlhttp.responseText)
 		if(codes.code==0){
-		alert("创建成功")
+		alert("编辑礼品成功")
 		window.location.reload()
+		}
+		else{
+			alert(codes.code)
 		}
 		}
 		else{

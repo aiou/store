@@ -120,7 +120,7 @@ span,button,input{
  	margin-top: 15px;
  }
  .bcgs{
- 	position: absolute;
+ 	position: fixed;
     left: 0;
     top: 0;
     bottom: 0;
@@ -133,7 +133,7 @@ span,button,input{
  .alerts,.alerts-delet,.alerts-add,.page{
     width: 70%;
     height: 210px;
-    position: absolute;
+    position: fixed;
     margin-left: -35%;
     left: 50%;
     top: 17%;
@@ -190,4 +190,7 @@ span,button,input{
 }
 .alert-bottom{
     text-align: center;
+}
+.hiddens{
+    overflow: hidden;
 }

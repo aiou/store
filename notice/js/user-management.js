@@ -120,17 +120,18 @@ function MeetingRoom(meetingroom_data){
 		$(".user-name").html(this.usernames)
 		$(".user-level").html(this.levels)
 		$(".user-score").html(this.scores)
+		$("#user-select").html('')
 		$.getJSON('http://101.200.192.149:8080/jfstore/listgroup',function(data){
           	 						var departmentcount=data.data.length
        		                        html='';
        		                        for (var i = 0; i <departmentcount; i++) {
 
-       			                    html+='<option id="'+data.data[i].id+'"value="'+data.data[i].uuid+'">'+data.data[i].groupName+'</option>'
+       			                    html+='<option value="'+data.data[i].id+'">'+data.data[i].groupName+'</option>'
        		                            };   
        		                        $('#user-select').append(html) 
        		                       	for(var i=0;i<$("#user-select option").length;i++) {  
 				            			if($("#user-select option").eq(i).val() ==group) {   	
-				                		$("user-select option").eq(i).attr('selected',true);  
+				                		$("#user-select option").eq(i).attr('selected',true);  
 				                		break;  
 				            }  
 				        } 
