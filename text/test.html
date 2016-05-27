@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<link rel="stylesheet" href="css/wangEditor.min.css">
+	<script src="js/lib/jquery-1.10.2.min.js"></script>
+	<script src="js/wangEditor.min.js"></script>
+</head>
+<body>
+<div id="div1"style="height:400px;max-height:500px;">容
+</div>
+<div class="submit" style="width:100px;height:20px;background:black; margin-top:20px; color:#fff">点击获取内</div>
+<script>
+	var editor=new wangEditor("div1")
+	editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
+	editor.create()
+	editor.$txt.html('<p>要初始化的内容</p>');
+	// 获取编辑区域的html
+    var html = editor.$txt.html();
+    // 获取编辑区域的纯文本
+    var text = editor.$txt.text();
+    // 获取编辑区域的所有图片
+    var imgs = editor.$txt.find('img');
+    // 追加内容
+  
+    $(".submit").click(function(){
+    	  console.log(html)
+    console.log(text)
+    console.log(imgs)
+    })
+</script>
+</body>
+</html>
