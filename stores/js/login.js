@@ -1,3 +1,12 @@
+  $(document).ready(function(){
+  $('.list_lh li:even').addClass('lieven');
+  console.log($('.list_lh li:even'))
+  
+  $("div.list_lh").myScroll({
+    speed:40, //数值越大，速度越慢
+    rowHeight:24 //li的高度
+  });
+})
 //轮播图
  $.ajax({
   type:"get",
@@ -112,12 +121,12 @@ var wsCache = new WebStorageCache();
 //判断是否登录
 function addcontent(){
   wsCache.deleteAllExpires();
-site1=wsCache.get("token");
- site2=wsCache.get("refid");
+  site1=wsCache.get("token");
+  site2=wsCache.get("refid");
   if((site1!=='')&&(site2!=='')){
     $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
             levels=data.data.level
-            expirats=data.data.expirationtime.toString().substring(0,10)
+            expirats=data.data.expirationtime
             scores=data.data.score
             groupids=data.data.groupid
             usernames=data.data.username
@@ -360,15 +369,18 @@ function paging_mode(start,end){
    }
   }
   //控制活动公告展示收缩
-$.getJSON("http://101.200.192.149:8080/jfstore/notices",function(result){
+
+
+  $.getJSON("http://101.200.192.149:8080/jfstore/notices",function(result){
+  var c=result.data.length
  
   html=''
-  for (var i = 0; i<3; i++) {
-    html+='<a href="user-public.html">'
-    html+='<div>'+result.data[i].title+'</div>'
-    html+='</a>'
+  for (var i = 0; i<c; i++) {
+    html+='<li>'
+    html+='<p><a href="user-public.html">'+result.data[i].title+'</a></p>'
+    html+='</li>'
   }
-  $(".activity-content").append(html)
+  $(".list_lh ul").append(html)
 })
 $(".core-rule").click(function(){
     $(".rule-top").show()

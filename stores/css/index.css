@@ -281,6 +281,7 @@ a{
 	height: 119px;
 	padding:10px;
 	background: #fff;
+	overflow: hidden;
 }
 .activity-content div{
 	font-size: 13px;
@@ -485,7 +486,9 @@ a{
 }
 .footer{
 	background: #ff4848;
-	height: 85px;
+	background: #ff4848;
+    height: 77px;
+    padding-top: 12px;
 }
 .regist-box{
 	padding-top: 40px;
@@ -1036,4 +1039,34 @@ ul{
 }
 form .files{
 	padding: 10px;
+}
+.footer-head{
+	width: 960px;
+	margin:0 auto;
+}
+.footer-head div{
+	color: #fff;
+	font-size: 14px;
+	height: 23px;
+	line-height: 23px;
+}
+.article{
+	width: 960px;
+	margin: 0 auto;
+}
+.article .bd {
+    padding: 10px 0;
+    line-height: 2.0;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+teble{
+	    border-collapse: collapse;
+    border-spacing: 0;
+}
+.weixinimg{
+	position: fixed;
+    top: 300px;
+    right: 0px;
+    width: 163px;
 }

@@ -3,6 +3,11 @@ var site2
 var type
 var group
 var nowId
+var groupname
+var username
+var scores
+var editor1
+var editor2
 var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
 site1=wsCache.get("tokencom");
@@ -66,6 +71,12 @@ document.getElementById("contentBox").innerHTML="";
 		}
 	}
 
+function gets(results){
+	 $.ajaxSettings.async = false
+	 $.getJSON('http://101.200.192.149:8080/jfstore/getGroupName?id='+results,function(data){
+		  groupname=data.data
+		 })
+}
 function MeetingRoom(meetingroom_data){
 		//DATA
 		 this.ids = meetingroom_data.id;
@@ -73,7 +84,7 @@ function MeetingRoom(meetingroom_data){
 		 this.levels= meetingroom_data.level;
 		 this.groupnames = meetingroom_data.groupName;
 		 this.scores = meetingroom_data.score;
-		 this.groupids= meetingroom_data.id;
+		 this.groupids= meetingroom_data.groupid;
 		//DOM
 		if(this.levels==undefined){
 			this.levels=''
@@ -84,6 +95,7 @@ function MeetingRoom(meetingroom_data){
 		if(this.scores==undefined){
 			this.scores=''
 		}
+		gets(this.groupids)
 		this.ul_element = document.createElement("ul");
 		this.ul_element.className = "li-head-orgs";
 		this.li_name = document.createElement("li");
@@ -93,7 +105,7 @@ function MeetingRoom(meetingroom_data){
 		this.li_num.innerHTML = this.levels;
 		this.li_num.className = "org-id";
 		this.li_cap = document.createElement("li");
-		this.li_cap.innerHTML = this.groupids;
+		this.li_cap.innerHTML = groupname;
 		this.li_cap.className = "org-password";
 		this.li_org = document.createElement("li");
 		this.li_org.innerHTML = this.scores;
@@ -117,6 +129,8 @@ function MeetingRoom(meetingroom_data){
 		$(".editor-user").show();
 		nowId = this.ids;
 		group=this.groupids
+		editor1=this.usernames
+		editor2=this.scores
 		$(".user-name").html(this.usernames)
 		$(".user-level").html(this.levels)
 		$(".user-score").html(this.scores)
@@ -227,18 +241,21 @@ function MeetingRoom(meetingroom_data){
 	});
 //编辑礼品
 $(".true").click(function(){
-	var c=$("#user-a4").val()
+	var c=$.trim($("#user-a4").val())
 	var d=$("#user-select option:selected").val()
+	var f=Number(c)+Number(editor2)
 	if((c=='')||(d=='')){
 		alert("请完善信息")
 		return false
 	}
 	else{
 			var data={
-			title:a,
-			content:b
+			"username": editor1,
+			 "score": f,
+			  "groupid": d
 		}
-		var url1 = 'http://101.200.192.149:8080/jfstore/addnotices';
+		console.log(data)
+		var url1 = 'http://101.200.192.149:8080/jfstore/updateuser';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("PUT", url1, false);           
 								        // xmlhttp.setRequestHeader("token", this.token);
@@ -300,6 +317,7 @@ $(".submits").click(function(){
 
 function RoomAlias(room_alias){
 		this.ids = room_alias.id;
+		this.groupids=room_alias.groupId
 		this.groupNames = room_alias.groupName;
 		this.div1 = document.createElement("div");
 		this.div1.className = "groups";
@@ -314,7 +332,13 @@ function RoomAlias(room_alias){
 		$("#group-content").append(this.div1);
 	}
 RoomAlias.prototype.delete = function(){
-		var deletid=this.ids
+
+		var deletid=this.groupids
+		if(deletid==0){
+			alert("此分组不能删除")
+			return false
+		}
+		else if(confirm("确定要删除该物品？")){
 		$.ajax({
 			type:"DELETE",
 			url:'http://101.200.192.149:8080/jfstore/delgroup?id='+deletid,
@@ -332,6 +356,7 @@ RoomAlias.prototype.delete = function(){
 				alert("服务器内部错误")
 			}			
 	})
+	}
 	}
 
 //新建分组

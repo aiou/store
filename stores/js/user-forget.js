@@ -144,3 +144,6 @@ $(".next-button2").click(function(){
 
     }  
 })
+$(".next-button3").click(function(){
+    window.location.href="user-login.html"
+})
