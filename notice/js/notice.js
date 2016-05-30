@@ -2,6 +2,7 @@ var site1
 var site2
 var noticeid
 var currentCount=10;
+var tcontents
 var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
 site1=wsCache.get("tokencom");
@@ -65,11 +66,12 @@ else{
 }
   MeetingRoom.prototype.editor = function(){
  	noticeid=this.ids
+  tcontents=this.content
+  console.log(tcontents)
  	$(".bcgs").show()
  	$(".editor-notice").show()
  	$(".editor-title").val(this.titles)
- 	$("#editor-content").val(this.contents)
-  }
+ }
   //首次加载会议室列表
 	function firstShowList(data){
 		meetingRoomData = data.data;
@@ -238,3 +240,29 @@ $(".cancels").click(function(){
 	$(".bcgs").hide()
 	$(".add-notice").hide()
 })
+ var editor=new wangEditor("div1")
+  editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
+  editor.create()
+  editor.$txt.html('<p>请在这里解答疑问</p>');
+  // 获取编辑区域的html
+    var html = editor.$txt.html();
+    // 获取编辑区域的纯文本
+    var text = editor.$txt.text();
+    // 获取编辑区域的所有图片
+    var imgs = editor.$txt.find('img');
+    // 追加内容
+$(".trues").click(function(){
+  console.log(html)
+})
+   var editor=new wangEditor("div2")
+  editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
+  editor.create()
+  console.log(tcontents)
+  editor.$txt.html('<p>'+tcontents+'</p>');
+  // 获取编辑区域的html
+    var html = editor.$txt.html();
+    // 获取编辑区域的纯文本
+    var text = editor.$txt.text();
+    // 获取编辑区域的所有图片
+    var imgs = editor.$txt.find('img');
+    // 追加内容

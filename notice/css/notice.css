@@ -19,7 +19,7 @@ body{font-family:"Microsoft Yahei";}
 .logo{width:;}
 /*内容区*/
 .contentBox{}
-.content{width:1178px;margin:0 auto;background:#f0f0f0;height: 790px;}
+.contents{width:1178px;margin:0 auto;background:#f0f0f0;height: 790px;}
 .leftBox{float:left;width:188px;border-right:1px solid #dddddd;}
 .leftBox li{height:60px;line-height:60px;border-bottom:1px solid #ddd;font-size:16px;font-family:"Microsoft Yahei";color:#000;cursor:pointer;}
 .leftBox li span{float:right;margin-right:46px;}
@@ -184,6 +184,14 @@ ul{
     text-align: center;
     height: 40px;
 }
+.li-head-org1 li{
+    width: 189px;
+    float: left;
+    font-family: '微软雅黑';
+    font-size: 13px;
+    text-align: center;
+    height: 40px;
+}
 .li-head-track li,.li-head-tracks li{
     width: 150px;
     float: left;
@@ -247,7 +255,7 @@ ul{
 }
 .add-notice,.editor-notice{
     width: 500px;
-    height: 420px;
+    height: 515px;
     position: absolute;
     left: 50%;
     top: 30%;
@@ -314,6 +322,21 @@ ul{
     border-radius: 4px;
     height: 30px;
 }
+.trues{
+   position: relative;
+    top: 32px;
+    display: inline-block;
+    width: 100px;
+    color: rgb(255, 255, 255);
+    font-family: '微软雅黑';
+    line-height: 30px;
+    left: 146px;
+    cursor: pointer;
+    background: #ff4848;
+    border-radius: 4px;
+    height: 30px; 
+   text-align: center;
+}
 .form-box .cancel,.form-box .cancels{
     background: #969696;
      position: relative;
@@ -327,6 +350,22 @@ ul{
     cursor: pointer;
     border-radius: 4px;
     height: 30px;
+    text-align: center;
+}
+.cancels{
+    background: #969696;
+     position: relative;
+    top: 32px;
+    display: inline-block;
+    width: 100px;
+    color: rgb(255, 255, 255);
+    font-family: '微软雅黑';
+    line-height: 30px;
+    right: -210px;
+    cursor: pointer;
+    border-radius: 4px;
+    height: 30px;
+    text-align: center;
 }
 .exit{
     position: absolute;

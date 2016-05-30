@@ -5,6 +5,7 @@
 	<title>公告</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/notice.css">
+	<link rel="stylesheet" href="css1/wangEditor.min.css">
 </head>
 <body>
 	<div class="topBox">
@@ -14,14 +15,14 @@
 		</div>
 	</div>
 	<div class="contentBox">
-		<div class="content clear">
+		<div class="contents clear">
 			<ul class="leftBox">
 				<li class="gift"><a href="gift-management.html"><span>礼品管理</span></a></li>
 				<li class="count"><a href="exchange-total.html"><span>兑换统计</span></a></li>
 				<li class="track" style="display:none"><a href="exchange-track.html"><span>兑换追踪</span></a></li>
 				<li class="userManagement"><a href="user-management.html"><span>用户管理</span></a></li>
 				<li class="add_Notice active"><a href="notice.html"><span>添加公告</span></a></li>
-				<li class="add_Img"><a href="img.html"><span>添加图片</span></a></li>
+				<li class="add_Img"><a href="img.html"><span>帮助疑问</span></a></li>
 			</ul>
 		<div class="rightBox">
 			<div class="addNoticeBox clear">
@@ -46,38 +47,43 @@
 		</div>		
 	</div>
 <div class="bcgs"></div>
-<div class="add-notice">
-	<div class="add-head">新建公告</div>
+<div class="add-notice"style="margin-top:-150px;height:555px;">
+	<div class="add-head" >新建公告</div>
 	<div class="form-box">
 		<div>
 			<span>标题：</span>
 			<input type="text" class="add-title">
 		</div>
-		<div class="positions">
-			<div>内容：</div>
-			<textarea id="add-content" cols="30" rows="10"></textarea>
-			<span class="trues">确定</span>
-			<span class="cancels">取消</span>
-		</div>
+		<div id="div1"style="height:185px;">		
 	</div>
+		<div>
+			<span>公告大图：</span>
+			<input type="text" class="add-img">
+		</div>
+	    <span class="trues">确定</span>
+		<span class="cancels">取消</span>
 </div>
-<div class="editor-notice">
+</div>
+<div class="editor-notice" style="margin-top:-150px;height:555px;">
 	<div class="add-head">编辑公告</div>
 	<div class="form-box">
 		<div>
 			<span>标题：</span>
 			<input type="text" class="editor-title">
 		</div>
-		<div class="positions">
-			<div>内容：</div>
-			<textarea id="editor-content" cols="30" rows="10" ></textarea>
-			<span class="true">确定</span>
-			<span class="cancel">取消</span>
-		</div>
+			<div id="div2"style="height:185px;">
 	</div>
+	<div>
+			<span>公告大图：</span>
+			<input type="text" class="add-img">
+		</div>
+	<span class="true">确定</span>
+		<span class="cancel">取消</span>
+</div>
 </div>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/web-storage-cache.js"></script>
+<script src="js/wangEditor.min.js"></script>
 <script type="text/javascript" src="js/notice.js"></script>
 </body>
 </html>

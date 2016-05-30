@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>轮播图</title>
+	<title>帮助疑问</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/notice.css">
 	<link rel="stylesheet" href="css/dropzone.min.css">
 	<link rel="stylesheet" href="css/basic.min.css">
+	<link rel="stylesheet" href="css1/wangEditor.min.css">
 
 </head>
 <body>
@@ -17,28 +18,29 @@
 		</div>
 	</div>
 	<div class="contentBox">
-		<div class="content clear">
+		<div class="contents clear">
 			<ul class="leftBox">
 				<li class="gift"><a href="gift-management.html"><span>礼品管理</span></a></li>
 				<li class="count"><a href="exchange-total.html"><span>兑换统计</span></a></li>
 				<li class="track" style="display:none"><a href="exchange-track.html"><span>兑换追踪</span></a></li>
 				<li class="userManagement"><a href="user-management.html"><span>用户管理</span></a></li>
 				<li class="add_Notice"><a href="notice.html"><span>添加公告</span></a></li>
-				<li class="add_Img active5"><a href="img.html"><span>添加图片</span></a></li>
+				<li class="add_Img active5"><a href="img.html"><span>帮助疑问</span></a></li>
 			</ul>
 		<div class="rightBox">
 			<div class="addNoticeBox clear">
-				<span class="noticetitle">添加图片</span>
+				<span class="noticetitle">添加帮助</span>
+				<a href="#" id="addNotice"><img src="images/addnotice_btn.png"></a>
 			</div>
 			<div id="img-box">
 				<div class="imgnow">当前轮播图展示</div>
 				<div class="img-head">
 					<ul id="contentBox">
-						<li>
+						<!-- <li>
 						<img src="images/bcg.jpg">
 						<div class="boxes"><img src="images/delete.png"></div>
 						</li>
-						<!-- <li><img src="images/bcg.jpg"></li> -->
+						<!-- <li><img src="images/bcg.jpg"></li> --> -->
 					</ul>
 						<div class="pages" style="width: 420px;text-align: center;font-size: 13px;margin: 0 auto;position: initial;margin-top:30px;">
 						<span>第<span class="current-page"></span>页/</span>
@@ -52,23 +54,31 @@
 						<span id="page-jump">跳转</span>
 					</div>				
 				</div>
-				<div class="imgnow">上传首页轮播图</div>
-				<form name="form1" method="post" enctype="multipart/form-data" action='http://101.200.192.149:8080/jfstore/uploadadimg' target="nm_iframe" accept="image/*">
-					<input type="file" style="outline:none" class="files" name="file"/>
-		        <input type="submit" name="Submit" value="添加"onclick="check()" style="padding:10px"/>
-				</form>
 			</div>
 				
 		</div>
 		</div>		
 	</div>
-
-<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>  
-</iframe>
 <div class="bcgs"></div>
+<div class="add-notice">
+	<div class="add-head">新建帮助</div>
+	<div class="form-box">
+		<div>
+			<span>帮助标题：</span>
+			<input type="text" class="add-title">
+		</div>
+		<div id="div1"style="height:185px;">
+
+	</div>
+</div>
+		<span class="trues">确定</span>
+		<span class="cancels">取消</span>
+</div>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/web-storage-cache.js"></script>
+<script src="js/wangEditor.min.js"></script>
 <!-- <script type="text/javascript" src="js/dropzone.min.js"></script> -->
 <script type="text/javascript" src="js/img.js"></script>
+
 </body>
 </html>

@@ -60,7 +60,7 @@ function MeetingRoom(meetingroom_data){
 		 this.lbs = meetingroom_data.lb;
 		//DOM
 		this.ul_element = document.createElement("ul");
-		this.ul_element.className = "li-head-orgs";
+		this.ul_element.className = "li-head-org1";
 		this.li_name = document.createElement("li");
 		this.li_name.innerHTML = this.names;
 		this.li_name.className = "org-name";
