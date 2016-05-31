@@ -66,11 +66,13 @@ else{
 }
   MeetingRoom.prototype.editor = function(){
  	noticeid=this.ids
-  tcontents=this.content
+  tcontents=this.contents
   console.log(tcontents)
  	$(".bcgs").show()
  	$(".editor-notice").show()
  	$(".editor-title").val(this.titles)
+  editor1.$txt.html('<p>'+tcontents+'</p>');
+
  }
   //首次加载会议室列表
 	function firstShowList(data){
@@ -254,15 +256,15 @@ $(".cancels").click(function(){
 $(".trues").click(function(){
   console.log(html)
 })
-   var editor=new wangEditor("div2")
-  editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
-  editor.create()
+  var editor1=new wangEditor("div2")
+  editor1.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
+  editor1.create()
   console.log(tcontents)
-  editor.$txt.html('<p>'+tcontents+'</p>');
+
   // 获取编辑区域的html
-    var html = editor.$txt.html();
+    var html = editor1.$txt.html();
     // 获取编辑区域的纯文本
-    var text = editor.$txt.text();
+    var text = editor1.$txt.text();
     // 获取编辑区域的所有图片
-    var imgs = editor.$txt.find('img');
+    var imgs = editor1.$txt.find('img');
     // 追加内容
