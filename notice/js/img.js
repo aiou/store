@@ -171,6 +171,9 @@ else{
 })
  var editor=new wangEditor("div1")
   editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
+  editor.config.uploadHeaders = {
+        'Accept' : 'text/x-json'
+    };
   editor.create()
   editor.$txt.html('<p>请在这里解答疑问</p>');
   // 获取编辑区域的html

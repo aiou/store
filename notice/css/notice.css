@@ -101,21 +101,21 @@ body{font-family:"Microsoft Yahei";}
 	padding-left: 25px;
 	padding-right: 20px;
 }
-.input-box div{
+/*.input-box div{
 	text-indent: 15px;
 	position: relative;
 	height: 20px;
 	font-size: 13px;
 	line-height: 20px;
-}
-.input-box i{
+}*/
+/*.input-box i{
 	position: absolute;
 	left: 0px;
 	top: 2px;
 	width: 3px;
 	height: 15px;
 	background:#ff4848; 
-}
+}*/
 .input-box input{
 	width: 150px;
 	height: 25px;

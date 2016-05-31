@@ -1070,3 +1070,18 @@ teble{
     right: 0px;
     width: 163px;
 }
+.title-head i{
+	position: absolute;
+    left: 8px;
+    top: 7px;
+    width: 5px;
+    height: 18px;
+    background: #fc4b45;
+}
+.title-head {
+	height: 30px;
+	line-height: 30px;
+	color: #fc4b45;
+	text-indent: 30px;
+	position: relative;
+}
