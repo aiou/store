@@ -121,7 +121,7 @@ body{font-family:"Microsoft Yahei";}
 	height: 25px;
 	margin-top: 5px;
 }
-#radio1,#radio2{
+#radio1,#radio2,#radio3,#radio4{
 	display: none;
 }
 .input-radio{
@@ -138,7 +138,7 @@ body{font-family:"Microsoft Yahei";}
     margin-top: 15px;
     cursor: pointer;
 }
-.label1,.label2{
+.label1,.label2,.label3,.label4{
 	display: inline-block;
     width: 65px;
     height: 30px;
@@ -148,6 +148,9 @@ body{font-family:"Microsoft Yahei";}
 }
 #radio1:checked+label, #radio2:checked+label{
 	 background: url(../images/checkpink.png) no-repeat 42px 7px;
+}
+#radio3:checked+label, #radio4:checked+label{
+     background: url(../images/checkpink.png) no-repeat 42px 7px;
 }
 .content-box{
     height: 100%;
@@ -322,7 +325,7 @@ ul{
     border-radius: 4px;
     height: 30px;
 }
-.trues{
+.trues,.true{
    position: relative;
     top: 32px;
     display: inline-block;

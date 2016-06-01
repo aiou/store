@@ -348,3 +348,22 @@ $(".submits").click(function(){
     // 获取编辑区域的所有图片
     var imgs = editor.$txt.find('img');
     // 追加内容
+  var editor=new wangEditor("div2")
+  editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
+  editor.create()
+  editor.$txt.html('<p>请在这里解答疑问</p>');
+  // 获取编辑区域的html
+    var html = editor.$txt.html();
+    // 获取编辑区域的纯文本
+    var text = editor.$txt.text();
+    // 获取编辑区域的所有图片
+    var imgs = editor.$txt.find('img');
+    // 追加内容
+$("#addNotice").click(function(){
+	$(".bcgs").show()
+	$(".add-notice").show()
+})
+$(".cancels").click(function(){
+	$(".bcgs").hide()
+	$(".add-notice").hide()
+})
