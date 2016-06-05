@@ -150,7 +150,7 @@ function exit(){
 }
 //首页产品列表
 var meetingRoomData;
-var meetingRoomDatas//所有会议室
+var meetingRoomDatas
 function paging_mode(start,end){
     document.getElementById("contentBox").innerHTML="";
     for(var i=start;i<end;i++){
@@ -249,7 +249,7 @@ function paging_mode(start,end){
       paging_mode(0,5);
     }
   }
-  //获取所有会议室详细信息
+  //获取所有详细信息
   $.ajax({
     type: "get",
     url:'http://101.200.192.149:8080/jfstore/rm',

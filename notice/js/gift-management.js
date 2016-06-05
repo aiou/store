@@ -23,7 +23,7 @@ if((site1==null)||(site2==null)){
 	 window.location.href="login.html"
 }
 else{
-		//获取所有会议室详细信息
+		//获取所有详细信息
 	var meetingRoomNum = "";
 	var displayName = "";
 	$.ajax({
@@ -33,15 +33,15 @@ else{
 			firstShowList(data);
 		},
 		error: function(erro){
-			alert("获取所有会议室失败");
+			alert("获取信息失败");
 		}
 	});
 }
-var organizationData;//所有机构
-var meetingRoomData;//所有会议室
+var organizationData;
+var meetingRoomData;
 var currentCount = 10;//每一页显示的条数
 var admin_token; //全局token
-var nowId = 0;//全局会议室ID
+var nowId = 0;
 var alias_roomNum = 0;
 //分页显示公用方法
 function paging_mode(start,end){
@@ -167,7 +167,7 @@ $(".cancel").click(function(){
 	$(".bcgs").hide()
 	$(".add-img").hide()
 })
-//首次加载会议室列表
+//首次加载列表
 	function firstShowList(data){
 		meetingRoomData = data.data;
 		totals = meetingRoomData.length;
@@ -182,7 +182,7 @@ $(".cancel").click(function(){
 		}
 	}
 
-//会议室列表跳到首页
+//列表跳到首页
 	$("#firstPage").click(function(){
 		var currentPage = $(".current-page").html();//当前页码
 		var pageCount = $(".page-count").html();//总页数
@@ -221,7 +221,7 @@ $(".cancel").click(function(){
 		}
 		$(".current-page").html(parseInt(currentPage)+1);//当前页码
 	});
-	//会议室列表跳到尾页
+	//列表跳到尾页
 	$("#lastPage").click(function(){
 		var currentPage = $(".current-page").html();//当前页码
 		var pageCount = $(".page-count").html();//总页数

@@ -97,7 +97,7 @@ function MeetingRoom(meetingroom_data){
 		this.ul_element.appendChild(this.li_option);
 		document.getElementById("contentBox").appendChild(this.ul_element);
 	}
-//首次加载会议室列表
+//首次加载列表
 	function firstShowList(data){
 		meetingRoomData = data.data;
 		totals = meetingRoomData.length;
@@ -111,9 +111,9 @@ function MeetingRoom(meetingroom_data){
 			paging_mode(0,currentCount);
 		}
 	}
-	//获取所有会议室详细信息
+	//获取所有详细信息
 
-//会议室列表跳到首页
+//列表跳到首页
 	$("#firstPage").click(function(){
 		var currentPage = $(".current-page").html();//当前页码
 		var pageCount = $(".page-count").html();//总页数
@@ -152,7 +152,7 @@ function MeetingRoom(meetingroom_data){
 		}
 		$(".current-page").html(parseInt(currentPage)+1);//当前页码
 	});
-	//会议室列表跳到尾页
+	//列表跳到尾页
 	$("#lastPage").click(function(){
 		var currentPage = $(".current-page").html();//当前页码
 		var pageCount = $(".page-count").html();//总页数

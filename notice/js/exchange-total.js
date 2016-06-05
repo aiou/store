@@ -17,7 +17,7 @@ if((site1==null)||(site2==null)){
 	window.location.href="login.html"
 }
 else{
-		//获取所有会议室详细信息
+		//获取所有详细信息
 	var meetingRoomNum = "";
 	var displayName = "";
 	$.ajax({
@@ -122,7 +122,7 @@ function MeetingRoom(meetingroom_data){
 	}
 	MeetingRoom.prototype.deleteRoom = function(){
 		var deleteID = this.id;
-		if(confirm("确定要删除该会议室？")){
+		if(confirm("确定要删除这条记录？")){
 			$.ajax({
 			type: 'delete',
 			url: 'https://api-test.cloudp.cc:443/cloudpServer/v1/orgs/vmrs/'+this.id+'?token='+admin_token,
@@ -146,13 +146,13 @@ function MeetingRoom(meetingroom_data){
 				}
 			},
 			error: function(erro){
-				alert("删除会议室失败");
+				alert("删除失败");
 			}
 		});
 		}
 		
 	}
-//首次加载会议室列表
+//首次加载列表
 	function firstShowList(data){
 		meetingRoomData = data.data;
 		totals = meetingRoomData.length;
@@ -167,7 +167,7 @@ function MeetingRoom(meetingroom_data){
 		}
 	}
 
-//会议室列表跳到首页
+//列表跳到首页
 	$("#firstPage").click(function(){
 		var currentPage = $(".current-page").html();//当前页码
 		var pageCount = $(".page-count").html();//总页数
@@ -206,7 +206,7 @@ function MeetingRoom(meetingroom_data){
 		}
 		$(".current-page").html(parseInt(currentPage)+1);//当前页码
 	});
-	//会议室列表跳到尾页
+	//列表跳到尾页
 	$("#lastPage").click(function(){
 		var currentPage = $(".current-page").html();//当前页码
 		var pageCount = $(".page-count").html();//总页数
