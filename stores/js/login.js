@@ -130,13 +130,14 @@ function addcontent(){
             scores=data.data.score
             groupids=data.data.groupid
             usernames=data.data.username
-            var datas=getLocalTime(expirats)
+        $.getJSON('http://101.200.192.149:8080/jfstore/getExptime?username='+usernames,function(data){    
             $(".user-name").html(usernames)
             $(".level-one").html(levels)
-            $(".level-three").html(datas)
+            $(".level-three").html(data.data)
             $(".score-two").html(scores) 
             $(".head-login").hide()
             $(".head-nologin").show()
+          })
           })
 }
 }

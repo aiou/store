@@ -1085,3 +1085,25 @@ teble{
 	text-indent: 30px;
 	position: relative;
 }
+.jfdiv{
+	width: 960px;
+	margin: 0 auto;
+	text-indent: 50px;
+}
+.jfinput{
+	height:26px;
+	line-height: 26px;
+}
+.jfspan{
+	display: inline-block;
+	background:#fc4b45;
+	color: #fff;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	text-indent: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+}

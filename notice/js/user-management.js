@@ -424,3 +424,13 @@ $(".chaxun").click(function(){
 		})
 		}
 })
+function daochu(){
+		 try{ 
+            var elemIF = document.createElement("iframe");   
+            elemIF.src = 'http://101.200.192.149:8080/jfstore/exportUserinfo';   
+            elemIF.style.display = "none";   
+            document.body.appendChild(elemIF);   
+        }catch(e){ 
+ 
+        } 
+}

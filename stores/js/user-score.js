@@ -1,5 +1,7 @@
 var wsCache = new WebStorageCache();
 var currentCount=10
+var usernames
+var scores
  wsCache.deleteAllExpires();
  site1=wsCache.get("token");
 site2=wsCache.get("refid");
@@ -16,15 +18,16 @@ if((site1==null)||(site2==null)){
 else{
 	 $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
             levels=data.data.level
-            expirats=data.data.expirationtime.toString().substring(0,10)
             scores=data.data.score
             groupids=data.data.groupid
             usernames=data.data.username
+            $.getJSON('http://101.200.192.149:8080/jfstore/getExptime?username='+usernames,function(data){  
             $(".score-top").html(usernames)
             $(".level-ones").html(levels)
-            $(".level-three").html(expirats)
+            $(".level-three").html(data.data)
             $(".shengyu-total").html(scores) 
           })
+        })
 	 	var meetingRoomNum = "";
 	var displayName = "";
 	$.ajax({
@@ -37,6 +40,7 @@ else{
 			alert("服务器内部错误");
 		}
 	});
+
 }
 function getLocalTime(nS) {     
     return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ')
@@ -186,3 +190,44 @@ function MeetingRoom(meetingroom_data){
     	$(".page-num").val("");
     	}
 	});
+$(".jfspan").click(function(){
+	var a=$.trim($(".jfinput").val())
+	if(a==''){
+		alert("请输入积分码")
+	}
+	else{
+		
+		$.getJSON('http://101.200.192.149:8080/jfstore/getjf?number='+a,function(data){
+			if(data.code==0){
+				var codes=data.data
+				var b=Number(codes)+Number(scores)
+						var data={
+						"username": usernames,
+						 "score": b
+					}
+					console.log(data)
+					var url1 = 'http://101.200.192.149:8080/jfstore/updateuser';
+					var xmlhttp = new XMLHttpRequest();
+					xmlhttp.open("PUT", url1, false);           
+											        // xmlhttp.setRequestHeader("token", this.token);
+					xmlhttp.setRequestHeader("Content-Type", "application/json");
+					xmlhttp.send(JSON.stringify(data));
+
+					if(xmlhttp.status==200){
+					var codes=JSON.parse(xmlhttp.responseText)
+					if(codes.code==0){
+					alert("充值成功")
+					window.location.reload()
+					}
+					}
+					else{
+					alert("服务器内部错误")
+					}
+
+			}
+			else{
+				alert("充值失败，请重新输入")
+			}
+		})
+	}
+})

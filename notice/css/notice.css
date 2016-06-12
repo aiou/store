@@ -712,3 +712,20 @@ margin-bottom: -25px;
     height: 30px;
     text-align: center;
 }
+.daochu{
+    position: absolute;
+    height: 40px;
+    line-height: 40px;
+    border:0;
+    outline: none;
+    top: 10px;
+    left: 200px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: #fff;
+    background:#ff4848;
+}
