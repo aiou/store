@@ -240,7 +240,7 @@ function MeetingRoom(meetingroom_data){
     	$(".page-num").val("");
     	}
 	});
-//编辑礼品
+//编辑用户
 $(".true").click(function(){
 	var c=$.trim($("#user-a4").val())
 	var d=$("#user-select option:selected").val()
@@ -335,6 +335,7 @@ function RoomAlias(room_alias){
 RoomAlias.prototype.delete = function(){
 
 		var deletid=this.groupids
+		alert(deletid)
 		if(deletid==0){
 			alert("此分组不能删除")
 			return false

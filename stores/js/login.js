@@ -18,14 +18,14 @@
   html=''
  for (var i = 0; i<totals; i++) {
   var url='http://101.200.192.149:8080/jfstore/img/'+data.data[i].imgpath
-  html+='<div class="swiper-slide"><img src="'+url+'"></div>'
+  html+='<div class="swiper-slide" style="cursor:pointer"><img src="'+url+'"></div>'
  }
  $(".swiper-wrapper").append(html)
   }
  })
 
  var wsCache = new WebStorageCache();
- var swiper = new Swiper('.swiper-container', {
+ var swiper1 = new Swiper('.swiper-container', {
         // pagination: '.swiper-pagination',
         // nextButton: '.swiper-button-next',
         // prevButton: '.swiper-button-prev',
@@ -33,8 +33,11 @@
         spaceBetween: 30,
         centeredSlides: true,
         autoplay: 2500,
-        autoplayDisableOnInteraction: false
-    });
+        autoplayDisableOnInteraction: false,
+        onClick: function(swiper){
+         window.location.href="user-public.html"
+    }
+    })
 var admintoken;
 var refids
 var levels

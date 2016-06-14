@@ -169,20 +169,40 @@ else{
   $(".bcgs").hide()
   $(".add-notice").hide()
 })
- var editor=new wangEditor("div1")
-  editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
-  editor.config.uploadHeaders = {
-        'Accept' : 'text/x-json'
-    };
-  editor.create()
-  editor.$txt.html('<p>请在这里解答疑问</p>');
-  // 获取编辑区域的html
-    var html = editor.$txt.html();
-    // 获取编辑区域的纯文本
-    var text = editor.$txt.text();
-    // 获取编辑区域的所有图片
-    var imgs = editor.$txt.find('img');
-    // 追加内容
+ // var editor=new wangEditor("div1")
+ //  editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
+ //  editor.config.uploadHeaders = {
+ //        'Accept' : 'text/x-json'
+ //    };
+ //    editor.config.menus = [
+ //        'source',
+ //        '|',     // '|' 是菜单组的分割线
+ //        'bold',
+ //        'underline',
+ //        'italic',
+ //        'strikethrough',
+ //        'eraser',
+ //        'forecolor',
+ //        'bgcolor'
+ //     ];
+ //  editor.create()
+ //  editor.$txt.html('<p>请在这里解答疑问</p>');
+ //  // 获取编辑区域的html
+ //    var html = editor.$txt.html();
+ //    // 获取编辑区域的纯文本
+ //    var text = editor.$txt.text();
+ //    // 获取编辑区域的所有图片
+ //    var imgs = editor.$txt.find('img');
+ //    // 追加内容
 $(".trues").click(function(){
   console.log(html)
 })
+function check(){
+  var a=$(".files").val()
+  if(a==''){
+    alert("请选择图片")
+  }
+  else{
+    alert("上传成功，请刷新")
+  }
+}

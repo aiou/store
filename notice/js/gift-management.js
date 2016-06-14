@@ -337,19 +337,77 @@ $(".submits").click(function(){
 	}
 
 })
- var editor=new wangEditor("div1")
-  editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
-  editor.create()
-  editor.$txt.html('<p>请在这里解答疑问</p>');
+ var editor1=new wangEditor("div1")
+  editor1.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadimg';
+  editor1.config.uploadImgFileName = 'file';
+  editor1.config.menus = [
+        '|',
+        'bold',
+        'underline',
+        'italic',
+        'strikethrough',
+        'eraser',
+        'forecolor',
+        'bgcolor',
+        '|',
+        'quote',
+        'fontfamily',
+        'fontsize',
+        'head',
+        'unorderlist',
+        'orderlist',
+        'alignleft',
+        'aligncenter',
+        'alignright',
+        '|',
+        'table',
+        '|',
+        'img',
+        '|',
+        'undo',
+        'redo',
+        'fullscreen'
+     ];
+  editor1.create()
+  editor1.$txt.html('<p>请在这里解答疑问</p>');
   // 获取编辑区域的html
-    var html = editor.$txt.html();
+    var html = editor1.$txt.html();
     // 获取编辑区域的纯文本
-    var text = editor.$txt.text();
+    var text = editor1.$txt.text();
     // 获取编辑区域的所有图片
-    var imgs = editor.$txt.find('img');
+    var imgs = editor1.$txt.find('img');
     // 追加内容
   var editor=new wangEditor("div2")
-  editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
+  editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadimg';
+  editor.config.uploadImgFileName = 'file';
+  editor.config.menus = [
+        '|',
+        'bold',
+        'underline',
+        'italic',
+        'strikethrough',
+        'eraser',
+        'forecolor',
+        'bgcolor',
+        '|',
+        'quote',
+        'fontfamily',
+        'fontsize',
+        'head',
+        'unorderlist',
+        'orderlist',
+        'alignleft',
+        'aligncenter',
+        'alignright',
+        '|',
+        'table',
+        '|',
+        'img',
+        '|',
+        'undo',
+        'redo',
+        'fullscreen'
+     ];
   editor.create()
   editor.$txt.html('<p>请在这里解答疑问</p>');
   // 获取编辑区域的html
@@ -367,3 +425,28 @@ $(".cancels").click(function(){
 	$(".bcgs").hide()
 	$(".add-notice").hide()
 })
+function check(){
+	var a=$(".add-name").val()
+	var b=$(".add-score").val()
+	var c=$(".add-count").val()
+	var d=$(".input-radio input[name=radiochooseCreat]:checked").val()
+	var e=editor1.$txt.html();
+	console.log(a)
+	console.log(b)
+	console.log(c)
+	console.log(e)
+	console.log(d)
+	var f=$(".files").val()
+	url='http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d;
+		console.log(url)
+			 document.getElementById("forms").action = url;
+			 var a=$(".files").val()
+			  if(a==''){
+			    alert("请选择图片")
+			  }
+			 else{
+			 	alert("上传商品图片成功")
+  			    document.getElementById("forms").submit();
+  			      return false;  			  
+  			}
+}
