@@ -334,9 +334,8 @@ function RoomAlias(room_alias){
 	}
 RoomAlias.prototype.delete = function(){
 
-		var deletid=this.groupids
-		alert(deletid)
-		if(deletid==0){
+		var deletid=this.ids
+		if(deletid==1){
 			alert("此分组不能删除")
 			return false
 		}
