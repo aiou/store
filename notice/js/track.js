@@ -22,7 +22,7 @@ if((site1==null)||(site2==null)){
 else{
 	  $.ajax({
     type: "get",
-    url:'http://101.200.192.149:8080/jfstore/notices',
+    url:'http://101.200.192.149:8080/jfstore/questions',
     success: function(data){
       firstShowList(data);
     },
@@ -41,7 +41,7 @@ else{
     //DATA
     this.ids = meetingroom_data.id;
     this.titles= meetingroom_data.title;
-    this.times= meetingroom_data.time.toString().substring(0,10);
+    // this.times= meetingroom_data.time.toString().substring(0,10);
     this.contents = meetingroom_data.content;
     //DOM
     var datas=getLocalTime(this.times)
@@ -176,7 +176,7 @@ $(".true").click(function(){
           "title": a,
           "content": b
     }
-    var url1 = 'http://101.200.192.149:8080/jfstore/updatenotices';
+    var url1 = 'http://101.200.192.149:8080/jfstore/updatequestion';
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("PUT", url1, false);           
                         // xmlhttp.setRequestHeader("token", this.token);
@@ -220,7 +220,7 @@ $(".trues").click(function(){
 			content:b
 		}
     console.log(data)
-		var url1 = 'http://101.200.192.149:8080/jfstore/addnotices';
+		var url1 = 'http://101.200.192.149:8080/jfstore/addquestions';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("POST", url1, false);           
 								        // xmlhttp.setRequestHeader("token", this.token);

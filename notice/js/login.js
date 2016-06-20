@@ -35,7 +35,7 @@ var wsCache = new WebStorageCache();
        if(result=='true'){
            $.ajax({
       type:"get",
-      url:'http://101.200.192.149:8080/jfstore/userLogin?username='+user+'&password='+password,
+      url:'http://101.200.192.149:8080/jfstore/adminLogin?username='+user+'&password='+password,
       dataType:"json",
       success:function(data){
         if(data.code==0){      

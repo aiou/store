@@ -54,6 +54,10 @@ else{
     this.li_num = document.createElement("span");
     this.li_num.className="noticeTime"
     this.li_num.innerHTML=datas
+    this.li_caps = document.createElement("span");
+    this.li_caps.innerHTML = "置顶";
+    this.li_caps.className = "zhiding";
+    this.li_caps.addEventListener("click",this.zhiding.bind(this),false);
     this.li_cap = document.createElement("span");
     this.li_cap.innerHTML = "编辑";
     this.li_cap.className = "editNotice";
@@ -61,6 +65,7 @@ else{
     this.ul_element.appendChild(this.li_name);
     this.li_name.appendChild(this.li_namep);
     this.ul_element.appendChild(this.li_num);
+    this.ul_element.appendChild(this.li_caps);
     this.ul_element.appendChild(this.li_cap);
     document.getElementById("noticeUl").appendChild(this.ul_element);
 }
@@ -72,6 +77,10 @@ else{
  	$(".editor-notice").show()
  	$(".editor-title").val(this.titles)
   editor1.$txt.html(tcontents);
+
+ }
+   MeetingRoom.prototype.zhiding = function(){
+
 
  }
   //首次加载列表

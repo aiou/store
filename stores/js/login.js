@@ -140,6 +140,9 @@ function addcontent(){
             $(".score-two").html(scores) 
             $(".head-login").hide()
             $(".head-nologin").show()
+            if(scores>=100){
+              alert("您的积分已超过100了，请兑换礼品吧！")
+            }
           })
           })
 }

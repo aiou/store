@@ -206,3 +206,31 @@ function check(){
     alert("上传成功，请刷新")
   }
 }
+function tianjia(){
+  var a=$.trim($(".jf1").val())
+  var b=$.trim($(".jf2").val())
+  if((a=='')||(b=='')){
+    alert("请将积分码和分值填写完整")
+  }
+  else{
+      var data={
+        number:a,
+        score:b
+      }
+      console.log(data)
+    var url1 = 'http://101.200.192.149:8080/jfstore/addjfcard';
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", url1, false);           
+                        // xmlhttp.setRequestHeader("token", this.token);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(data));
+
+    if(xmlhttp.status==200){
+    var codes=JSON.parse(xmlhttp.responseText)
+    if(codes.code==0){
+    alert("添加成功")
+    window.location.reload()
+    }
+  }
+}
+}

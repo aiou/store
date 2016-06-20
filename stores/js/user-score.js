@@ -2,6 +2,7 @@ var wsCache = new WebStorageCache();
 var currentCount=10
 var usernames
 var scores
+var totals
  wsCache.deleteAllExpires();
  site1=wsCache.get("token");
 site2=wsCache.get("refid");
@@ -26,13 +27,14 @@ else{
             $(".level-ones").html(levels)
             $(".level-three").html(data.data)
             $(".shengyu-total").html(scores) 
+            $(".duijiang-total").html(totals)
           })
         })
 	 	var meetingRoomNum = "";
 	var displayName = "";
 	$.ajax({
 		type: "get",
-		url:'http://101.200.192.149:8080/jfstore/exchangerecord',
+		url:'http://101.200.192.149:8080/jfstore/userExchange?userid='+site2,
 		success: function(data){
 			firstShowList(data);
 		},

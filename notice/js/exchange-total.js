@@ -3,6 +3,8 @@ var site2
 var currentCount=10;
 var usernames
 var wsCache = new WebStorageCache();
+$("#datatime1").datetimepicker();
+$("#datatime2").datetimepicker();	
 function exit(){
    wsCache.deleteAllExpires();
     wsCache.delete('tokencom');
@@ -240,3 +242,26 @@ function MeetingRoom(meetingroom_data){
     	$(".page-num").val("");
     	}
 	});
+$(".chaxun").click(function(){
+	var a=$("#datatime1").val()
+	var b=$("#datatime2").val()
+	if((a=='')||(b=='')){
+		alert("请选择日期")
+	}
+	else{
+		$.getJSON('http://101.200.192.149:8080/jfstore/listExchangesometime?beginTime='+a+'&endTime='+b,function(data){
+			if(data.code==0){
+			var c=data.data.length
+			if(c!==0){
+				firstShowList(data);
+			}
+			else{
+				alert("该时间段内没有兑换记录")
+			}
+			}
+			else{
+				alert("网络错误，请重试")
+			}
+		})
+	}
+})

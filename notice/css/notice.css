@@ -22,7 +22,7 @@ body{font-family:"Microsoft Yahei";}
 .contents{width:1178px;margin:0 auto;background:#f0f0f0;height: 790px;}
 .leftBox{float:left;width:188px;border-right:1px solid #dddddd;}
 .leftBox li{height:60px;line-height:60px;border-bottom:1px solid #ddd;font-size:16px;font-family:"Microsoft Yahei";color:#000;cursor:pointer;}
-.leftBox li span{float:right;margin-right:46px;}
+.leftBox li span{/*float:right;margin-right:46px;*/margin-left:68px;}
 .leftBox li a{display: block;width:100%;height:100%;color:#000}
 .leftBox li a:hover,.leftBox li a:visited{color:#000}
 .gift{width:183px;background:url(../images/gift1.png) no-repeat 37px center;border-left:5px solid #f0f0f0}
@@ -54,7 +54,7 @@ body{font-family:"Microsoft Yahei";}
 #noticeUl{padding-left:27px;width:929px;padding-right:33px;height:728px;}
 #noticeUl li{height:45px;}
 #noticeUl li .noticeName{float:left;width:685px;overflow:hidden;background:url(../images/notice_Bg.jpg) repeat-x left center;}
-#noticeUl li .noticeTime{float:left;width:145px;margin-left:20px;margin-right:38px;height:45px;line-height:45px;text-align:center;overflow:hidden;font-size:14px;}
+#noticeUl li .noticeTime{float:left;width:145px;margin-left:20px;height:45px;line-height:45px;text-align:center;overflow:hidden;font-size:14px;}
 .editNotice{float:left;color:#2c67c5;font-size:16px;width:40px;height:45px;line-height:45px;text-align:center;overflow:hidden;cursor: pointer;}
 .noticeText{float:left;background:#f0f0f0;height:45px;line-height:45px;font-size:16px;max-width:670px;padding-right:15px;overflow:hidden;}
 .giftmg-box{
@@ -728,4 +728,29 @@ margin-bottom: -25px;
     border-radius: 5px;
     color: #fff;
     background:#ff4848;
+}
+.zhiding{
+    float: left;
+    color: #2c67c5;
+    font-size: 16px;
+    width: 39px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+.jfma span{
+    height: 50px;
+    line-height: 50px;
+    margin-left: 10px;
+}
+.jfma input{
+    height: 30px;
+    line-height: 30px;
+    text-indent: 10px;
+    margin-left: 10px;
+}
+.jfsub{
+    padding: 10px;
 }

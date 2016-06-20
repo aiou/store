@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>帮助疑问</title>
+	<title>公告轮播</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/notice.css">
 	<link rel="stylesheet" href="css/dropzone.min.css">
@@ -25,7 +25,7 @@
 				<li class="track"><a href="exchange-track.html"><span>帮助疑问</span></a></li>
 				<li class="userManagement"><a href="user-management.html"><span>用户管理</span></a></li>
 				<li class="add_Notice"><a href="notice.html"><span>添加公告</span></a></li>
-				<li class="add_Img active5"><a href="img.html"><span>公告轮播</span></a></li>
+				<li class="add_Img active5"><a href="img.html"><span>公告轮播积分码</span></a></li>
 			</ul>
 		<div class="rightBox">
 			<div class="addNoticeBox clear">
@@ -59,6 +59,14 @@
                   <input type="file" style="outline:none" class="files" name="file"/>		
                   <input type="submit" name="Submit" value="添加"onclick="check()" style="padding:10px"/>		
                   </form>
+                <div class="imgnow">上传积分码</div>
+                <div class="jfma">
+                	<span>积分码:</span>
+                	<input type="text" placeholder="请输入积分码" class="jf1">
+                	<span>积分码分值:</span>
+                	<input type="text" placeholder="请输入积分码分值" class="jf2">
+                	<button onclick="tianjia()" style="padding:10px;margin-left:15px;">提交</button>	
+                </div>
 			</div>
 				
 		</div>

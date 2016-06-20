@@ -52,7 +52,7 @@ function paging_mode(start,end){
     this.div2e.innerHTML=this.contents
     this.div2f = document.createElement("div");
     this.div2f.className="open6"
-    this.div2f.innerHTML="xx积分商城"
+    this.div2f.innerHTML="硒博士积分商城"
     this.div2first = document.createElement("img");
     this.div2first.src = '../image/public-bottom.png';
     this.div2second = document.createElement("div");
