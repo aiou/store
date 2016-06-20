@@ -437,16 +437,41 @@ function check(){
 	console.log(e)
 	console.log(d)
 	var f=$(".files").val()
-	url='http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d;
-		console.log(url)
-			 document.getElementById("forms").action = url;
-			 var a=$(".files").val()
-			  if(a==''){
-			    alert("请选择图片")
-			  }
-			 else{
-			 	alert("上传商品图片成功")
-  			    document.getElementById("forms").submit();
-  			      return false;  			  
-  			}
+		var data={
+			name: a,
+			detail: e,
+			needscore:b,
+			totals:c,
+			lb:d
+		}
+		console.log(data)
+		var url1 = 'http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d;
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("post", url1, false);           
+								        // xmlhttp.setRequestHeader("token", this.token);
+		xmlhttp.setRequestHeader("Content-Type", "application/json");
+		xmlhttp.send(JSON.stringify(data));
+
+		if(xmlhttp.status==200){
+		var codes=JSON.parse(xmlhttp.responseText)
+		console.log(codes)
+		if(codes.code==0){
+		alert("编辑成功")
+		}
+		}
+		else{
+		alert("服务器内部错误")
+		}
+	// url='http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d;
+	// 	console.log(url)
+	// 		 document.getElementById("forms").action = url;
+	// 		 var a=$(".files").val()
+	// 		  if(a==''){
+	// 		    alert("请选择图片")
+	// 		  }
+	// 		 else{
+	// 		 	alert("上传商品图片成功")
+ //  			    document.getElementById("forms").submit();
+ //  			      return false;  			  
+ //  			}
 }
