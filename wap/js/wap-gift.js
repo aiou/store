@@ -1,3 +1,4 @@
+var cpid
 var currentCount = 5;//每一页显示的条数
 window.addEventListener('load', function () {
 		FastClick.attach(document.body);
@@ -58,6 +59,7 @@ function paging_mode(start,end){
     this.li_num = document.createElement("dt");
     this.img1 = document.createElement("img");
     this.img1.src = url+this.imgs;
+    this.img1.addEventListener("click",this.xiangqing.bind(this),false);
     this.li_cap = document.createElement("dd");
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
@@ -147,6 +149,11 @@ function paging_mode(start,end){
     }) 
     }
    }
+  }
+   MeetingRoom.prototype.xiangqing = function(){
+    cpid=this.ids
+    window.location.href='wap-xiangqing.html?gfid='+cpid
+
   }
   //获取所有会议室详细信息
   $.ajax({

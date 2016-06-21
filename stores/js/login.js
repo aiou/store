@@ -1,3 +1,5 @@
+ var cpid
+ var cpid2
   $(document).ready(function(){
   $('.list_lh li:even').addClass('lieven');
   console.log($('.list_lh li:even'))
@@ -179,6 +181,7 @@ function paging_mode(start,end){
     this.li_num = document.createElement("dt");
     this.img1 = document.createElement("img");
     this.img1.src = url+this.imgs;
+    this.img1.addEventListener("click",this.xiangqing.bind(this),false);
     this.li_cap = document.createElement("dd");
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
@@ -247,6 +250,11 @@ function paging_mode(start,end){
     }
    }
   }
+  MeetingRoom.prototype.xiangqing = function(){
+    cpid=this.ids
+    window.location.href='user-xiangqing.html?gfid='+cpid
+
+  }
   function firstShowList(data){
     meetingRoomData = data.data;
     totals = meetingRoomData.length;
@@ -308,6 +316,7 @@ function paging_mode(start,end){
     this.li_num = document.createElement("dt");
     this.img1 = document.createElement("img");
     this.img1.src = url+this.imgs;
+    this.img1.addEventListener("click",this.xiangqing.bind(this),false);
     this.li_cap = document.createElement("dd");
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
@@ -374,6 +383,11 @@ function paging_mode(start,end){
     alert("服务器内部错误")
     }
    }
+  }
+   MeetingRooms.prototype.xiangqing = function(){
+    cpid2=this.ids
+    window.location.href='user-xiangqing.html?gfid='+cpid2
+
   }
   //控制活动公告展示收缩
 

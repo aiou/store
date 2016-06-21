@@ -1,3 +1,4 @@
+var wsCache = new WebStorageCache();
 $.getJSON('http://101.200.192.149:8080/jfstore/questions',function(data){
 	var a=data.data.length
 	html=''
@@ -6,3 +7,9 @@ $.getJSON('http://101.200.192.149:8080/jfstore/questions',function(data){
 	};
 	$(".question-box").append(html)
 })
+function exit(){
+   wsCache.deleteAllExpires();
+   wsCache.delete('token');
+   wsCache.delete('refid');
+   window.location.href="user-login.html"
+}

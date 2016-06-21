@@ -198,9 +198,12 @@ $(".jfspan").click(function(){
 		alert("请输入积分码")
 	}
 	else{
-		
-		$.getJSON('http://101.200.192.149:8080/jfstore/getjf?number='+a,function(data){
-			if(data.code==0){
+		$.ajax({
+			type:"get",
+			url:'http://101.200.192.149:8080/jfstore/getjf?number='+a,
+			dataType:"json",
+			success:function(data){
+				if(data.code==0){
 				var codes=data.data
 				var b=Number(codes)+Number(scores)
 						var data={
@@ -228,7 +231,11 @@ $(".jfspan").click(function(){
 
 			}
 			else{
-				alert("充值失败，请重新输入")
+				alert("充值失败，请核对后输入")
+			}
+			},
+			error:function(data){
+				alert("充值失败，请核对后输入")
 			}
 		})
 	}

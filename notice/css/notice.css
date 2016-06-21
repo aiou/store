@@ -339,6 +339,7 @@ ul{
     border-radius: 4px;
     height: 30px; 
    text-align: center;
+   outline: none;
 }
 .form-box .cancel,.form-box .cancels{
     background: #969696;

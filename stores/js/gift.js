@@ -1,4 +1,5 @@
 	var currentCount = 20;//每一页显示的条数
+  var cpid
 	//兑奖产品hover效果
 	$(".li1").hover(function(){
 		$(this).addClass("gift-listhover")
@@ -47,6 +48,7 @@ function paging_mode(start,end){
     this.li_num = document.createElement("dt");
     this.img1 = document.createElement("img");
     this.img1.src = url+this.imgs;
+    this.img1.addEventListener("click",this.xiangqing.bind(this),false);
     this.li_cap = document.createElement("dd");
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
@@ -78,6 +80,7 @@ function paging_mode(start,end){
     this.li_num = document.createElement("dt");
     this.img1 = document.createElement("img");
     this.img1.src = url+this.imgs;
+    this.img1.addEventListener("click",this.xiangqing.bind(this),false);
     this.li_cap = document.createElement("dd");
     this.li_cap.innerHTML = this.names;
     this.li_cap.className = "shop";
@@ -145,6 +148,11 @@ function paging_mode(start,end){
     alert("服务器内部错误")
     }
    }
+  }
+  MeetingRoom.prototype.xiangqing = function(){
+    cpid=this.ids
+    window.location.href='user-xiangqing.html?gfid='+cpid
+
   }
   //获取所有详细信息
   $.ajax({

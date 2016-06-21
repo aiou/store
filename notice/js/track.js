@@ -41,7 +41,7 @@ else{
     //DATA
     this.ids = meetingroom_data.id;
     this.titles= meetingroom_data.title;
-    // this.times= meetingroom_data.time.toString().substring(0,10);
+    this.times= meetingroom_data.time.toString().substring(0,10);
     this.contents = meetingroom_data.content;
     //DOM
     var datas=getLocalTime(this.times)

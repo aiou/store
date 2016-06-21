@@ -95,7 +95,7 @@ function MeetingRoom(meetingroom_data){
 		this.img3.addEventListener("click",this.add.bind(this),false);
 		this.li_option.appendChild(this.img1);
 		this.li_option.appendChild(this.img2);
-		this.li_option.appendChild(this.img3);
+		// this.li_option.appendChild(this.img3);
 		this.ul_element.appendChild(this.li_name);
 		this.ul_element.appendChild(this.li_num);
 		this.ul_element.appendChild(this.li_cap);
@@ -108,9 +108,9 @@ function MeetingRoom(meetingroom_data){
 			$(".editor-user").show()
 		nowId = this.ids;
 		types  =this.lbs
-		$(".com-name").val(this.names)
-		$(".com-score").val(this.needscores)
-		$(".com-count").val(this.totalss)
+		$(".add-name1").val(this.names)
+		$(".add-score1").val(this.needscores)
+		$(".add-count1").val(this.totalss)
 		 for(var i=0;i<$("#com-select option").length;i++) {  
 			if($("#com-select option").eq(i).val() ==types) {   	
 			$("#com-select option").eq(i).attr('selected',true);  
@@ -157,7 +157,8 @@ function MeetingRoom(meetingroom_data){
 			 else{
 			 	alert("上传商品图片成功")
   			    document.getElementById("forms").submit();
-  			      return false;
+  			    window.location.reload()
+  			    return false;
   			  
   			}
 		})
@@ -256,7 +257,7 @@ $(".cancel").click(function(){
     	}
 	});
 //编辑礼品
-$(".true").click(function(){
+$(".trues").click(function(){
 	var a=$(".com-name").val()
 	var b=$(".com-score").val()
 	var c=$(".com-count").val()
@@ -266,34 +267,7 @@ $(".true").click(function(){
 		return false
 	}
 	else{
-		var data={
-			  id: nowId ,
-			  name: a,
-			  needscore: b,
-			  totals: c,
-			  lb: d
-		}
-		console.log(data)
-		var url1 = 'http://101.200.192.149:8080/jfstore/updatepro';
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("PUT", url1, false);           
-								        // xmlhttp.setRequestHeader("token", this.token);
-		xmlhttp.setRequestHeader("Content-Type", "application/json");
-		xmlhttp.send(JSON.stringify(data));
-
-		if(xmlhttp.status==200){
-		var codes=JSON.parse(xmlhttp.responseText)
-		if(codes.code==0){
-		alert("编辑礼品成功")
-		window.location.reload()
-		}
-		else{
-			alert(codes.code)
-		}
-		}
-		else{
-		alert("服务器内部错误")
-		}
+		alert("编辑失败")
 	}
 })
 $(".cancel").click(function(){
@@ -369,7 +343,7 @@ $(".submits").click(function(){
         'fullscreen'
      ];
   editor1.create()
-  editor1.$txt.html('<p>请在这里解答疑问</p>');
+  editor1.$txt.html('<p>请在这里输入产品详情</p>');
   // 获取编辑区域的html
     var html = editor1.$txt.html();
     // 获取编辑区域的纯文本
@@ -409,7 +383,7 @@ $(".submits").click(function(){
         'fullscreen'
      ];
   editor.create()
-  editor.$txt.html('<p>请在这里解答疑问</p>');
+  editor.$txt.html('<p>请在这里输入产品详情</p>');
   // 获取编辑区域的html
     var html = editor.$txt.html();
     // 获取编辑区域的纯文本
@@ -429,7 +403,7 @@ function check(){
 	var a=$(".add-name").val()
 	var b=$(".add-score").val()
 	var c=$(".add-count").val()
-	var d=$(".input-radio input[name=radiochooseCreat]:checked").val()
+	var d=$("input[name='lb']:checked").val();
 	var e=editor1.$txt.html();
 	console.log(a)
 	console.log(b)
@@ -437,41 +411,54 @@ function check(){
 	console.log(e)
 	console.log(d)
 	var f=$(".files").val()
-		var data={
-			name: a,
-			detail: e,
-			needscore:b,
-			totals:c,
-			lb:d
-		}
-		console.log(data)
-		var url1 = 'http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d;
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("post", url1, false);           
-								        // xmlhttp.setRequestHeader("token", this.token);
-		xmlhttp.setRequestHeader("Content-Type", "application/json");
-		xmlhttp.send(JSON.stringify(data));
+	if((a=='')||(b=='')||(c=='')||(d=='')||(e=='')){
+		alert("请完善信息")
+		return false
 
-		if(xmlhttp.status==200){
-		var codes=JSON.parse(xmlhttp.responseText)
-		console.log(codes)
-		if(codes.code==0){
-		alert("编辑成功")
-		}
-		}
-		else{
-		alert("服务器内部错误")
-		}
-	// url='http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d;
-	// 	console.log(url)
-	// 		 document.getElementById("forms").action = url;
-	// 		 var a=$(".files").val()
-	// 		  if(a==''){
-	// 		    alert("请选择图片")
-	// 		  }
-	// 		 else{
-	// 		 	alert("上传商品图片成功")
- //  			    document.getElementById("forms").submit();
- //  			      return false;  			  
- //  			}
+	}
+	else{
+
+
+
+		// var data={
+		// 	name: a,
+		// 	detail: e,
+		// 	needscore:b,
+		// 	totals:c,
+		// 	lb:d
+		// }
+		// console.log(data)
+		// var url1 = 'http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d;
+		// var xmlhttp = new XMLHttpRequest();
+		// xmlhttp.open("post", url1, false);           
+		// 						        // xmlhttp.setRequestHeader("token", this.token);
+		// xmlhttp.setRequestHeader("Content-Type", "application/json");
+		// xmlhttp.send(JSON.stringify(data));
+
+		// if(xmlhttp.status==200){
+		// var codes=JSON.parse(xmlhttp.responseText)
+		// console.log(codes)
+		// if(codes.code==0){
+		// alert("编辑成功")
+		// }
+		// }
+		// else{
+		// alert("服务器内部错误")
+		// }
+	url='http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d;
+		console.log(url)
+			 document.getElementById("forms").action = url;
+			 var a=$(".files").val()
+			  if(a==''){
+			    alert("请选择图片")
+			  }
+			 else{
+			 	alert("上传商品图片成功,请刷新页面查看")
+  			    document.getElementById("forms").submit();
+  			    $(".add-notice").hide()
+  			    $(".bcgs").hide()
+  			      return false;  			  
+  			}
 }
+}
+//

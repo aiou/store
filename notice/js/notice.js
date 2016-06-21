@@ -3,6 +3,7 @@ var site2
 var noticeid
 var currentCount=10;
 var tcontents
+var zhidingid
 var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
 site1=wsCache.get("tokencom");
@@ -80,6 +81,25 @@ else{
 
  }
    MeetingRoom.prototype.zhiding = function(){
+    zhidingid=this.ids
+    var url1 = 'http://101.200.192.149:8080/jfstore/addNoticetop?id='+zhidingid;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("PUT", url1, false);           
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send();
+    if(xmlhttp.status==200){
+    var codes=JSON.parse(xmlhttp.responseText)
+    if(codes.code==0){
+    alert("置顶成功")
+    window.location.reload()
+    }
+    else{
+      alert(codes)
+    }
+    }
+    else{
+    alert("服务器内部错误")
+    }
 
 
  }
