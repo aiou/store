@@ -325,7 +325,7 @@ ul{
     border-radius: 4px;
     height: 30px;
 }
-.trues,.true{
+.trues,.true,.trues1{
    position: relative;
     top: 32px;
     display: inline-block;

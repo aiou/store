@@ -13,12 +13,6 @@ span,button,input{
 	font-family: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
 }
 .box{
-	background: #f87875;
-	position: absolute;
-	left: 5%;
-	right: 5%;
-	top: 3%;
-	bottom: 3%;
 	padding: 0 10%;
 }
 .regist-head{
@@ -31,7 +25,7 @@ span,button,input{
 	overflow: hidden;
 	width: 100%;
 	text-align: center;
-	height: 10%;
+	height: 45px;
 }
 .box input{
 	width: 100%;

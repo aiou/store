@@ -70,6 +70,7 @@ function paging_mode(start,end){
     this.li_data.innerHTML = "数量";
     this.li_data.className = "counts";
     this.li_inputs = document.createElement("input");
+    this.li_inputs.addEventListener("click",this.inputs.bind(this),false);
     this.li_opation = document.createElement("dd");
     this.li_opation.innerHTML = "立刻兑换";
     this.li_opation.className = "cash";
@@ -83,6 +84,9 @@ function paging_mode(start,end){
     this.li_num.appendChild(this.img1)
     this.li_data.appendChild(this.li_inputs)
     document.getElementById("gift-box").appendChild(this.ul_element);   
+   }
+   MeetingRoom.prototype.inputs = function(){
+
    }
   MeetingRoom.prototype.duihuan = function(){
   var productnames=this.names
@@ -200,7 +204,7 @@ function paging_mode(start,end){
         return scrollTop;
     }
  
-    function setScrollTop(scroll_top) {
+  function setScrollTop(scroll_top) {
         document.documentElement.scrollTop = scroll_top;
         window.pageYOffset = scroll_top;
         document.body.scrollTop = scroll_top;

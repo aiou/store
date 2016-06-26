@@ -455,9 +455,10 @@ function check(){
 			 else{
 			 	alert("上传商品图片成功,请刷新页面查看")
   			    document.getElementById("forms").submit();
+  			    window.location.reload()
   			    $(".add-notice").hide()
   			    $(".bcgs").hide()
-  			      return false;  			  
+  			    return false;  			  
   			}
 }
 }
