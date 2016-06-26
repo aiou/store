@@ -264,3 +264,15 @@ span,button,input{
 .hiddens{
     overflow: hidden;
 }
+.imgjia{
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    right: -12px;
+}
+.imgjian{
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    left: 27px;
+}

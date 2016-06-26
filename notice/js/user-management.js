@@ -8,6 +8,8 @@ var username
 var scores
 var editor1
 var editor2
+var pptime
+$("#datatime1").datetimepicker();
 var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
 site1=wsCache.get("tokencom");
@@ -85,6 +87,7 @@ function MeetingRoom(meetingroom_data){
 		 this.groupnames = meetingroom_data.groupName;
 		 this.scores = meetingroom_data.score;
 		 this.groupids= meetingroom_data.groupid;
+		 this.times=meetingroom_data.expirationtime.substr(0,16)
 		//DOM
 		if(this.levels==undefined){
 			this.levels=''
@@ -132,9 +135,11 @@ function MeetingRoom(meetingroom_data){
 		group=this.groupids
 		editor1=this.usernames
 		editor2=this.scores
+		pptime=this.times
 		$(".user-name").html(this.usernames)
 		$(".user-level").html(this.levels)
 		$(".user-score").html(this.scores)
+		$("#datatime1").val(pptime)
 		$("#user-select").html('')
 		$.getJSON('http://101.200.192.149:8080/jfstore/listgroup',function(data){
           	 						var departmentcount=data.data.length
@@ -245,15 +250,17 @@ $(".true").click(function(){
 	var c=$.trim($("#user-a4").val())
 	var d=$("#user-select option:selected").val()
 	var f=Number(c)+Number(editor2)
-	if((c=='')||(d=='')){
+	var t=$("#datatime1").val()
+	if((c=='')||(d=='')||(t=='')){
 		alert("请完善信息")
 		return false
 	}
 	else{
 			var data={
-			"username": editor1,
-			 "score": f,
-			  "groupid": d
+			username: editor1,
+			score: f,
+			expirationtime:t,
+			groupid: d
 		}
 		console.log(data)
 		var url1 = 'http://101.200.192.149:8080/jfstore/updateuser';

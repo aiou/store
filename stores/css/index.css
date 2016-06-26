@@ -417,14 +417,14 @@ a{
 	color: #fd585c;
 }
 .counts{
-	width: 60px;
+	width: 80px;
 	margin: 0 auto;
 	position: relative;
 }
 .counts input{
 	width: 20px;
 	position: absolute;
-	right: 0px;
+	right: 8px;
 	top: -2px;
 }
 .cash{
@@ -1106,4 +1106,16 @@ teble{
 	padding-right: 10px;
 	cursor: pointer;
 	border-radius: 5px;
+}
+.jingpin-list li .imgjia, .hot-list li .imgjia, .gift-list li .imgjia{
+	position: absolute;
+    height: 14px;
+    width: 14px;
+    right: -12px;
+}
+.jingpin-list li .imgjian, .hot-list li .imgjian, .gift-list li .imgjian{
+	position: absolute;
+    height: 14px;
+    width: 14px;
+    left: 27px;
 }

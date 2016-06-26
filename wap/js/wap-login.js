@@ -30,7 +30,7 @@ var scores
   var Request = new Object();
   Request = GetRequest();
   scores=Request.score;
-      if(scores==''){
+      if((scores=='')||(scores==undefined)){
         $(".bcgs").show()
          $(".alerts").show()
          $(".alert-content").html("扫描失败请重复扫描")

@@ -58,6 +58,14 @@ function paging_mode(start,end){
     this.li_data = document.createElement("dd");
     this.li_data.innerHTML = "数量";
     this.li_data.className = "counts";
+    this.li_img1=document.createElement("img")
+    this.li_img1.className="imgjian"
+    this.li_img1.src="../image/jian.png";
+    this.li_img1.addEventListener("click",this.jian.bind(this),false);
+    this.li_img2=document.createElement("img")
+    this.li_img2.className="imgjia"
+    this.li_img2.src="../image/jia.png";
+    this.li_img2.addEventListener("click",this.jia.bind(this),false);
     this.li_inputs = document.createElement("input");
     this.li_opation = document.createElement("dd");
     this.li_opation.innerHTML = "立刻兑换";
@@ -70,7 +78,9 @@ function paging_mode(start,end){
     this.li_name.appendChild(this.li_data)
     this.li_name.appendChild(this.li_opation)
     this.li_num.appendChild(this.img1)
+    this.li_data.appendChild(this.li_img1)
     this.li_data.appendChild(this.li_inputs)
+    this.li_data.appendChild(this.li_img2)
     document.getElementById("contentBox").appendChild(this.ul_element);
   }
   else{
@@ -90,6 +100,14 @@ function paging_mode(start,end){
     this.li_data = document.createElement("dd");
     this.li_data.innerHTML = "数量";
     this.li_data.className = "counts";
+    this.li_img1=document.createElement("img")
+    this.li_img1.className="imgjian"
+    this.li_img1.src="../image/jian.png";
+    this.li_img1.addEventListener("click",this.jian.bind(this),false);
+    this.li_img2=document.createElement("img")
+    this.li_img2.className="imgjia"
+    this.li_img2.src="../image/jia.png";
+    this.li_img2.addEventListener("click",this.jia.bind(this),false);
     this.li_inputs = document.createElement("input");
     this.li_opation = document.createElement("dd");
     this.li_opation.innerHTML = "立刻兑换";
@@ -102,11 +120,48 @@ function paging_mode(start,end){
     this.li_name.appendChild(this.li_data)
     this.li_name.appendChild(this.li_opation)
     this.li_num.appendChild(this.img1)
+    this.li_data.appendChild(this.li_img1)
     this.li_data.appendChild(this.li_inputs)
+    this.li_data.appendChild(this.li_img2)
     document.getElementById("contentBox").appendChild(this.ul_element);
   }
     }
-  
+   MeetingRoom.prototype.jia = function(){
+    var a='^[0-9]*$'
+    var exchangenumbers=$.trim(this.li_inputs.value)
+    if(exchangenumbers==''){
+      alert("请输入数量")
+      return false
+    }
+    else if(!exchangenumbers.match(a)){
+      alert("只能输入数字")
+      return false
+    }
+    else{
+    exchangenumbers++
+    console.log(exchangenumbers)
+    this.li_inputs.value=exchangenumbers
+  }
+  }
+  MeetingRoom.prototype.jian = function(){
+   var a='^[0-9]*$'
+    var exchangenumbers=$.trim(this.li_inputs.value)
+    if(exchangenumbers==''){
+      alert("请输入数量")
+      return false
+    }
+    else if(!exchangenumbers.match(a)){
+      alert("只能输入数字")
+      return false
+    }
+    else{     
+    exchangenumbers--
+    console.log(exchangenumbers)
+    if(exchangenumbers<=0){
+      exchangenumbers=0
+    }
+    this.li_inputs.value=exchangenumbers
+  } }
   
   MeetingRoom.prototype.duihuan = function(){
    var productnames=this.names
