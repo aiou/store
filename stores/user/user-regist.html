@@ -5,6 +5,7 @@
 	<title>用户注册</title>
 	<link rel="stylesheet" href="../css/index.css">
 	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script src="../js/jquery.cityselect.js"></script>
 </head>
 <body>
 <div class="head-collect">
@@ -68,6 +69,18 @@
 					<input type="password" placeholder="两次输入必须一致" class="password2">
 					<p class="input-alert4"></p>
 				</div>
+				<div style="position:relative">
+					<span>收货地址：</span>
+					<div id="city" style="position: absolute;top: 2px;left: 111px">  
+				    <select class="prov"></select>   
+				    <select class="city" ></select>  
+				    <select class="dist" ></select>  
+				</div>
+				</div>
+				<div style="position:relative;height:140px;">
+					<span style="position:absolute;left:0px;top:30px;">详细地址：</span>
+					<textarea name="" id="" cols="30" rows="10"style="position:absolute;left:110px;top:0px;"></textarea>
+				</div>				
 				<div style="margin-top:15px;">
 				<span></span>
 				<span class="regist-button"></span>
