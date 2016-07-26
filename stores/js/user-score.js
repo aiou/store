@@ -45,6 +45,17 @@ else{
 			alert("服务器内部错误");
 		}
 	});
+	$.ajax({
+		type: "get",
+		url:'http://101.200.192.149:8080/jfstore/listAddressById?userId='+site2,
+		success: function(data){
+			console.log(data)
+			firstShowList1(data);
+		},
+		error: function(erro){
+			alert("服务器内部错误");
+		}
+	});
 
 }
 function getLocalTime(nS) {     
@@ -57,7 +68,12 @@ document.getElementById("contentBox").innerHTML="";
 		 var new_meetingroom = new MeetingRoom(meetingRoomData[i]);
 		}
 	}
-
+function paging_mode1(start,end){
+document.getElementById("contentBox1").innerHTML="";
+	for(var i=start;i<end;i++){
+		 var new_meetingroom1 = new MeetingRoom1(meetingRoomData1[i]);
+		}
+}	
 function gets(results){
 	 $.ajaxSettings.async = false
 	 $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+results,function(data){
@@ -96,6 +112,7 @@ function MeetingRoom(meetingroom_data){
 		this.li_org = document.createElement("li");
 		this.li_org.innerHTML = this.scores;
 		this.li_org.className = "org-time";
+		// this.li_cap1.addEventListener("click",this.delete.bind(this),false);
 		this.li_option = document.createElement("li");
 		this.li_option.className = "description";
 		this.li_option.innerHTML = datas;
@@ -106,6 +123,65 @@ function MeetingRoom(meetingroom_data){
 		this.ul_element.appendChild(this.li_option);
 		document.getElementById("contentBox").appendChild(this.ul_element);
 	}
+function MeetingRoom1(meetingroom_data1){
+		//DATA
+		 this.ids = meetingroom_data1.id;
+		 this.provinces = meetingroom_data1.province;
+		 this.citys= meetingroom_data1.city;
+		 this.areas = meetingroom_data1.area;
+		 this.names = meetingroom_data1.contactName;
+		 this.phones = meetingroom_data1.contactTelphone;
+		 this.detail=meetingroom_data1.detailLocation
+		//DOM
+		this.ul_element = document.createElement("ul");
+		this.ul_element.className = "li-head-exchanges";
+		this.li_name = document.createElement("li");
+		this.li_name.innerHTML = this.names;
+		this.li_name.className = "org-name";
+		this.li_num = document.createElement("li");
+		this.li_num.innerHTML = this.provinces+this.citys+this.areas
+		this.li_num.className = "org-id";
+		this.li_cap = document.createElement("li");
+		this.li_cap.innerHTML = this.detail ;
+		this.li_cap.className = "org-password";
+		this.li_org = document.createElement("li");
+		this.li_org.innerHTML = this.phones;
+		this.li_org.className = "org-time";
+		this.li_option = document.createElement("li");
+		this.li_option.className = "description";
+		this.li_cap1 = document.createElement("span");
+	    this.li_cap1.innerHTML = "修改";
+	    this.li_cap1.className = "xiugai";
+	    this.li_cap1.addEventListener("click",this.delete.bind(this),false);
+	    this.li_cap2 = document.createElement("span");
+	    this.li_cap2.innerHTML = "编辑";
+	    this.li_cap2.className = "editNotice";
+	    // this.li_cap2.addEventListener("click",this.editor.bind(this),false);
+	    this.li_cap3 = document.createElement("span");
+	    this.li_cap3.innerHTML = "设为默认";
+	    this.li_cap3.className = "moren";
+	    // this.li_cap3.addEventListener("click",this.moren.bind(this),false);    
+		this.ul_element.appendChild(this.li_name);
+		this.ul_element.appendChild(this.li_num);
+		this.ul_element.appendChild(this.li_cap);
+		this.ul_element.appendChild(this.li_org);
+		this.ul_element.appendChild(this.li_option);
+		this.li_option.appendChild(this.li_cap1);
+		this.li_option.appendChild(this.li_cap2);
+		this.li_option.appendChild(this.li_cap3);	
+		document.getElementById("contentBox1").appendChild(this.ul_element);
+	}
+ MeetingRoom1.prototype.delete = function(){
+ alert(1)
+ }
+  MeetingRoom1.prototype.xiugai = function(){
+
+alert(1)
+ }
+  MeetingRoom1.prototype.moren = function(){
+
+alert(1)
+ }
 //首次加载列表
 	function firstShowList(data){
 		meetingRoomData = data.data;
@@ -119,6 +195,12 @@ function MeetingRoom(meetingroom_data){
 		}else{
 			paging_mode(0,currentCount);
 		}
+	}
+	function firstShowList1(data){
+		meetingRoomData1 = data.data;
+		totals1 = meetingRoomData1.length;
+		paging_mode1(0,totals1);
+
 	}
 	//获取所有详细信息
 

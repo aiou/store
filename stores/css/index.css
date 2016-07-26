@@ -947,7 +947,7 @@ white-space: nowrap;
     padding: 10px;
     overflow: hidden;
     position: relative;
-    height: 745px;
+    height: 600px;
     width: 976px;
     margin: 0 auto;
 }
@@ -1118,4 +1118,64 @@ teble{
     height: 14px;
     width: 14px;
     left: 27px;
+}
+.giftmg-box1{
+	    padding: 10px;
+    overflow: hidden;
+    position: relative;
+    width: 976px;
+    margin: 0 auto;
+}
+.bcgs{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #253b52;
+    opacity: 0.5;
+    display: none;
+}
+.add-address,.editor-address{
+    width: 373px;
+    height: 515px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    margin-left: -250px;
+    margin-top: -275px;
+    border-radius: 5px;
+    background: #fff;
+    padding: 10px 20px;
+    display: none;
+}
+#address-true,#address-true1{
+	    position: relative;
+    top: 32px;
+    display: inline-block;
+    width: 100px;
+    color: rgb(255, 255, 255);
+    font-family: '微软雅黑';
+    line-height: 30px;
+    left: 102px;
+    cursor: pointer;
+    background: #ff4848;
+    border-radius: 4px;
+    height: 30px;
+    text-align: center;
+}
+#address-cancel,#address-cancels{
+	background: #969696;
+    position: relative;
+    top: 32px;
+    display: inline-block;
+    width: 100px;
+    color: rgb(255, 255, 255);
+    font-family: '微软雅黑';
+    line-height: 30px;
+    right: -130px;
+    cursor: pointer;
+    border-radius: 4px;
+    height: 30px;
+    text-align: center;
 }

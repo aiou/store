@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>用户信息</title>
 	<link rel="stylesheet" href="../css/index.css">
-	<script type="text/javascript" src="../js/jquery.js"></script>
 </head>
 <body>
 <div class="head-collect">
@@ -55,8 +54,24 @@
 <div class="jfdiv">
 	<input type="text" class="jfinput" placeholder="请输入积分码"> <span class="jfspan">确定</span>
 </div>
+<div class="records">收货地址<img src="../image/record.png"></div>
+<div class="giftmg-box1">
+					<div class="content-box">
+					<div class="ceshi">
+							<ul class="li-head-exchange">
+							<li>收货人</li>
+							<li>所在地区</li>
+							<li>详细地区</li>
+							<li>电话</li>
+							<li>操作</li>
+					</ul>
+					</div>
+					<div class="content-boxes" id="contentBox1">
+					</div>
+				</div>
+</div>
 <div class="records">兑奖记录<img src="../image/record.png"></div>
-	<div class="giftmg-box">
+<div class="giftmg-box">
 					<div class="content-box">
 					<div class="ceshi">
 							<ul class="li-head-exchange">
@@ -90,11 +105,65 @@
 		<div>公司地址：安徽省合肥市包河区马鞍山路1000号新都会环球广场写字楼0602室</div>
 	</div>
 </div>
+<div class="bcgs"></div>
+<div class="add-address">
+    <div style="text-align:center">添加新地址</div>
+    <div class="regist-bottom" style="padding:0;padding-top:20px;">
+	<div>
+	<span>收货人：</span>
+	<input type="text" placeholder="请输入收货人姓名" class="people">
+	</div>
+	<div>
+	<span>收货人电话：</span>
+	<input type="text" placeholder="请输入收货人电话" class="peoplephone">
+	</div>
+	<div style="position:relative">
+	<span>收货地址：</span>
+	<div id="city" style="position: absolute;top: 2px;left: 111px">  
+    <select class="prov"></select>   
+	<select class="city" ></select>  
+    <select class="dist" ></select>  
+	</div>
+	</div>
+	<div style="position:relative;height:140px;">
+	<span style="position:absolute;left:0px;top:30px;">详细地址：</span>
+	<textarea class="peopleaddress" cols="30" rows="10"style="position:absolute;left:110px;top:0px;"></textarea>
+	</div>
+	<span id="address-true">确定</span>
+	<span id="address-cancel">取消</span>
+	</div>	
+</div>
+<div class="editor-address">
+    <div style="text-align:center">修改地址</div>
+    <div class="regist-bottom" style="padding:0;padding-top:20px;">
+	<div>
+	<span>收货人：</span>
+	<input type="text" placeholder="请输入收货人姓名" class="people1">
+	</div>
+	<div>
+	<span>收货人电话：</span>
+	<input type="text" placeholder="请输入收货人电话" class="peoplephone1">
+	</div>
+	<div style="position:relative">
+	<span>收货地址：</span>
+	<div id="city1" style="position: absolute;top: 2px;left: 111px">  
+    <select class="prov"></select>   
+	<select class="city" ></select>  
+    <select class="dist" ></select>  
+	</div>
+	</div>
+	<div style="position:relative;height:140px;">
+	<span style="position:absolute;left:0px;top:30px;">详细地址：</span>
+	<textarea class="peopleaddress1" cols="30" rows="10"style="position:absolute;left:110px;top:0px;"></textarea>
+	</div>
+	<span id="address-true1">确定</span>
+	<span id="address-cancel1">取消</span>
+	</div>	
+</div>
 <img src="../image/weixin.jpg" class="weixinimg">
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script src="../js/web-storage-cache.js"></script>
 <script type="text/javascript" src="../js/user-score.js"></script>
-<script type="text/javascript">
 </script>
 </body>
 </html>
