@@ -80,14 +80,21 @@ $(".regist-button").click(function(){
     var b=$.trim($("#codeStr").val())
     var c=$.trim($(".password1").val())
     var d=$.trim($(".password2").val())
+    var e=$.trim($(".people").val())
+    var f=$.trim($(".peoplephone").val())
+    var g=$.trim($(".peopleaddress").val())
+    var sheng=$(".prov").val()
+    var shi=$(".city").val()
+    var xian=$(".dist").val()
     var test=/[a-z0-9]{6,16}/ ;
+    console.log(code)
     console.log(a)
     console.log(b)
     console.log(c)
     console.log(d)
-    if((a=='')||(b=='')||(c=='')||(d=='')){
+    if((a=='')||(b=='')||(c=='')||(d=='')||(e=='')||(f=='')||(g=='')){
         $(".input-alert4").show()
-        $(".input-alert4").html("请完善信息")
+        alert("请完善信息")
          setTimeout('hideAlertWin()',2000); 
          return false
     }
@@ -131,8 +138,34 @@ $(".regist-button").click(function(){
         var codes=JSON.parse(xmlhttp.responseText)
         console.log(codes.mes)
         if(codes.code==0){
-            $(".input-alert4").show()
-            $(".input-alert4").html("恭喜你 注册成功！")
+            $.getJSON('http://101.200.192.149:8080/jfstore/showUser?username='+a,function(data){
+            	var userid=data.id
+            var data={
+				  "userId": userid,
+				  "contactName": e,
+				  "contactTelphone": f,
+				  "province": sheng,
+				  "city": shi,
+				  "area": xian,
+				  "detailLocation":g,
+				  "isDefault": 0
+					}
+				console.log(data)
+				 	var url1 = 'http://101.200.192.149:8080/jfstore/addAddress';
+			        var xmlhttp = new XMLHttpRequest();
+			        xmlhttp.open("POST", url1, false);           
+			                                        // xmlhttp.setRequestHeader("token", this.token);
+			        xmlhttp.setRequestHeader("Content-Type", "application/json");
+			        xmlhttp.send(JSON.stringify(data));
+			        if(xmlhttp.status==200){
+        var codes=JSON.parse(xmlhttp.responseText)
+        console.log(codes.mes)
+        if(codes.code==0){
+        	alert("注册成功")
+        }
+    }
+
+            })
         }
         else{
             $(".input-alert4").show()

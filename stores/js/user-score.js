@@ -22,6 +22,7 @@ else{
             scores=data.data.score
             groupids=data.data.groupid
             usernames=data.data.username
+            console.log(usernames)
             $.getJSON('http://101.200.192.149:8080/jfstore/getExptime?username='+usernames,function(data){  
             $(".score-top").html(usernames)
             $(".level-ones").html(levels)
@@ -31,11 +32,13 @@ else{
           })
         })
 	 	var meetingRoomNum = "";
-	var displayName = "";
+	    var displayName = "";
+	$.ajaxSettings.async = false
 	$.ajax({
 		type: "get",
-		url:'http://101.200.192.149:8080/jfstore/userExchange?userid='+site2,
+		url:'http://101.200.192.149:8080/jfstore/userExchange?userId='+site2,
 		success: function(data){
+			console.log(data)
 			firstShowList(data);
 		},
 		error: function(erro){
