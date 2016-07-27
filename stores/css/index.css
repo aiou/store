@@ -1164,7 +1164,7 @@ teble{
     height: 30px;
     text-align: center;
 }
-#address-cancel,#address-cancels{
+#address-cancel,#address-cancel1{
 	background: #969696;
     position: relative;
     top: 32px;
@@ -1178,4 +1178,14 @@ teble{
     border-radius: 4px;
     height: 30px;
     text-align: center;
+}
+.moren-true{
+	color: red
+}
+.moren{
+	color: blue
+}
+#contentBox1 span{
+	cursor: pointer;
+	margin-right: 5px;
 }

@@ -30,6 +30,7 @@ var scores
   var Request = new Object();
   Request = GetRequest();
   scores=Request.score;
+  $.getJSON('')
       if((scores=='')||(scores==undefined)){
         $(".bcgs").show()
          $(".alerts").show()

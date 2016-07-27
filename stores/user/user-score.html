@@ -54,7 +54,7 @@
 <div class="jfdiv">
 	<input type="text" class="jfinput" placeholder="请输入积分码"> <span class="jfspan">确定</span>
 </div>
-<div class="records">收货地址<img src="../image/record.png"></div>
+<div class="records">收货地址<img src="../image/record.png"> <img src="../image/tjadress.png" class="tjbutton"alt=""></div>
 <div class="giftmg-box1">
 					<div class="content-box">
 					<div class="ceshi">
@@ -146,10 +146,10 @@
 	</div>
 	<div style="position:relative">
 	<span>收货地址：</span>
-	<div id="city1" style="position: absolute;top: 2px;left: 111px">  
-    <select class="prov"></select>   
-	<select class="city" ></select>  
-    <select class="dist" ></select>  
+	<div id="citySelect" style="position: absolute;top: 2px;left: 111px">  
+    <select class="prov"id="province"></select>   
+	<select class="city" id="city1" ></select>  
+    <select class="dist" id="county"></select>  
 	</div>
 	</div>
 	<div style="position:relative;height:140px;">
@@ -162,6 +162,7 @@
 </div>
 <img src="../image/weixin.jpg" class="weixinimg">
 <script type="text/javascript" src="../js/jquery.js"></script>
+<script src="../js/jquery.cityselect.js"></script>
 <script src="../js/web-storage-cache.js"></script>
 <script type="text/javascript" src="../js/user-score.js"></script>
 </script>
