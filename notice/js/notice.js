@@ -63,11 +63,16 @@ else{
     this.li_cap.innerHTML = "编辑";
     this.li_cap.className = "editNotice";
     this.li_cap.addEventListener("click",this.editor.bind(this),false);
+    this.li_cap1 = document.createElement("span");
+    this.li_cap1.innerHTML = "删除";
+    this.li_cap1.className = "notice-delete";
+    this.li_cap1.addEventListener("click",this.delete.bind(this),false);
     this.ul_element.appendChild(this.li_name);
     this.li_name.appendChild(this.li_namep);
     this.ul_element.appendChild(this.li_num);
     this.ul_element.appendChild(this.li_caps);
     this.ul_element.appendChild(this.li_cap);
+    this.ul_element.appendChild(this.li_cap1);
     document.getElementById("noticeUl").appendChild(this.ul_element);
 }
   MeetingRoom.prototype.editor = function(){
@@ -78,6 +83,30 @@ else{
  	$(".editor-notice").show()
  	$(".editor-title").val(this.titles)
   editor1.$txt.html(tcontents);
+
+ }
+  MeetingRoom.prototype.delete = function(){
+  deleteid=this.ids
+ if(confirm("确定要删除这条公告吗？")){
+    var url1 = 'http://101.200.192.149:8080/jfstore/delbyId?id='+deleteid;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("DELETE", url1, false);           
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send();
+    if(xmlhttp.status==200){
+    var codes=JSON.parse(xmlhttp.responseText)
+    if(codes.code==0){
+    alert("删除成功")
+    window.location.reload()
+    }
+    else{
+      alert(codes)
+    }
+    }
+    else{
+    alert("删除失败")
+    }
+ }
 
  }
    MeetingRoom.prototype.zhiding = function(){

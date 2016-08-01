@@ -53,9 +53,9 @@ body{font-family:"Microsoft Yahei";}
 #addNotice{float:right;margin-right:18px;padding-top:16px;width:59px;height:29px;}
 #noticeUl{padding-left:27px;width:929px;padding-right:33px;height:728px;}
 #noticeUl li{height:45px;}
-#noticeUl li .noticeName{float:left;width:685px;overflow:hidden;background:url(../images/notice_Bg.jpg) repeat-x left center;}
+#noticeUl li .noticeName{float:left;width:659px;overflow:hidden;background:url(../images/notice_Bg.jpg) repeat-x left center;}
 #noticeUl li .noticeTime{float:left;width:145px;margin-left:20px;height:45px;line-height:45px;text-align:center;overflow:hidden;font-size:14px;}
-.editNotice{float:left;color:#2c67c5;font-size:16px;width:40px;height:45px;line-height:45px;text-align:center;overflow:hidden;cursor: pointer;}
+.editNotice{float:left;color:#2c67c5;font-size:16px;margin-left:3px;height:45px;line-height:45px;text-align:center;overflow:hidden;cursor: pointer;}
 .noticeText{float:left;background:#f0f0f0;height:45px;line-height:45px;font-size:16px;max-width:670px;padding-right:15px;overflow:hidden;}
 .giftmg-box{
 	padding: 10px;
@@ -730,12 +730,12 @@ margin-bottom: -25px;
     color: #fff;
     background:#ff4848;
 }
-.zhiding{
+.zhiding,.notice-delete{
     float: left;
     color: #2c67c5;
     font-size: 16px;
-    width: 39px;
     height: 45px;
+    margin-left: 3px;
     line-height: 45px;
     text-align: center;
     overflow: hidden;
