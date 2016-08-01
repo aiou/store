@@ -1,3 +1,4 @@
+var jfscore
 var scores
  $.ajax({
   type:"get",
@@ -29,18 +30,23 @@ var scores
   }
   var Request = new Object();
   Request = GetRequest();
-  scores=Request.score;
-  $.getJSON('')
-      if((scores=='')||(scores==undefined)){
+  jfscore=Request.c;
+  if((jfscore=='')||(jfscore==undefined)){
         $(".bcgs").show()
          $(".alerts").show()
          $(".alert-content").html("扫描失败请重复扫描")
                   $("body,html").addClass("hiddens");
         setTimeout('hideAlertWin()',2000); 
       }
-      else{
-        $(".count").html(scores)
+      else{ 
+        $.getJSON('http://m.11895.org/YunToolService/hxjf.do?type=1&jfCode='+jfscore,function(data){
+          scores=data.jfScore
+          $(".count").html(scores)         
+  })
+        
       }
+ 
+      
 var wsCache = new WebStorageCache();
  var swiper = new Swiper('.swiper-container', {
         // pagination: '.swiper-pagination',
@@ -78,7 +84,7 @@ $(".submit").click(function(){
         var data={
                 username: user,
                 password: password,
-                score: scores
+                code: scores
         }
         console.log(data)
       var url1 = 'http://101.200.192.149:8080/jfstore/ewmaddscore';
