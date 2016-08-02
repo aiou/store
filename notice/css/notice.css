@@ -340,6 +340,7 @@ ul{
     height: 30px; 
    text-align: center;
    outline: none;
+   border:0;
 }
 .form-box .cancel,.form-box .cancels{
     background: #969696;
@@ -754,4 +755,27 @@ margin-bottom: -25px;
 }
 .jfsub{
     padding: 10px;
+}
+.org-name{
+    overflow: hidden
+}
+.li-head-exchange li,.li-head-exchanges li{
+    width: 160px;
+}
+.content-box .li-head-exchange li:first-child{
+    width: 140px;
+}
+.content-box .li-head-exchanges li:first-child{
+    width: 140px;
+}
+.description1{
+    overflow: hidden;
+    cursor: pointer;
+}
+.li-head-org li,.li-head-orgs li{
+    width: 110px;
+}
+.org-time1{
+    overflow: hidden;
+    cursor: pointer;
 }

@@ -197,15 +197,30 @@ else{
 $(".trues").click(function(){
   console.log(html)
 })
-function check(){
-  var a=$(".files").val()
-  if(a==''){
-    alert("请选择图片")
+$('form').ajaxForm({
+    // beforeSend: function() {
+    //     status.empty();
+    //     var percentVal = '0%';
+    //     bar.width(percentVal)
+    //     percent.html(percentVal);
+    // },
+    // uploadProgress: function(event, position, total, percentComplete) {
+    //   var percentVal = percentComplete + '%';
+    //     bar.width(percentVal)
+    //     percent.html(percentVal);
+    // },
+    // success: function() {
+    //     var percentVal = '100%';
+    //     bar.width(percentVal)
+    //     percent.html(percentVal);
+    // },
+  complete: function(xhr) {
+    alert("上传完成")
+    window.location.reload()
   }
-  else{
-    alert("上传成功，请刷新")
-  }
-}
+}); 
+
+      
 function tianjia(){
   var a=$.trim($(".jf1").val())
   var b=$.trim($(".jf2").val())

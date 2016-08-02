@@ -1,13 +1,16 @@
 var wsCache = new WebStorageCache();
 var currentCount=10
 var usernames
+var passwords
 var scores
 var totals
 var editorid
 var editordetail
+var addressnew
  wsCache.deleteAllExpires();
  site1=wsCache.get("token");
 site2=wsCache.get("refid");
+passwords=wsCache.get("ps")
 function exit(){
    wsCache.deleteAllExpires();
   wsCache.delete('token');
@@ -22,7 +25,7 @@ else{
 	 $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
 	 		var levelnew
             levels=data.data.level
-            scores=data.data.scoreWithYear
+            scores=data.data.score
             groupids=data.data.groupid
             usernames=data.data.username
             console.log(usernames)
@@ -50,7 +53,7 @@ else{
 	    var displayName = "";
 	$.ajax({
 		type: "get",
-		url:'http://101.200.192.149:8080/jfstore/userExchange?userId='+site2,
+		url:'http://101.200.192.149:8080/jfstore/userExchangeRecords?userid='+site2,
 		success: function(data){
 			console.log(data)
 			firstShowList(data);
@@ -61,7 +64,7 @@ else{
 	});
 	$.ajax({
 		type: "get",
-		url:'http://101.200.192.149:8080/jfstore/listAddressById?userId='+site2,
+		url:'http://101.200.192.149:8080/jfstore/listAddressByUserId?userId='+site2,
 		success: function(data){
 			console.log(data)
 			firstShowList1(data);
@@ -110,14 +113,15 @@ document.getElementById("contentBox1").innerHTML="";
 }	
 function gets(results){
 	 $.ajaxSettings.async = false
-	 $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+results,function(data){
+	 $.getJSON('http://101.200.192.149:8080/jfstore/listAddressById?id='+results,function(data){
 	 	 console.log(data.data.username)
-		  usernames=data.data.username	 	
+		  addressnew=data.data.contactName+data.data.contactTelphone+
+         data.data.province+data.data.city+data.data.detailLocation	 	
 		 })
 }
 function MeetingRoom(meetingroom_data){
 		//DATA
-		 this.ids = meetingroom_data.userId;
+		 this.address = meetingroom_data.addressId;
 		 this.products= meetingroom_data.productName;
 		 this.numbers = meetingroom_data.exchangeNumber;
 		 this.scores = meetingroom_data.needScore;
@@ -128,14 +132,18 @@ function MeetingRoom(meetingroom_data){
 		 else{
 		 	this.times = meetingroom_data.exchangeTime.toString().substring(0,10);
             datas=getLocalTime(this.times)
-		 }		 
-		 gets(this.ids)	
+		 }
+		
+		 gets(this.address)	
+		  
+		 
 		
 		//DOM
 		this.ul_element = document.createElement("ul");
 		this.ul_element.className = "li-head-exchanges";
 		this.li_name = document.createElement("li");
-		this.li_name.innerHTML = usernames;
+		this.li_name.innerHTML = addressnew;
+		this.li_name.title = addressnew;
 		this.li_name.className = "org-name";
 		this.li_num = document.createElement("li");
 		this.li_num.innerHTML = this.products;
@@ -393,47 +401,32 @@ $(".jfspan").click(function(){
 		alert("请输入积分码")
 	}
 	else{
-		$.ajax({
-			type:"get",
-			url:'http://101.200.192.149:8080/jfstore/getjf?number='+a,
-			dataType:"json",
-			success:function(data){
-				if(data.code==0){
-				var codes=data.data
-				var b=Number(codes)+Number(scores)
-						var data={
-						"username": usernames,
-						 "score": b
-					}
-					console.log(data)
-					var url1 = 'http://101.200.192.149:8080/jfstore/updateuser';
-					var xmlhttp = new XMLHttpRequest();
-					xmlhttp.open("PUT", url1, false);           
-											        // xmlhttp.setRequestHeader("token", this.token);
-					xmlhttp.setRequestHeader("Content-Type", "application/json");
-					xmlhttp.send(JSON.stringify(data));
+				var data={
+					 "username": usernames,
+  					"password": passwords
+				}
+					var url1 ='http://101.200.192.149:8080/jfstore/ewmaddscore?code='+a;
+			        var xmlhttp = new XMLHttpRequest();
+			        xmlhttp.open("POST", url1, false);           
+			                                        // xmlhttp.setRequestHeader("token", this.token);
+			        xmlhttp.setRequestHeader("Content-Type", "application/json");
+			        xmlhttp.send(JSON.stringify(data));
+			        if(xmlhttp.status==200){
+			        var codes=JSON.parse(xmlhttp.responseText)
+			        if(codes.code==0){
+			        	alert("充值成功")
+			        	window.location.reload()
+			        }
+			        else{
+			        	alert(codes.mes)
+			        }
 
-					if(xmlhttp.status==200){
-					var codes=JSON.parse(xmlhttp.responseText)
-					if(codes.code==0){
-					alert("充值成功")
-					window.location.reload()
-					}
 					}
 					else{
-					alert("服务器内部错误")
+						alert("充值失败，请核对后输入")
 					}
+		}
 
-			}
-			else{
-				alert("充值失败，请核对后输入")
-			}
-			},
-			error:function(data){
-				alert("充值失败，请核对后输入")
-			}
-		})
-	}
 })
 $(".tjbutton").click(function(){
 	$(".bcgs").show()

@@ -9,6 +9,8 @@ var scores
 var editor1
 var editor2
 var pptime
+var addressnew
+var levelnew1
 $("#datatime1").datetimepicker();
 var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
@@ -75,9 +77,26 @@ document.getElementById("contentBox").innerHTML="";
 
 function gets(results){
 	 $.ajaxSettings.async = false
+	 if(results==0){
+	 	groupname="未分组"
+	 }
+	 else{
 	 $.getJSON('http://101.200.192.149:8080/jfstore/getGroupName?id='+results,function(data){
 		  groupname=data.data
-		 })
+		 })}
+}
+function gets1(results){
+	 $.ajaxSettings.async = false
+	 $.getJSON('http://101.200.192.149:8080/jfstore/listAddressByUserId?userId='+results,function(data){
+      var count=data.data.length
+     for (var i =0; i<count; i++) {
+       if(data.data[i].isDefault==0){
+         addressnew=data.data[i].contactName+data.data[i].contactTelphone+
+         data.data[i].province+data.data[i].city+data.data[i].detailLocation
+       }
+     };
+ 
+    })
 }
 function MeetingRoom(meetingroom_data){
 		//DATA
@@ -89,9 +108,22 @@ function MeetingRoom(meetingroom_data){
 		 this.groupids= meetingroom_data.groupid;
 		 this.times=meetingroom_data.expirationtime.substr(0,16)
 		//DOM
+		var levelnew
 		if(this.levels==undefined){
 			this.levels=''
 		}
+		if(this.levels==0){
+              levelnew="普卡"
+            }
+        if(this.levels==1){
+              levelnew="铜卡"
+            }
+        if(this.levels==2){
+              levelnew="银卡"
+            }
+        if(this.levels==3){
+              levelnew="金卡"
+            }
 		if(this.groupids==undefined){
 			this.groupids=''
 		}
@@ -99,6 +131,7 @@ function MeetingRoom(meetingroom_data){
 			this.scores=''
 		}
 		gets(this.groupids)
+		gets1(this.ids)
 		console.log(groupname)
 		this.ul_element = document.createElement("ul");
 		this.ul_element.className = "li-head-orgs";
@@ -106,7 +139,7 @@ function MeetingRoom(meetingroom_data){
 		this.li_name.innerHTML = this.usernames;
 		this.li_name.className = "org-name";
 		this.li_num = document.createElement("li");
-		this.li_num.innerHTML = this.levels;
+		this.li_num.innerHTML = levelnew;
 		this.li_num.className = "org-id";
 		this.li_cap = document.createElement("li");
 		this.li_cap.innerHTML = groupname;
@@ -114,6 +147,10 @@ function MeetingRoom(meetingroom_data){
 		this.li_org = document.createElement("li");
 		this.li_org.innerHTML = this.scores;
 		this.li_org.className = "org-time";
+		this.li_orgs = document.createElement("li");
+		this.li_orgs.innerHTML = addressnew;
+		this.li_orgs.title = addressnew;
+		this.li_orgs.className = "org-time1";
 		this.li_option = document.createElement("li");
 		this.li_option.className = "description";
 		this.img1 = document.createElement("img");
@@ -125,6 +162,7 @@ function MeetingRoom(meetingroom_data){
 		this.ul_element.appendChild(this.li_num);
 		this.ul_element.appendChild(this.li_cap);
 		this.ul_element.appendChild(this.li_org);
+		this.ul_element.appendChild(this.li_orgs);
 		this.ul_element.appendChild(this.li_option);
 		document.getElementById("contentBox").appendChild(this.ul_element);
 	}
@@ -136,8 +174,20 @@ function MeetingRoom(meetingroom_data){
 		editor1=this.usernames
 		editor2=this.scores
 		pptime=this.times
+		if(this.levels==0){
+              levelnew1="普卡"
+            }
+        if(this.levels==1){
+              levelnew1="铜卡"
+            }
+        if(this.levels==2){
+              levelnew1="银卡"
+            }
+        if(this.levels==3){
+              levelnew1="金卡"
+            }
 		$(".user-name").html(this.usernames)
-		$(".user-level").html(this.levels)
+		$(".user-level").html(levelnew1)
 		$(".user-score").html(this.scores)
 		$("#datatime1").val(pptime)
 		$("#user-select").html('')
@@ -249,9 +299,8 @@ function MeetingRoom(meetingroom_data){
 $(".true").click(function(){
 	var c=$.trim($("#user-a4").val())
 	var d=$("#user-select option:selected").val()
-	var f=Number(c)+Number(editor2)
 	var t=$("#datatime1").val()
-	if((c=='')||(d=='')||(t=='')){
+	if((d=='')||(t=='')){
 		alert("请完善信息")
 		return false
 	}

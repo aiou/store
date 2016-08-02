@@ -2,6 +2,7 @@ var site1
 var site2
 var currentCount=10;
 var usernames
+var addressnew
 var wsCache = new WebStorageCache();
 $("#datatime1").datetimepicker();
 $("#datatime2").datetimepicker();	
@@ -54,10 +55,19 @@ function gets(results){
 		  usernames=data.data.username	 	
 		 })
 }
+function gets1(results){
+	 $.ajaxSettings.async = false
+	 $.getJSON('http://101.200.192.149:8080/jfstore/listAddressById?id='+results,function(data){
+	 	 console.log(data.data.username)
+		  addressnew=data.data.contactName+data.data.contactTelphone+
+         data.data.province+data.data.city+data.data.detailLocation	 	
+		 })
+}
 function MeetingRoom(meetingroom_data){
 		//DATA
 		var datas
 		 this.ids = meetingroom_data.userId;
+		 this.address=meetingroom_data.addressId
 		 this.products= meetingroom_data.productName;
 		 this.numbers = meetingroom_data.exchangeNumber;
 		 this.scores = meetingroom_data.needScore;
@@ -69,7 +79,8 @@ function MeetingRoom(meetingroom_data){
 		 	this.times = meetingroom_data.exchangeTime.toString().substring(0,10);
             datas=getLocalTime(this.times)
 		 }		 
-		 gets(this.ids)	
+		 gets(this.ids)
+		 gets1(this.address)	
 		//DOM
 		this.ul_element = document.createElement("ul");
 		this.ul_element.className = "li-head-exchanges";
@@ -88,71 +99,19 @@ function MeetingRoom(meetingroom_data){
 		this.li_option = document.createElement("li");
 		this.li_option.className = "description";
 		this.li_option.innerHTML = datas;
+		this.li_options = document.createElement("li");
+		this.li_options.className = "description1";
+		this.li_options.innerHTML = addressnew;
+		this.li_options.title = addressnew;
 		this.ul_element.appendChild(this.li_name);
 		this.ul_element.appendChild(this.li_num);
 		this.ul_element.appendChild(this.li_cap);
 		this.ul_element.appendChild(this.li_org);
 		this.ul_element.appendChild(this.li_option);
+		this.ul_element.appendChild(this.li_options);
 		console.log(datas)
 		document.getElementById("contentBox").appendChild(this.ul_element);
 
-	}
-		MeetingRoom.prototype.updateRoom = function(){
-		$(".bcgs").show();
-		$(".editor-user").show();
-		nowId = this.id;
-		types  =this.lbs
-		group=this.groups
-		$(".user-name").html(this.names)
-		$(".user-level").html(this.levels)
-		$(".user-score").html(this.scores)
-		$.getJSON('https://api.cloudp.cc:443/cloudpServer/v1/orgs/vmrs/getAllIvr_theme?token='+admin_token,function(data){
-          	 						var departmentcount=data.data.length
-       		                        html='';
-       		                        for (var i = 0; i <departmentcount; i++) {
-
-       			                    html+='<option id="'+data.data[i].id+'"value="'+data.data[i].uuid+'">'+data.data[i].name+'</option>'
-       		                            };   
-       		                        $('#user-select').append(html) 
-       		                       	for(var i=0;i<$("#user-select option").length;i++) {  
-				            			if($("#user-select option").eq(i).val() == th2) {   	
-				                		$("user-select option").eq(i).attr('selected',true);  
-				                		break;  
-				            }  
-				        } 
-          	 				})
-	}
-	MeetingRoom.prototype.deleteRoom = function(){
-		var deleteID = this.id;
-		if(confirm("确定要删除这条记录？")){
-			$.ajax({
-			type: 'delete',
-			url: 'https://api-test.cloudp.cc:443/cloudpServer/v1/orgs/vmrs/'+this.id+'?token='+admin_token,
-			success: function(data){
-				for(var i=0;i<meetingRoomData.length;i++){
-					if(deleteID == meetingRoomData[i].id){
-						meetingRoomData.splice($.inArray(meetingRoomData[i],meetingRoomData),1);
-						var a = parseInt($(".current-page").html());
-						var b = $(".page-count").html();
-						var c = $(".content-totals").html();
-						var d =  Math.ceil(meetingRoomData.length/currentCount);
-						if(a<d){
-							paging_mode((a-1)*currentCount,a*currentCount);
-						}else{
-							paging_mode((a-1)*currentCount,meetingRoomData.length);
-							$(".page-count").html(d);
-						}
-						totals = meetingRoomData.length;
-						$(".content-totals").html(meetingRoomData.length);
-					}
-				}
-			},
-			error: function(erro){
-				alert("删除失败");
-			}
-		});
-		}
-		
 	}
 //首次加载列表
 	function firstShowList(data){

@@ -58,11 +58,13 @@ function MeetingRoom(meetingroom_data){
 		 this.needscores = meetingroom_data.needscore;
 		 this.totalss = meetingroom_data.totals;
 		 this.lbs = meetingroom_data.lb;
+		 this.details=meetingroom_data.detail
 		//DOM
 		this.ul_element = document.createElement("ul");
 		this.ul_element.className = "li-head-org1";
 		this.li_name = document.createElement("li");
 		this.li_name.innerHTML = this.names;
+		this.li_name.title = this.names;
 		this.li_name.className = "org-name";
 		this.li_num = document.createElement("li");
 		this.li_num.innerHTML = this.needscores;
@@ -105,18 +107,48 @@ function MeetingRoom(meetingroom_data){
 	}
 		MeetingRoom.prototype.updateRoom = function(){
 			$(".bcgs").show()
-			$(".editor-user").show()
+			$(".editor-notice").show()
 		nowId = this.ids;
 		types  =this.lbs
 		$(".add-name1").val(this.names)
 		$(".add-score1").val(this.needscores)
 		$(".add-count1").val(this.totalss)
-		 for(var i=0;i<$("#com-select option").length;i++) {  
-			if($("#com-select option").eq(i).val() ==types) {   	
-			$("#com-select option").eq(i).attr('selected',true);  
+		 for(var i=0;i<$("input[name='radiochooseCreat']").length;i++) {  
+			if($("input[name='radiochooseCreat']").eq(i).val() ==types) {   	
+			$("input[name='radiochooseCreat']").eq(i).attr("checked",'checked');  
 			break;  
 				            }  
 				        }
+		$("#div2").html(this.details)
+		//表单提交添加商品	
+    $('#forms1').on('submit', function() {
+        var a=$(".add-name1").val()
+		var b=$(".add-score1").val()
+		var c=$(".add-count1").val()
+		var d=$("input[name='radiochooseCreat']:checked").val();
+		var e=encodeURI(editor.$txt.html());
+		if((a=='')||(b=='')||(c=='')||(d=='')||(e=='')){
+		alert("请完善信息")
+		return false
+
+	}
+	else{
+        $(this).ajaxSubmit({
+            type: 'post', // 提交方式 get/post
+            url:'http://101.200.192.149:8080/jfstore/updatepro?productid='+nowId+'&name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d,
+            success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
+                // 此处可对 data 作相关处理
+                console.log(data)
+                alert('编辑成功！');
+                window.location.reload()
+            }
+
+            // $(this).resetForm(); // 提交后重置表单
+        })
+        return false; // 阻止表单自动提交事件
+    }
+    });
+
 	}
 	MeetingRoom.prototype.deleteRoom = function(){
 		var deleteID = this.ids;
@@ -164,9 +196,13 @@ function MeetingRoom(meetingroom_data){
 		})
 
 	}
+// $(".cancel").click(function(){
+// 	$(".bcgs").hide()
+// 	$(".add-img").hide()
+// })
 $(".cancel").click(function(){
 	$(".bcgs").hide()
-	$(".add-img").hide()
+	$(".editor-notice").hide()
 })
 //首次加载列表
 	function firstShowList(data){
@@ -257,60 +293,57 @@ $(".cancel").click(function(){
     	}
 	});
 //编辑礼品
-$(".trues").click(function(){
-	var a=$(".com-name").val()
-	var b=$(".com-score").val()
-	var c=$(".com-count").val()
-	var d=$("#com-select option:selected").val()
-	if((a=='')||(b=='')||(c=='')||(d=='')){
-		alert("请完善信息")
-		return false
-	}
-	else{
-		alert("编辑失败")
-	}
-})
-$(".cancel").click(function(){
-	$(".bcgs").hide()
-	$(".editor-user").hide()
-})
-$(".submits").click(function(){
-	// var a=
-	var b=$(".add-name").val()
-	var c=$(".add-score").val()
-	var d=$(".add-count").val()
-	var e=$("input[name='radiochooseCreat']:checked").val()
-	if((b=='')||(c=='')||(d=='')||(e=='')){
-		alert("请完善信息")
-		return false
-	}
-	else{
-			var data={
-			 		  "name": b,
-					  "needscore": c,
-					  "totals": d,
-					  "lb": e
-		}
-		var url1 = 'http://101.200.192.149:8080/jfstore/addpro';
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("POST", url1, false);           
-								        // xmlhttp.setRequestHeader("token", this.token);
-		xmlhttp.setRequestHeader("Content-Type", "application/json");
-		xmlhttp.send(JSON.stringify(data));
+// $(".trues").click(function(){
+// 	var a=$(".com-name").val()
+// 	var b=$(".com-score").val()
+// 	var c=$(".com-count").val()
+// 	var d=$("#com-select option:selected").val()
+// 	if((a=='')||(b=='')||(c=='')||(d=='')){
+// 		alert("请完善信息")
+// 		return false
+// 	}
+// 	else{
+// 		alert("编辑失败")
+// 	}
+// })
 
-		if(xmlhttp.status==200){
-		var codes=JSON.parse(xmlhttp.responseText)
-		if(codes.code==0){
-		alert("添加成功")
-		window.location.reload()
-		}
-		}
-		else{
-		alert("服务器内部错误")
-		}
-	}
+// $(".submits").click(function(){
+// 	// var a=
+// 	var b=$(".add-name").val()
+// 	var c=$(".add-score").val()
+// 	var d=$(".add-count").val()
+// 	var e=$("input[name='radiochooseCreat']:checked").val()
+// 	if((b=='')||(c=='')||(d=='')||(e=='')){
+// 		alert("请完善信息")
+// 		return false
+// 	}
+// 	else{
+// 			var data={
+// 			 		  "name": b,
+// 					  "needscore": c,
+// 					  "totals": d,
+// 					  "lb": e
+// 		}
+// 		var url1 = 'http://101.200.192.149:8080/jfstore/addpro';
+// 		var xmlhttp = new XMLHttpRequest();
+// 		xmlhttp.open("POST", url1, false);           
+// 								        // xmlhttp.setRequestHeader("token", this.token);
+// 		xmlhttp.setRequestHeader("Content-Type", "application/json");
+// 		xmlhttp.send(JSON.stringify(data));
 
-})
+// 		if(xmlhttp.status==200){
+// 		var codes=JSON.parse(xmlhttp.responseText)
+// 		if(codes.code==0){
+// 		alert("添加成功")
+// 		window.location.reload()
+// 		}
+// 		}
+// 		else{
+// 		alert("服务器内部错误")
+// 		}
+// 	}
+
+// })
  var editor1=new wangEditor("div1")
   editor1.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadimg';
   editor1.config.uploadImgFileName = 'file';
@@ -399,67 +432,31 @@ $(".cancels").click(function(){
 	$(".bcgs").hide()
 	$(".add-notice").hide()
 })
-function check(){
-	var a=$(".add-name").val()
-	var b=$(".add-score").val()
-	var c=$(".add-count").val()
-	var d=$("input[name='lb']:checked").val();
-	var e=editor1.$txt.html();
-	console.log(a)
-	console.log(b)
-	console.log(c)
-	console.log(e)
-	console.log(d)
-	var f=$(".files").val()
-	if((a=='')||(b=='')||(c=='')||(d=='')||(e=='')){
+//表单提交添加商品	
+    $('#forms').on('submit', function() {
+        var a=$(".add-name").val()
+		var b=$(".add-score").val()
+		var c=$(".add-count").val()
+		var d=$("input[name='lb']:checked").val();
+		var e=encodeURI(editor1.$txt.html());
+		if((a=='')||(b=='')||(c=='')||(d=='')||(e=='')){
 		alert("请完善信息")
 		return false
 
 	}
 	else{
+        $(this).ajaxSubmit({
+            type: 'post', // 提交方式 get/post
+            url:'http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d,
+            success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
+                // 此处可对 data 作相关处理
+                console.log(data)
+                alert('提交成功！');
+                window.location.reload()
+            }
 
-
-
-		// var data={
-		// 	name: a,
-		// 	detail: e,
-		// 	needscore:b,
-		// 	totals:c,
-		// 	lb:d
-		// }
-		// console.log(data)
-		// var url1 = 'http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d;
-		// var xmlhttp = new XMLHttpRequest();
-		// xmlhttp.open("post", url1, false);           
-		// 						        // xmlhttp.setRequestHeader("token", this.token);
-		// xmlhttp.setRequestHeader("Content-Type", "application/json");
-		// xmlhttp.send(JSON.stringify(data));
-
-		// if(xmlhttp.status==200){
-		// var codes=JSON.parse(xmlhttp.responseText)
-		// console.log(codes)
-		// if(codes.code==0){
-		// alert("编辑成功")
-		// }
-		// }
-		// else{
-		// alert("服务器内部错误")
-		// }
-	url='http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d;
-		console.log(url)
-			 document.getElementById("forms").action = url;
-			 var a=$(".files").val()
-			  if(a==''){
-			    alert("请选择图片")
-			  }
-			 else{
-			 	alert("上传商品图片成功,请刷新页面查看")
-  			    document.getElementById("forms").submit();
-  			    // window.location.reload()
-  			    $(".add-notice").hide()
-  			    $(".bcgs").hide()
-  			    return false;  			  
-  			}
-}
-}
-//
+            // $(this).resetForm(); // 提交后重置表单
+        })
+        return false; // 阻止表单自动提交事件
+    }
+    });

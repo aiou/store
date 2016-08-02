@@ -179,7 +179,7 @@ function paging_mode(start,end){
     $(".gift-sure").show() 
       html1=''
       html=''
-    $.getJSON('http://101.200.192.149:8080/jfstore/listAddressById?userId='+site2,function(data){
+    $.getJSON('http://101.200.192.149:8080/jfstore/listAddressByUserId?userId='+site2,function(data){
       console.log(data)
       var count=data.data.length
      for (var i =0; i<count; i++) {

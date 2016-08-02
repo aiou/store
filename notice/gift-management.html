@@ -22,7 +22,7 @@
 				<li class="track"><a href="exchange-track.html"><span>帮助疑问</span></a></li>
 				<li class="userManagement"><a href="user-management.html"><span>用户管理</span></a></li>
 				<li class="add_Notice"><a href="notice.html"><span>添加公告</span></a></li>
-				<li class="add_Notice"><a href="img.html"><span>公告轮播积分码</span></a></li>
+				<li class="add_Notice"><a href="img.html"><span>公告轮播</span></a></li>
 			</ul>
 		<div class="rightBox">
 			<div class="addNoticeBox clear">
@@ -69,7 +69,7 @@
 					</ul>
 					</div>
 					<div class="content-boxes" id="contentBox">
-						<ul class="li-head-orgs">
+				<!-- 		<ul class="li-head-orgs">
 							<li class="org-name">小米豆香锅巴</li>
 							<li class="org-id">200</li>
 							<li class="org-password">200</li>
@@ -78,7 +78,7 @@
 								<img src="images/description2.png" alt="" class="org-editor">
 								<img src="images/description3.png" alt="" class="org-delete">
 							</li>
-						</ul>
+						</ul> -->
 					</div>
 					<div class="pages">
 					    <span>第<span class="current-page"></span>页/</span>
@@ -98,11 +98,12 @@
 		</div>		
 	</div>
 <div class="bcgs"></div>
-<div class="editor-user"style="margin-top:-150px;height:600px;">
+<div class="editor-notice"style="margin-top:-150px;height:800px;">
 	<div class="add-head" >编辑商品</div>
 	<div class="form-box1">
+			<form  method="post" enctype="multipart/form-data" id="forms1">
 			<div class="input-box">
-            物品名称：<input type="text" class="add-name1">						
+            物品名称：<input type="text" class="add-name1" maxlength="13">						
 			</div>
 			<div class="input-box">
             兑换积分：<input type="text" class="add-score1">			
@@ -111,7 +112,7 @@
             物品数量：<input type="text" class="add-count1">						
 			</div>
 			<div class="input-radio">
-						<input type="radio" name="radiochooseCreat" value="1" id="radio1" checked="checked">
+						<input type="radio" name="radiochooseCreat" value="1" id="radio1">
 						<label for="radio1" class="label1">热门</label>
 						<input type="radio" name="radiochooseCreat" value="0" id="radio2">
 						<label for="radio2" class="label2">推荐</label>
@@ -125,15 +126,18 @@
 			<span>产品详图：</span>
 			<input type="file">
 		</div>
-	    <span class="true">确定</span>
-		<span class="cancel">取消</span>
+		<input type="submit" value="确定" class="trues"/>
+		<span class="cancel" style="top:29px;width:104px;right:-237px">取消</span>
+		</form>
+	    
+		
 </div>
 </div>
 <div class="add-notice"style="margin-top:-150px;height:800px;">
 	<div class="add-head" >新建商品</div>
 	<div class="form-box1">
-
-			<div class="input-box">物品名称：<input type="text" name="name" class="add-name"value=""></div>
+			<form  method="post" enctype="multipart/form-data" id="forms">
+			<div class="input-box">物品名称：<input type="text" name="name" class="add-name" ></div>
 			<div class="input-box">兑换积分：<input type="text" name="needscore" class="add-score" value=""></div> <div class="input-box">物品数量：<input type="text" name="totals" class="add-count" value=""></div>
 			<div class="input-radio">
 			<input type="radio" name="lb" value="1" id="radio3" checked="checked">
@@ -145,12 +149,12 @@
 				<div>产品详情：</div>
 				<div id="div1"style="height:185px;"></div>				
 			</div>
-			<form  method="post" enctype="multipart/form-data"  target="nm_iframe" id="forms">
+			
 			<div class="input-box">
 				<span>产品大图：</span>
 				<input type="file" name="file" class="files">
 			</div>			
-			<input type="button" value="添加"onclick="check()"  class="trues1"/>
+			<input type="submit" value="确定" class="trues1"/>
 	    	<span class="cancels">取消</span>
 	    </form>
 	</div>		        
@@ -163,6 +167,7 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/web-storage-cache.js"></script>
 <script src="js/wangEditor.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/gift-management.js"></script>
 </body>
 </html>
