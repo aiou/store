@@ -20,14 +20,27 @@ if((site1==null)||(site2==null)){
 }
 else{
 	 $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
+	 		var levelnew
             levels=data.data.level
-            scores=data.data.score
+            scores=data.data.scoreWithYear
             groupids=data.data.groupid
             usernames=data.data.username
             console.log(usernames)
+            if(levels==0){
+            	levelnew="普卡"
+            }
+            if(levels==1){
+            	levelnew="铜卡"
+            }
+            if(levels==2){
+            	levelnew="银卡"
+            }
+            if(levels==3){
+            	levelnew="金卡"
+            }
             $.getJSON('http://101.200.192.149:8080/jfstore/getExptime?username='+usernames,function(data){  
             $(".score-top").html(usernames)
-            $(".level-ones").html(levels)
+            $(".level-ones").html(levelnew)
             $(".level-three").html(data.data)
             $(".shengyu-total").html(scores) 
             $(".duijiang-total").html(totals)
@@ -169,6 +182,7 @@ function MeetingRoom1(meetingroom_data1){
 		this.li_num.className = "org-id";
 		this.li_cap = document.createElement("li");
 		this.li_cap.innerHTML = this.detail ;
+		this.li_cap.title = this.detail;
 		this.li_cap.className = "org-password";
 		this.li_org = document.createElement("li");
 		this.li_org.innerHTML = this.phones;
@@ -208,6 +222,7 @@ function MeetingRoom1(meetingroom_data1){
 		this.li_num.className = "org-id";
 		this.li_cap = document.createElement("li");
 		this.li_cap.innerHTML = this.detail ;
+		this.li_cap.title = this.detail;
 		this.li_cap.className = "org-password";
 		this.li_org = document.createElement("li");
 		this.li_org.innerHTML = this.phones;
@@ -260,7 +275,7 @@ function MeetingRoom1(meetingroom_data1){
  }
   MeetingRoom1.prototype.editor= function(){
   	editorid=this.ids
-  	editordetail=this.isDefault
+  	editordetail=this.morens
   	$(".bcgs").show()
  	$(".editor-address").show()
  	$(".people1").val(this.names)
@@ -276,23 +291,13 @@ function MeetingRoom1(meetingroom_data1){
 
  }
   MeetingRoom1.prototype.moren = function(){
-  	var deletid=this.ids
-  	var data={
-  	  "id": deletid,
- 	  "contactName": this.names,
-      "contactTelphone": this.phones,
-      "province": this.provinces,
-      "city": this.citys,
-      "area": this.areas,
-      "detailLocation": this.detail,
-      "isDefault": 0
-}	
-	var url1 = 'http://101.200.192.149:8080/jfstore/updateaddress';
+  	var deletid=this.ids	
+	var url1 = 'http://101.200.192.149:8080/jfstore/setAddressDefault?userId='+site2+'&addressId='+deletid;
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("PUT", url1, false);           
 											        // xmlhttp.setRequestHeader("token", this.token);
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
-	xmlhttp.send(JSON.stringify(data));
+	xmlhttp.send();
 
 	if(xmlhttp.status==200){
 	var codes=JSON.parse(xmlhttp.responseText)
@@ -302,7 +307,7 @@ function MeetingRoom1(meetingroom_data1){
 	}
 	}
 	else{
-	alert("服务器内部错误")
+	alert("设置失败")
 	}
 
  }
@@ -456,7 +461,7 @@ $(".tjbutton").click(function(){
 				  "city": shi,
 				  "area": xian,
 				  "detailLocation":c,
-				  "isDefault": 0
+				  "isDefault": 1
 					}
 				console.log(data)
 				 	var url1 = 'http://101.200.192.149:8080/jfstore/addAddress';

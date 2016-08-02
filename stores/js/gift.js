@@ -175,11 +175,39 @@ function paging_mode(start,end){
     alert("请填写数量")
    }
    else{
+    $(".bcgs").show()
+    $(".gift-sure").show() 
+      html1=''
+      html=''
+    $.getJSON('http://101.200.192.149:8080/jfstore/listAddressById?userId='+site2,function(data){
+      console.log(data)
+      var count=data.data.length
+     for (var i =0; i<count; i++) {
+       if(data.data[i].isDefault==0){
+         html+='<input type="radio" name="address" class="morenaddress" checked="true" value="'+data.data[i].id+'">'+data.data[i].contactName+'&nbsp'+data.data[i].contactTelphone+
+         data.data[i].province+data.data[i].city+data.data[i].detailLocation
+       }
+       else{
+        html1+='<input type="radio" name="address" class="qitaaddress" value="'+data.data[i].id+'">'+data.data[i].contactName+'&nbsp'+data.data[i].contactTelphone+
+         data.data[i].province+data.data[i].city+data.data[i].detailLocation+'<br>'
+       }
+     };
+     $(".moren-box").append(html)
+     $(".qita-box").append(html1)   
+    })
+    
+   
+    $("#address-true").click(function(){
+      var values=$('input[name="address"]:checked').val();
+       
+    
     var data={
       productName:productnames,
       exchangeNumber:exchangenumbers,
       needScore:needscores,
-      userId:site2
+      userId:site2,
+      addressId:values
+
       }
       console.log(data)
     var url1 = 'http://101.200.192.149:8080/jfstore/insertexchange';
@@ -202,6 +230,8 @@ function paging_mode(start,end){
     else{
     alert("服务器内部错误")
     }
+})
+
    }
   }
   MeetingRoom.prototype.xiangqing = function(){

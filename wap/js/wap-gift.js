@@ -13,7 +13,7 @@ $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+
   console.log(data)
 
             usernames=data.data.username
-            userscores=data.data.score
+            userscores=data.data.scoreWithYear
             $(".user-name").html(usernames)
             $(".user-score").html(userscores)
           })
@@ -86,7 +86,7 @@ function paging_mode(start,end){
     document.getElementById("gift-box").appendChild(this.ul_element);   
    }
    MeetingRoom.prototype.inputs = function(){
-
+    
    }
   MeetingRoom.prototype.duihuan = function(){
   var productnames=this.names

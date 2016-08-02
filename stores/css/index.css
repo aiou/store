@@ -1189,3 +1189,35 @@ teble{
 	cursor: pointer;
 	margin-right: 5px;
 }
+.gift-sure{
+	width: 373px;
+    height: 347px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    margin-left: -250px;
+    margin-top: -275px;
+    border-radius: 5px;
+    background: #fff;
+    padding: 10px 20px;
+    display: none;
+    font-size: 13px;
+}
+.gift-sure input{
+	width: inherit;
+	height: inherit;
+	line-height: inherit;
+	margin-bottom: 5px;
+	font-size: 15px;
+}
+.gift-sure .moren-box,.gift-sure .qita-box{
+	width: inherit;
+	margin-bottom: 15px;
+}
+.org-password{
+	overflow: hidden;
+}
+
+/*.gift-sure div{
+	width:inherit;
+}*/

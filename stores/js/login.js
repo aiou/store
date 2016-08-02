@@ -130,14 +130,27 @@ function addcontent(){
   site2=wsCache.get("refid");
   if((site1!=='')&&(site2!=='')){
     $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
+            var levelnew
             levels=data.data.level
             expirats=data.data.expirationtime
-            scores=data.data.score
+            scores=data.data.scoreWithYear
             groupids=data.data.groupid
             usernames=data.data.username
+             if(levels==0){
+              levelnew="普卡"
+            }
+            if(levels==1){
+              levelnew="铜卡"
+            }
+            if(levels==2){
+              levelnew="银卡"
+            }
+            if(levels==3){
+              levelnew="金卡"
+            }
         $.getJSON('http://101.200.192.149:8080/jfstore/getExptime?username='+usernames,function(data){    
             $(".user-name").html(usernames)
-            $(".level-one").html(levels)
+            $(".level-one").html(levelnew)
             $(".level-three").html(data.data)
             $(".score-two").html(scores) 
             $(".head-login").hide()
