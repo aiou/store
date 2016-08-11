@@ -11,6 +11,7 @@ var editor2
 var pptime
 var addressnew
 var levelnew1
+var passwords
 $("#datatime1").datetimepicker();
 var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
@@ -172,6 +173,7 @@ function MeetingRoom(meetingroom_data){
 		nowId = this.ids;
 		group=this.groupids
 		editor1=this.usernames
+		passwords=this.password
 		editor2=this.scores
 		pptime=this.times
 		if(this.levels==0){
@@ -307,7 +309,6 @@ $(".true").click(function(){
 	else{
 			var data={
 			username: editor1,
-			score: f,
 			expirationtime:t,
 			groupid: d
 		}
