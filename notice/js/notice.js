@@ -23,7 +23,7 @@ if((site1==null)||(site2==null)){
 else{
 	  $.ajax({
     type: "get",
-    url:'http://101.200.192.149:8080/jfstore/notices',
+    url:urlnew+'/jfstore/notices',
     success: function(data){
       firstShowList(data);
     },
@@ -88,7 +88,7 @@ else{
   MeetingRoom.prototype.delete = function(){
   deleteid=this.ids
  if(confirm("确定要删除这条公告吗？")){
-    var url1 = 'http://101.200.192.149:8080/jfstore/delbyId?id='+deleteid;
+    var url1 = urlnew+'/jfstore/delbyId?id='+deleteid;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("DELETE", url1, false);           
     xmlhttp.setRequestHeader("Content-Type", "application/json");
@@ -111,7 +111,7 @@ else{
  }
    MeetingRoom.prototype.zhiding = function(){
     zhidingid=this.ids
-    var url1 = 'http://101.200.192.149:8080/jfstore/addNoticetop?id='+zhidingid;
+    var url1 = urlnew+'/jfstore/addNoticetop?id='+zhidingid;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("PUT", url1, false);           
     xmlhttp.setRequestHeader("Content-Type", "application/json");
@@ -234,7 +234,7 @@ $(".true").click(function(){
           "title": a,
           "content": b
     }
-    var url1 = 'http://101.200.192.149:8080/jfstore/updatenotices';
+    var url1 = urlnew+'/jfstore/updatenotices';
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("PUT", url1, false);           
                         // xmlhttp.setRequestHeader("token", this.token);
@@ -278,7 +278,7 @@ $(".trues").click(function(){
 			content:b
 		}
     console.log(data)
-		var url1 = 'http://101.200.192.149:8080/jfstore/addnotices';
+		var url1 = urlnew+'/jfstore/addnotices';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("POST", url1, false);           
 								        // xmlhttp.setRequestHeader("token", this.token);
@@ -302,7 +302,7 @@ $(".cancels").click(function(){
 	$(".add-notice").hide()
 })
  var editor=new wangEditor("div1")
-   editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadimg';
+   editor.config.uploadImgUrl = urlnew+'/jfstore/uploadimg';
   editor.config.uploadImgFileName = 'file';
     editor.config.menus = [
         '|',
@@ -345,7 +345,7 @@ $(".trues").click(function(){
   console.log(html)
 })
   var editor1=new wangEditor("div2")
-   editor1.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadimg';
+   editor1.config.uploadImgUrl = urlnew+'/jfstore/uploadimg';
     editor1.config.uploadImgFileName = 'file';
       editor1.config.menus = [
         '|',

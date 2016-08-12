@@ -22,7 +22,7 @@ if((site1==null)||(site2==null)){
 	window.location.href="user-login.html"
 }
 else{
-	 $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
+	 $.getJSON(urlnew+'/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
 	 		var levelnew
             levels=data.data.level
             scores=data.data.score
@@ -41,7 +41,7 @@ else{
             if(levels==3){
             	levelnew="金卡"
             }
-            $.getJSON('http://101.200.192.149:8080/jfstore/getExptime?username='+usernames,function(data){  
+            $.getJSON(urlnew+'/jfstore/getExptime?username='+usernames,function(data){  
             $(".score-top").html(usernames)
             $(".level-ones").html(levelnew)
             $(".level-three").html(data.data)
@@ -53,7 +53,7 @@ else{
 	    var displayName = "";
 	$.ajax({
 		type: "get",
-		url:'http://101.200.192.149:8080/jfstore/userExchangeRecords?userid='+site2,
+		url:urlnew+'/jfstore/userExchangeRecords?userid='+site2,
 		success: function(data){
 			console.log(data)
 			firstShowList(data);
@@ -64,7 +64,7 @@ else{
 	});
 	$.ajax({
 		type: "get",
-		url:'http://101.200.192.149:8080/jfstore/listAddressByUserId?userId='+site2,
+		url:urlnew+'/jfstore/listAddressByUserId?userId='+site2,
 		success: function(data){
 			console.log(data)
 			firstShowList1(data);
@@ -113,7 +113,7 @@ document.getElementById("contentBox1").innerHTML="";
 }	
 function gets(results){
 	 $.ajaxSettings.async = false
-	 $.getJSON('http://101.200.192.149:8080/jfstore/listAddressById?id='+results,function(data){
+	 $.getJSON(urlnew+'/jfstore/listAddressById?id='+results,function(data){
 	 	 console.log(data.data.username)
 		  addressnew=data.data.contactName+data.data.contactTelphone+
          data.data.province+data.data.city+data.data.detailLocation	 	
@@ -264,7 +264,7 @@ function MeetingRoom1(meetingroom_data1){
          if(confirm("确定要删除该地址？")){
 			$.ajax({
 			type: 'delete',
-			url: 'http://101.200.192.149:8080/jfstore/deladdress?id='+deletid,
+			url: urlnew+'/jfstore/deladdress?id='+deletid,
 			success: function(data){
 				if(data.code==0){
 					alert("删除地址成功")
@@ -300,7 +300,7 @@ function MeetingRoom1(meetingroom_data1){
  }
   MeetingRoom1.prototype.moren = function(){
   	var deletid=this.ids	
-	var url1 = 'http://101.200.192.149:8080/jfstore/setAddressDefault?userId='+site2+'&addressId='+deletid;
+	var url1 = urlnew+'/jfstore/setAddressDefault?userId='+site2+'&addressId='+deletid;
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("PUT", url1, false);           
 											        // xmlhttp.setRequestHeader("token", this.token);
@@ -405,7 +405,7 @@ $(".jfspan").click(function(){
 					 "username": usernames,
   					"password": passwords
 				}
-					var url1 ='http://101.200.192.149:8080/jfstore/ewmaddscore?code='+a;
+					var url1 =urlnew+'/jfstore/ewmaddscore?code='+a;
 			        var xmlhttp = new XMLHttpRequest();
 			        xmlhttp.open("POST", url1, false);           
 			                                        // xmlhttp.setRequestHeader("token", this.token);
@@ -457,7 +457,7 @@ $(".tjbutton").click(function(){
 				  "isDefault": 1
 					}
 				console.log(data)
-				 	var url1 = 'http://101.200.192.149:8080/jfstore/addAddress';
+				 	var url1 = urlnew+'/jfstore/addAddress';
 			        var xmlhttp = new XMLHttpRequest();
 			        xmlhttp.open("POST", url1, false);           
 			                                        // xmlhttp.setRequestHeader("token", this.token);
@@ -499,7 +499,7 @@ $("#address-true1").click(function(){
 				  "detailLocation":c,
 				  "isDefault": editordetail
 					}
-	var url1 = 'http://101.200.192.149:8080/jfstore/updateaddress';
+	var url1 = urlnew+'/jfstore/updateaddress';
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("PUT", url1, false);           
 											        // xmlhttp.setRequestHeader("token", this.token);

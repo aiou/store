@@ -398,7 +398,24 @@ ul{
 }
 .head-right input{
     height: 30px;
-    width: 180px;
+    line-height: 30px;
+    width: 130px;
+}
+.rightBox .cxuser{
+    position: absolute;
+    left: 250px;
+    top: 20px;
+    height: 30px;
+    line-height: 30px;
+    width: 60px;
+}
+.rightBox .cxproduct{
+    position: absolute;
+    left: 350px;
+    top: 20px;
+    height: 30px;
+    line-height: 30px;
+    width: 60px;
 }
 .chaxun{
     display: inline-block;
@@ -778,4 +795,20 @@ margin-bottom: -25px;
 .org-time1{
     overflow: hidden;
     cursor: pointer;
+}
+.add-score{
+    width: 350px;
+    z-index: 999;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    margin-left: -180px;
+    height: 200px;
+    margin-top: -200px;
+    font-size: 13px;
+    font-family: ' 微软雅黑';
+    padding: 10px 20px;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    display: none
 }

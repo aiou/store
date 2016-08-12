@@ -94,7 +94,7 @@ function MeetingRoom(meetingroom_data){
 		this.img3 = document.createElement("img");
 		this.img3.src = "images/description6.png";
 		this.img3.title = "添加"
-		this.img3.addEventListener("click",this.add.bind(this),false);
+		// this.img3.addEventListener("click",this.add.bind(this),false);
 		this.li_option.appendChild(this.img1);
 		this.li_option.appendChild(this.img2);
 		// this.li_option.appendChild(this.img3);

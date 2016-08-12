@@ -58,7 +58,7 @@ function gets(results){
 function gets1(results){
 	 $.ajaxSettings.async = false
 	 $.getJSON(urlnew+'/jfstore/listAddressById?id='+results,function(data){
-	 	 console.log(data.data.username)
+	 	 console.log(data.data.contactName)
 		  addressnew=data.data.contactName+data.data.contactTelphone+
          data.data.province+data.data.city+data.data.detailLocation	 	
 		 })
@@ -204,11 +204,24 @@ function MeetingRoom(meetingroom_data){
 $(".chaxun").click(function(){
 	var a=$("#datatime1").val()
 	var b=$("#datatime2").val()
-	if((a=='')||(b=='')){
-		alert("请选择日期")
-	}
+	var c=$(".cxuser").val()
+	var d=$(".cxproduct").val()
+	var url2 = urlnew+'/jfstore/userExchange?';
+	if(c != null && c != undefined && c != ""){
+			url2 = url2+'userName='+c;
+		}
+	if(a != null && a != ""){
+			url2 = url2+'&exchangeStartTime='+a
+		}
+	if(b != null && b != ""){
+			url2 = url2+'&exchangeEndTime='+a
+		}
+	if(d != null && d != ""){
+			url2 = url2+'&productName='+d
+		}
 	else{
-		$.getJSON(urlnew+'/jfstore/listExchangesometime?beginTime='+a+'&endTime='+b,function(data){
+		$.getJSON(url2,function(data){
+			success:f
 			if(data.code==0){
 			var c=data.data.length
 			if(c!==0){
@@ -221,6 +234,9 @@ $(".chaxun").click(function(){
 			else{
 				alert("网络错误，请重试")
 			}
-		})
+
+		}).fail(function () {
+    alert("网络错误，请重试")
+})
 	}
 })

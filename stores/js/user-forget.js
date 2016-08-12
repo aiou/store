@@ -20,7 +20,7 @@ function sendMessage(){
         $.ajax({
             type:"POST",
             dataType:"json",
-            url:'http://101.200.192.149:8080/jfstore/jfstore/sms?mobile='+tel,
+            url:urlnew+'/jfstore/jfstore/sms?mobile='+tel,
             success:function(data){
                     if(data.code==0){
                     $("#userPhone").attr("disabled",true)
@@ -117,7 +117,7 @@ $(".next-button2").click(function(){
              "username":username,
              "password":d
         }
-        var url1 = 'http://101.200.192.149:8080/jfstore/updatepass';
+        var url1 = urlnew+'/jfstore/updatepass';
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("PUT", url1, false);           
                                         // xmlhttp.setRequestHeader("token", this.token);

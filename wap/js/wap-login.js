@@ -3,13 +3,13 @@ var scores
  $.ajax({
   type:"get",
   dataType:"json",
-  url:"http://101.200.192.149:8080/jfstore/listallimg",
+  url:urlnew+'/jfstore/listallimg',
   async: false,
   success:function(data){
         var totals=data.data.length
   html=''
  for (var i = 0; i<totals; i++) {
-  var url='http://101.200.192.149:8080/jfstore/img/'+data.data[i].imgpath
+  var url=urlnew+'/jfstore/img/'+data.data[i].imgpath
   html+='<div class="swiper-slide"><img src="'+url+'"></div>'
   console.log(html)
  }
@@ -62,7 +62,7 @@ var wsCache = new WebStorageCache();
 		FastClick.attach(document.body);
 	}, false);
  var wsCache = new WebStorageCache();
- $.getJSON("http://101.200.192.149:8080/jfstore/notices",function(result){
+ $.getJSON(urlnew+'/jfstore/notices',function(result){
   html=''
   for (var i = 0; i<3; i++) {
     html+='<div class="content">'+result.data[i].content+'</div>'
@@ -87,7 +87,7 @@ $(".submit").click(function(){
                 code: scores
         }
         console.log(data)
-      var url1 = 'http://101.200.192.149:8080/jfstore/ewmaddscore';
+      var url1 = urlnew+'/jfstore/ewmaddscore';
       var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", url1, false);           
         // xmlhttp.setRequestHeader("token", this.token);

@@ -18,6 +18,6 @@ function exit(){
   var Request = new Object();
   Request = GetRequest();
   gfids=Request.gfid;
-$.getJSON('http://101.200.192.149:8080/jfstore/getProductById?id='+gfids,function(data){
+$.getJSON(urlnew+'/jfstore/getProductById?id='+gfids,function(data){
 	$(".public-box").append(data.data.detail)
 })  

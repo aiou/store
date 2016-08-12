@@ -33,7 +33,7 @@ function paging_mode(start,end){
   }
   function MeetingRoom(meetingroom_data){
     //DATA
-    var url="http://101.200.192.149:8080/jfstore/img/"
+    var url=urlnew+'/jfstore/img/'
     this.ids = meetingroom_data.id;
     this.names= meetingroom_data.name;
     this.imgs= meetingroom_data.img;
@@ -179,7 +179,7 @@ function paging_mode(start,end){
     $(".gift-sure").show() 
       html1=''
       html=''
-    $.getJSON('http://101.200.192.149:8080/jfstore/listAddressByUserId?userId='+site2,function(data){
+    $.getJSON(urlnew+'/jfstore/listAddressByUserId?userId='+site2,function(data){
       console.log(data)
       var count=data.data.length
      for (var i =0; i<count; i++) {
@@ -210,7 +210,7 @@ function paging_mode(start,end){
 
       }
       console.log(data)
-    var url1 = 'http://101.200.192.149:8080/jfstore/insertexchange';
+    var url1 = urlnew+'/jfstore/insertexchange';
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", url1, false);           
                         // xmlhttp.setRequestHeader("token", this.token);
@@ -242,7 +242,7 @@ function paging_mode(start,end){
   //获取所有详细信息
   $.ajax({
     type: "get",
-    url:'http://101.200.192.149:8080/jfstore/products',
+    url:urlnew+'/jfstore/products',
     success: function(data){
       firstShowList(data);
     },

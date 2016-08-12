@@ -22,7 +22,7 @@ if((site1==null)||(site2==null)){
 else{
 	  $.ajax({
     type: "get",
-    url:'http://101.200.192.149:8080/jfstore/questions',
+    url:urlnew+'/jfstore/questions',
     success: function(data){
       firstShowList(data);
     },
@@ -176,7 +176,7 @@ $(".true").click(function(){
           "title": a,
           "content": b
     }
-    var url1 = 'http://101.200.192.149:8080/jfstore/updatequestion';
+    var url1 = urlnew+'/jfstore/updatequestion';
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("PUT", url1, false);           
                         // xmlhttp.setRequestHeader("token", this.token);
@@ -220,7 +220,7 @@ $(".trues").click(function(){
 			content:b
 		}
     console.log(data)
-		var url1 = 'http://101.200.192.149:8080/jfstore/addquestions';
+		var url1 = urlnew+'/jfstore/addquestions';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("POST", url1, false);           
 								        // xmlhttp.setRequestHeader("token", this.token);
@@ -244,7 +244,7 @@ $(".cancels").click(function(){
 	$(".add-notice").hide()
 })
  var editor=new wangEditor("div1")
-   editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadimg';
+   editor.config.uploadImgUrl = urlnew+'/jfstore/uploadimg';
   editor.config.uploadImgFileName = 'file';
     editor.config.menus = [
         '|',
@@ -287,7 +287,7 @@ $(".trues").click(function(){
   console.log(html)
 })
   var editor1=new wangEditor("div2")
-   editor1.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadimg';
+   editor1.config.uploadImgUrl = urlnew+'/jfstore/uploadimg';
     editor1.config.uploadImgFileName = 'file';
       editor1.config.menus = [
         '|',

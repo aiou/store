@@ -86,7 +86,7 @@ function paging_mode(start,end){
   //获取所有详细信息
   $.ajax({
     type: "get",
-    url:'http://101.200.192.149:8080/jfstore/notices',
+    url:urlnew+'/jfstore/notices',
     success: function(data){
       firstShowList(data);
     },

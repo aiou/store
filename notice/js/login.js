@@ -2,7 +2,7 @@ var wsCache = new WebStorageCache();
 var urlnewaddress=urlnew+'/jfstore/captcha/getCaptchaImage?'
   //获取验证码
   $(".codes").click(function(){
-    $(this).attr("src","urlnewaddress"+Math.random())
+    $(this).attr("src",urlnewaddress+Math.random())
     })
 //用户登录验证
   $("html").keyup(function(e){

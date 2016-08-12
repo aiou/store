@@ -9,7 +9,7 @@ var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
 site1=wsCache.get("tokenwap");
 site2=wsCache.get("refidwap");
-$.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){ 
+$.getJSON(urlnew+'/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){ 
   console.log(data)
 
             usernames=data.data.username
@@ -45,7 +45,7 @@ function paging_mode(start,end){
   }
  function MeetingRoom(meetingroom_data){
     //DATA
-    var url="http://101.200.192.149:8080/jfstore/img/"
+    var url=urlnew+'/jfstore/img/'
     this.ids = meetingroom_data.id;
     this.names= meetingroom_data.name;
     this.imgs= meetingroom_data.img;
@@ -114,7 +114,7 @@ function paging_mode(start,end){
       userId:site2
       }
       console.log(data)
-    var url1 = 'http://101.200.192.149:8080/jfstore/insertexchange';
+    var url1 = urlnew+'/jfstore/insertexchange';
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", url1, false);           
                         // xmlhttp.setRequestHeader("token", this.token);
@@ -162,7 +162,7 @@ function paging_mode(start,end){
   //获取所有会议室详细信息
   $.ajax({
     type: "get",
-    url:'http://101.200.192.149:8080/jfstore/products',
+    url:urlnew+'/jfstore/products',
     success: function(data){
       firstShowList(data);
     },

@@ -27,7 +27,7 @@ function sendMessage(){
         $.ajax({
             type:"POST",
             dataType:"json",
-            url:'http://101.200.192.149:8080/jfstore/jfstore/sms?mobile='+tel,
+            url:urlnew+'/jfstore/jfstore/sms?mobile='+tel,
             success:function(data){
                     if(data.code==0){
                     $("#userPhone").attr("disabled",true)
@@ -127,7 +127,7 @@ $(".regist-button").click(function(){
              "username":a,
              "password":c
         }
-        var url1 = 'http://101.200.192.149:8080/jfstore/addUser';
+        var url1 = urlnew+'/jfstore/addUser';
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", url1, false);           
                                         // xmlhttp.setRequestHeader("token", this.token);
@@ -138,7 +138,7 @@ $(".regist-button").click(function(){
         var codes=JSON.parse(xmlhttp.responseText)
         console.log(codes.mes)
         if(codes.code==0){
-            $.getJSON('http://101.200.192.149:8080/jfstore/showUser?username='+a,function(data){
+            $.getJSON(urlnew+'/jfstore/showUser?username='+a,function(data){
             	var userid=data.id
             var data={
 				  "userId": userid,
@@ -151,7 +151,7 @@ $(".regist-button").click(function(){
 				  "isDefault": 0
 					}
 				console.log(data)
-				 	var url1 = 'http://101.200.192.149:8080/jfstore/addAddress';
+				 	var url1 = urlnew+'/jfstore/addAddress';
 			        var xmlhttp = new XMLHttpRequest();
 			        xmlhttp.open("POST", url1, false);           
 			                                        // xmlhttp.setRequestHeader("token", this.token);

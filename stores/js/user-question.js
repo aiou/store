@@ -1,5 +1,5 @@
 var wsCache = new WebStorageCache();
-$.getJSON('http://101.200.192.149:8080/jfstore/questions',function(data){
+$.getJSON(urlnew+'/jfstore/questions',function(data){
 	var a=data.data.length
 	html=''
 	for (i=0; i<a; i++) {

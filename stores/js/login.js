@@ -14,16 +14,17 @@
  $.ajax({
   type:"get",
   dataType:"json",
-  url:"http://101.200.192.149:8080/jfstore/listallimg",
+  url:urlnew+'/jfstore/listallimg',
   async: false,
   success:function(data){
         var totals=data.data.length
   html=''
  for (var i = 0; i<totals; i++) {
-  var url='http://101.200.192.149:8080/jfstore/img/'+data.data[i].imgpath
+  var url=urlnew+'/jfstore/img/'+data.data[i].imgpath
   html+='<div class="swiper-slide" style="cursor:pointer"><img src="'+url+'"></div>'
  }
  $(".swiper-wrapper").append(html)
+
   }
  })
 
@@ -52,8 +53,9 @@ var site1
 var site2
 var wsCache = new WebStorageCache();
   //获取验证码
+var urlnewaddress=urlnew+'/jfstore/captcha/getCaptchaImage?'
   $(".codes").click(function(){
-    $(this).attr("src","http://101.200.192.149:8080/jfstore/captcha/getCaptchaImage?"+Math.random())
+    $(this).attr("src",urlnewaddress+Math.random())
     })
   //用户登录验证
   $("html").keyup(function(e){
@@ -81,7 +83,7 @@ var wsCache = new WebStorageCache();
       crossDomain:true,
       xhrFields:{withCredentials:true},
       type:"post",
-      url:"http://101.200.192.149:8080/jfstore/captcha/checkCaptcha",
+      url:urlnew+'/jfstore/captcha/checkCaptcha',
       data:data,
       dataType:"json",
       success:function(result){
@@ -90,7 +92,7 @@ var wsCache = new WebStorageCache();
        if(result=='true'){     
            $.ajax({
                   type:"get",
-                  url:'http://101.200.192.149:8080/jfstore/userLogin?username='+user+'&password='+password,
+                  url:urlnew+'/jfstore/userLogin?username='+user+'&password='+password,
                   dataType:"json",
                    success:function(data){
                            $(".submits").attr("disabled",false)
@@ -131,7 +133,7 @@ function addcontent(){
   site1=wsCache.get("token");
   site2=wsCache.get("refid");
   if((site1!=='')&&(site2!=='')){
-    $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
+    $.getJSON(urlnew+'/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data){
             var levelnew
             levels=data.data.level
             expirats=data.data.expirationtime
@@ -150,7 +152,7 @@ function addcontent(){
             if(levels==3){
               levelnew="金卡"
             }
-        $.getJSON('http://101.200.192.149:8080/jfstore/getExptime?username='+usernames,function(data){    
+        $.getJSON(urlnew+'/jfstore/getExptime?username='+usernames,function(data){    
             $(".user-name").html(usernames)
             $(".level-one").html(levelnew)
             $(".level-three").html(data.data)
@@ -183,7 +185,7 @@ function paging_mode(start,end){
   }
   function MeetingRoom(meetingroom_data){
     //DATA
-    var url="http://101.200.192.149:8080/jfstore/img/"
+    var url=urlnew+'/jfstore/img/'
     this.ids = meetingroom_data.id;
     this.names= meetingroom_data.name;
     this.imgs= meetingroom_data.img;
@@ -285,7 +287,7 @@ function paging_mode(start,end){
     $(".gift-sure").show() 
       html1=''
       html=''
-    $.getJSON('http://101.200.192.149:8080/jfstore/listAddressByUserId?userId='+site2,function(data){
+    $.getJSON(urlnew+'/jfstore/listAddressByUserId?userId='+site2,function(data){
       console.log(data)
       var count=data.data.length
      for (var i =0; i<count; i++) {
@@ -316,7 +318,7 @@ function paging_mode(start,end){
 
       }
       console.log(data)
-    var url1 = 'http://101.200.192.149:8080/jfstore/insertexchange';
+    var url1 = urlnew+'/jfstore/insertexchange';
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", url1, false);           
                         // xmlhttp.setRequestHeader("token", this.token);
@@ -356,7 +358,7 @@ function paging_mode(start,end){
   //获取所有详细信息
   $.ajax({
     type: "get",
-    url:'http://101.200.192.149:8080/jfstore/rm',
+    url:urlnew+'/jfstore/rm',
     success: function(data){
       firstShowList(data);
     },
@@ -367,7 +369,7 @@ function paging_mode(start,end){
   //精品列表
    $.ajax({
     type: "get",
-    url:'http://101.200.192.149:8080/jfstore/jp',
+    url:urlnew+'/jfstore/jp',
     success: function(data){
       firstShowLists(data);
     },
@@ -392,7 +394,7 @@ function paging_mode(start,end){
   }
   function MeetingRooms(meetingroom_data){
     //DATA
-    var url="http://101.200.192.149:8080/jfstore/img/"
+    var url=urlnew+'/jfstore/img/'
     this.ids = meetingroom_data.id;
     this.names= meetingroom_data.name;
     this.imgs= meetingroom_data.img;
@@ -495,7 +497,7 @@ function paging_mode(start,end){
     $(".gift-sure").show() 
       html1=''
       html=''
-    $.getJSON('http://101.200.192.149:8080/jfstore/listAddressByUserId?userId='+site2,function(data){
+    $.getJSON(urlnew+'/jfstore/listAddressByUserId?userId='+site2,function(data){
       console.log(data)
       var count=data.data.length
      for (var i =0; i<count; i++) {
@@ -526,7 +528,7 @@ function paging_mode(start,end){
 
       }
       console.log(data)
-    var url1 = 'http://101.200.192.149:8080/jfstore/insertexchange';
+    var url1 = urlnew+'/jfstore/insertexchange';
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", url1, false);           
                         // xmlhttp.setRequestHeader("token", this.token);
@@ -557,7 +559,7 @@ function paging_mode(start,end){
   //控制活动公告展示收缩
 
 
-  $.getJSON("http://101.200.192.149:8080/jfstore/notices",function(result){
+  $.getJSON(urlnew+'/jfstore/notices',function(result){
   var c=result.data.length
  
   html=''

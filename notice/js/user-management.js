@@ -34,7 +34,7 @@ else{
 	var displayName = "";
 	$.ajax({
 		type: "get",
-		url:'http://101.200.192.149:8080/jfstore/listalluser',
+		url:urlnew+'/jfstore/listalluser',
 		success: function(data){
 			firstShowList(data);
 		},
@@ -44,7 +44,7 @@ else{
 	});
 	$.ajax({
 		type: 'get',
-		url: 'http://101.200.192.149:8080/jfstore/listgroup',
+		url: urlnew+'/jfstore/listgroup',
 		success: function(data){
 		for(var i=0;i<data.data.length;i++){
 		 	var room_alias = new RoomAlias(data.data[i]);
@@ -65,7 +65,7 @@ var group
 //分页显示公用方法
 function gets(results){
 	 $.ajaxSettings.async = false
-	 $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+results,function(data){
+	 $.getJSON(urlnew+'/jfstore/getuserInfo?token='+site1+'&id='+results,function(data){
 		  usernames=data.data.username	 	
 		 })
 }
@@ -82,13 +82,13 @@ function gets(results){
 	 	groupname="未分组"
 	 }
 	 else{
-	 $.getJSON('http://101.200.192.149:8080/jfstore/getGroupName?id='+results,function(data){
+	 $.getJSON(urlnew+'/jfstore/getGroupName?id='+results,function(data){
 		  groupname=data.data
 		 })}
 }
 function gets1(results){
 	 $.ajaxSettings.async = false
-	 $.getJSON('http://101.200.192.149:8080/jfstore/listAddressByUserId?userId='+results,function(data){
+	 $.getJSON(urlnew+'/jfstore/listAddressByUserId?userId='+results,function(data){
       var count=data.data.length
      for (var i =0; i<count; i++) {
        if(data.data[i].isDefault==0){
@@ -103,6 +103,7 @@ function MeetingRoom(meetingroom_data){
 		//DATA
 		 this.ids = meetingroom_data.id;
 		 this.usernames= meetingroom_data.username;
+		 this.password1=meetingroom_data.password
 		 this.levels= meetingroom_data.level;
 		 this.groupnames = meetingroom_data.groupName;
 		 this.scores = meetingroom_data.score;
@@ -158,7 +159,12 @@ function MeetingRoom(meetingroom_data){
 		this.img1.src = "images/description2.png";
 		this.img1.title = "编辑"
 		this.img1.addEventListener("click",this.updateRoom.bind(this),false);
+		this.img2 = document.createElement("img");
+		this.img2.src = "images/description6.png";
+		this.img2.title = "添加积分"
+		this.img2.addEventListener("click",this.addscore.bind(this),false);
 		this.li_option.appendChild(this.img1);
+		this.li_option.appendChild(this.img2);
 		this.ul_element.appendChild(this.li_name);
 		this.ul_element.appendChild(this.li_num);
 		this.ul_element.appendChild(this.li_cap);
@@ -167,6 +173,12 @@ function MeetingRoom(meetingroom_data){
 		this.ul_element.appendChild(this.li_option);
 		document.getElementById("contentBox").appendChild(this.ul_element);
 	}
+		MeetingRoom.prototype.addscore=function(){
+			$(".bcgs").show();
+			$(".add-score").show();
+			username=this.usernames
+			passwords=this.password1
+		}
 		MeetingRoom.prototype.updateRoom = function(){
 		$(".bcgs").show();
 		$(".editor-user").show();
@@ -193,7 +205,7 @@ function MeetingRoom(meetingroom_data){
 		$(".user-score").html(this.scores)
 		$("#datatime1").val(pptime)
 		$("#user-select").html('')
-		$.getJSON('http://101.200.192.149:8080/jfstore/listgroup',function(data){
+		$.getJSON(urlnew+'/jfstore/listgroup',function(data){
           	 						var departmentcount=data.data.length
        		                        html='';
        		                        for (var i = 0; i <departmentcount; i++) {
@@ -313,7 +325,7 @@ $(".true").click(function(){
 			groupid: d
 		}
 		console.log(data)
-		var url1 = 'http://101.200.192.149:8080/jfstore/updateuser';
+		var url1 = urlnew+'/jfstore/updateuser';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("PUT", url1, false);           
 								        // xmlhttp.setRequestHeader("token", this.token);
@@ -331,6 +343,7 @@ $(".true").click(function(){
 		alert("服务器内部错误")
 		}
 	}
+
 })
 $(".cancel").click(function(){
 	$(".bcgs").hide()
@@ -351,7 +364,7 @@ $(".submits").click(function(){
 			title:a,
 			content:b
 		}
-		var url1 = 'http://101.200.192.149:8080/jfstore/addnotices';
+		var url1 = urlnew+'/jfstore/addnotices';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("POST", url1, false);           
 								        // xmlhttp.setRequestHeader("token", this.token);
@@ -399,7 +412,7 @@ RoomAlias.prototype.delete = function(){
 		else if(confirm("确定要删除该分组？")){
 		$.ajax({
 			type:"DELETE",
-			url:'http://101.200.192.149:8080/jfstore/delgroup?id='+deletid,
+			url:urlnew+'/jfstore/delgroup?id='+deletid,
 			dataType:"json",
 			success:function(data){
 				if(data.code==0){
@@ -428,7 +441,7 @@ $(".add-button").click(function(){
 	var data={
 			groupName:a
 		}
-		var url1 = 'http://101.200.192.149:8080/jfstore/addgroup';
+		var url1 = urlnew+'/jfstore/addgroup';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("POST", url1, false);           
 								        // xmlhttp.setRequestHeader("token", this.token);
@@ -484,10 +497,47 @@ $(".chaxun").click(function(){
 function daochu(){
 		 try{ 
             var elemIF = document.createElement("iframe");   
-            elemIF.src = 'http://101.200.192.149:8080/jfstore/exportUserinfo';   
+            elemIF.src = urlnew+'/jfstore/exportUserinfo';   
             elemIF.style.display = "none";   
             document.body.appendChild(elemIF);   
         }catch(e){ 
  
         } 
 }
+//积分码添加
+$(".trues").click(function(){
+	var a=$("#user-a4").val()
+	if(a==''){
+		alert("请输入积分码")
+	}
+	else{
+		var data={
+					 "username": username,
+  					"password": passwords
+				}
+					var url1 =urlnew+'/jfstore/ewmaddscore?code='+a;
+			        var xmlhttp = new XMLHttpRequest();
+			        xmlhttp.open("POST", url1, false);           
+			                                        // xmlhttp.setRequestHeader("token", this.token);
+			        xmlhttp.setRequestHeader("Content-Type", "application/json");
+			        xmlhttp.send(JSON.stringify(data));
+			        if(xmlhttp.status==200){
+			        var codes=JSON.parse(xmlhttp.responseText)
+			        if(codes.code==0){
+			        	alert("添加成功")
+			        	window.location.reload()
+			        }
+			        else{
+			        	alert(codes.mes)
+			        }
+
+					}
+					else{
+						alert("添加失败，请核对后输入")
+					}
+	}
+})
+$(".cancels").click(function(){
+	$(".bcgs").hide()
+	$(".add-score").hide()
+})
