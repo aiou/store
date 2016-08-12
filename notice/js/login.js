@@ -1,7 +1,8 @@
 var wsCache = new WebStorageCache();
+var urlnewaddress=urlnew+'/jfstore/captcha/getCaptchaImage?'
   //获取验证码
   $(".codes").click(function(){
-    $(this).attr("src","http://101.200.192.149:8080/jfstore/captcha/getCaptchaImage?"+Math.random())
+    $(this).attr("src","urlnewaddress"+Math.random())
     })
 //用户登录验证
   $("html").keyup(function(e){
@@ -27,7 +28,7 @@ var wsCache = new WebStorageCache();
       crossDomain:true,
       xhrFields:{withCredentials:true},
       type:"post",
-      url:"http://101.200.192.149:8080/jfstore/captcha/checkCaptcha",
+      url:urlnew+'/jfstore/captcha/checkCaptcha',
       data:data,
       dataType:"json",
       success:function(result){
@@ -35,7 +36,7 @@ var wsCache = new WebStorageCache();
        if(result=='true'){
            $.ajax({
       type:"get",
-      url:'http://101.200.192.149:8080/jfstore/adminLogin?username='+user+'&password='+password,
+      url:urlnew+'/jfstore/adminLogin?username='+user+'&password='+password,
       dataType:"json",
       success:function(data){
         if(data.code==0){      

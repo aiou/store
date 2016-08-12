@@ -18,7 +18,7 @@ if((site1==null)||(site2==null)){
 else{
 	  $.ajax({
     type: "get",
-    url:'http://101.200.192.149:8080/jfstore/listallimg',
+    url:urlnew+'/jfstore/listallimg',
     success: function(data){
       firstShowList(data);
     },
@@ -37,7 +37,7 @@ else{
     //DATA
     this.ids = meetingroom_data.id;
     this.imgpaths= meetingroom_data.imgpath;
-    var a="http://101.200.192.149:8080/jfstore/img/"+this.imgpaths
+    var a=urlnew+'/jfstore/img/'+this.imgpaths
     //DOM
    	this.ul_element = document.createElement("li");
     this.li_name = document.createElement("img");
@@ -57,7 +57,7 @@ else{
   if(confirm("确定要删除该图片？")){
     $.ajax({
       type:"DELETE",
-      url:'http://101.200.192.149:8080/jfstore/delimg?id='+noticeid,
+      url:urlnew+'/jfstore/delimg?id='+noticeid,
       dataType:"json",
       success:function(data){
         if(data.code==0){
@@ -169,51 +169,13 @@ else{
   $(".bcgs").hide()
   $(".add-notice").hide()
 })
- // var editor=new wangEditor("div1")
- //  editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadadimg';
- //  editor.config.uploadHeaders = {
- //        'Accept' : 'text/x-json'
- //    };
- //    editor.config.menus = [
- //        'source',
- //        '|',     // '|' 是菜单组的分割线
- //        'bold',
- //        'underline',
- //        'italic',
- //        'strikethrough',
- //        'eraser',
- //        'forecolor',
- //        'bgcolor'
- //     ];
- //  editor.create()
- //  editor.$txt.html('<p>请在这里解答疑问</p>');
- //  // 获取编辑区域的html
- //    var html = editor.$txt.html();
- //    // 获取编辑区域的纯文本
- //    var text = editor.$txt.text();
- //    // 获取编辑区域的所有图片
- //    var imgs = editor.$txt.find('img');
- //    // 追加内容
+ 
 $(".trues").click(function(){
   console.log(html)
 })
 $('form').ajaxForm({
-    // beforeSend: function() {
-    //     status.empty();
-    //     var percentVal = '0%';
-    //     bar.width(percentVal)
-    //     percent.html(percentVal);
-    // },
-    // uploadProgress: function(event, position, total, percentComplete) {
-    //   var percentVal = percentComplete + '%';
-    //     bar.width(percentVal)
-    //     percent.html(percentVal);
-    // },
-    // success: function() {
-    //     var percentVal = '100%';
-    //     bar.width(percentVal)
-    //     percent.html(percentVal);
-    // },
+   type: 'post', // 提交方式 get/post
+   url:urlnew+'/jfstore/uploadadimg',
   complete: function(xhr) {
     alert("上传完成")
     window.location.reload()
@@ -233,7 +195,7 @@ function tianjia(){
         score:b
       }
       console.log(data)
-    var url1 = 'http://101.200.192.149:8080/jfstore/addjfcard';
+    var url1 = urlnew+'/jfstore/addjfcard';
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", url1, false);           
                         // xmlhttp.setRequestHeader("token", this.token);

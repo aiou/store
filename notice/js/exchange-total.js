@@ -25,7 +25,7 @@ else{
 	var displayName = "";
 	$.ajax({
 		type: "get",
-		url:'http://101.200.192.149:8080/jfstore/exchangerecord',
+		url:urlnew+'/jfstore/exchangerecord',
 		success: function(data){
 			firstShowList(data);
 		},
@@ -51,13 +51,13 @@ document.getElementById("contentBox").innerHTML="";
 
 function gets(results){
 	 $.ajaxSettings.async = false
-	 $.getJSON('http://101.200.192.149:8080/jfstore/getuserInfo?token='+site1+'&id='+results,function(data){
+	 $.getJSON(urlnew+'/jfstore/getuserInfo?token='+site1+'&id='+results,function(data){
 		  usernames=data.data.username	 	
 		 })
 }
 function gets1(results){
 	 $.ajaxSettings.async = false
-	 $.getJSON('http://101.200.192.149:8080/jfstore/listAddressById?id='+results,function(data){
+	 $.getJSON(urlnew+'/jfstore/listAddressById?id='+results,function(data){
 	 	 console.log(data.data.username)
 		  addressnew=data.data.contactName+data.data.contactTelphone+
          data.data.province+data.data.city+data.data.detailLocation	 	
@@ -208,7 +208,7 @@ $(".chaxun").click(function(){
 		alert("请选择日期")
 	}
 	else{
-		$.getJSON('http://101.200.192.149:8080/jfstore/listExchangesometime?beginTime='+a+'&endTime='+b,function(data){
+		$.getJSON(urlnew+'/jfstore/listExchangesometime?beginTime='+a+'&endTime='+b,function(data){
 			if(data.code==0){
 			var c=data.data.length
 			if(c!==0){

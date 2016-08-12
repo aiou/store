@@ -28,7 +28,7 @@ else{
 	var displayName = "";
 	$.ajax({
 		type: "get",
-		url:'http://101.200.192.149:8080/jfstore/products',
+		url:urlnew+'/jfstore/products',
 		success: function(data){
 			firstShowList(data);
 		},
@@ -135,7 +135,7 @@ function MeetingRoom(meetingroom_data){
 	else{
         $(this).ajaxSubmit({
             type: 'post', // 提交方式 get/post
-            url:'http://101.200.192.149:8080/jfstore/updatepro?productid='+nowId+'&name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d,
+            url:urlnew+'/jfstore/updatepro?productid='+nowId+'&name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d,
             success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
                 // 此处可对 data 作相关处理
                 console.log(data)
@@ -155,7 +155,7 @@ function MeetingRoom(meetingroom_data){
 		if(confirm("确定要删除该物品？")){
 			$.ajax({
 			type: 'delete',
-			url: 'http://101.200.192.149:8080/jfstore/delpro?id='+deleteID,
+			url: urlnew+'/jfstore/delpro?id='+deleteID,
 			success: function(data){
 				if(data.code==0){
 					alert("删除礼品成功")
@@ -172,34 +172,7 @@ function MeetingRoom(meetingroom_data){
 		}
 		
 	}
-	MeetingRoom.prototype.add = function(){
-		nowIdadd = this.ids;
-		$(".bcgs").show()
-		$(".add-img").show()
-		url='http://101.200.192.149:8080/jfstore/uploadimg?id='+nowIdadd
-		console.log(url)
-		$(".buttons").click(function(){
-			$(".bcgs").hide()
-			 $(".add-img").hide() 
-			 document.getElementById("forms").action = url;
-			 var a=$(".files").val()
-			  if(a==''){
-			    alert("请选择图片")
-			  }
-			 else{
-			 	alert("上传商品图片成功")
-  			    document.getElementById("forms").submit();
-  			    window.location.reload()
-  			    return false;
-  			  
-  			}
-		})
 
-	}
-// $(".cancel").click(function(){
-// 	$(".bcgs").hide()
-// 	$(".add-img").hide()
-// })
 $(".cancel").click(function(){
 	$(".bcgs").hide()
 	$(".editor-notice").hide()
@@ -292,60 +265,8 @@ $(".cancel").click(function(){
     	$(".page-num").val("");
     	}
 	});
-//编辑礼品
-// $(".trues").click(function(){
-// 	var a=$(".com-name").val()
-// 	var b=$(".com-score").val()
-// 	var c=$(".com-count").val()
-// 	var d=$("#com-select option:selected").val()
-// 	if((a=='')||(b=='')||(c=='')||(d=='')){
-// 		alert("请完善信息")
-// 		return false
-// 	}
-// 	else{
-// 		alert("编辑失败")
-// 	}
-// })
-
-// $(".submits").click(function(){
-// 	// var a=
-// 	var b=$(".add-name").val()
-// 	var c=$(".add-score").val()
-// 	var d=$(".add-count").val()
-// 	var e=$("input[name='radiochooseCreat']:checked").val()
-// 	if((b=='')||(c=='')||(d=='')||(e=='')){
-// 		alert("请完善信息")
-// 		return false
-// 	}
-// 	else{
-// 			var data={
-// 			 		  "name": b,
-// 					  "needscore": c,
-// 					  "totals": d,
-// 					  "lb": e
-// 		}
-// 		var url1 = 'http://101.200.192.149:8080/jfstore/addpro';
-// 		var xmlhttp = new XMLHttpRequest();
-// 		xmlhttp.open("POST", url1, false);           
-// 								        // xmlhttp.setRequestHeader("token", this.token);
-// 		xmlhttp.setRequestHeader("Content-Type", "application/json");
-// 		xmlhttp.send(JSON.stringify(data));
-
-// 		if(xmlhttp.status==200){
-// 		var codes=JSON.parse(xmlhttp.responseText)
-// 		if(codes.code==0){
-// 		alert("添加成功")
-// 		window.location.reload()
-// 		}
-// 		}
-// 		else{
-// 		alert("服务器内部错误")
-// 		}
-// 	}
-
-// })
  var editor1=new wangEditor("div1")
-  editor1.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadimg';
+  editor1.config.uploadImgUrl = urlnew+'/jfstore/uploadimg';
   editor1.config.uploadImgFileName = 'file';
   editor1.config.menus = [
         '|',
@@ -385,7 +306,7 @@ $(".cancel").click(function(){
     var imgs = editor1.$txt.find('img');
     // 追加内容
   var editor=new wangEditor("div2")
-  editor.config.uploadImgUrl = 'http://101.200.192.149:8080/jfstore/uploadimg';
+  editor.config.uploadImgUrl = urlnew+'/jfstore/uploadimg';
   editor.config.uploadImgFileName = 'file';
   editor.config.menus = [
         '|',
@@ -447,7 +368,7 @@ $(".cancels").click(function(){
 	else{
         $(this).ajaxSubmit({
             type: 'post', // 提交方式 get/post
-            url:'http://101.200.192.149:8080/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d,
+            url:urlnew+'/jfstore/addpro?name='+a+'&detail='+e+'&needscore='+b+'&totals='+c+'&lb='+d,
             success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
                 // 此处可对 data 作相关处理
                 console.log(data)
