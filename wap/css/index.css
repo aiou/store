@@ -85,7 +85,7 @@ span,button,input{
     line-height: 35px;
 }
 .bcgs{
- 	position: absolute;
+ 	position:fixed;
     left: 0;
     top: 0;
     bottom: 0;

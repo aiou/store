@@ -583,3 +583,7 @@ $(".core-rule").click(function(){
     $(".core-rule").css({"border-bottom":"1px solid #e5e5e5","border-top":"none"})
   })
   $(".core-rule").click();
+  $("#address-cancel").click(function(){
+    $(".gift-sure").hide()
+    $(".bcgs").hide()
+  })

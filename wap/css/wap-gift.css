@@ -276,3 +276,45 @@ span,button,input{
     width: 14px;
     left: 27px;
 }
+.gift-sure{
+        width: 70%;
+    height: 335px;
+    position: absolute;
+    margin-left: -35%;
+    left: 50%;
+    top: 17%;
+    background: #fff;
+    border-radius: 5px;
+    display: none;
+    z-index: 999;
+}
+#address-true{
+    position: absolute;
+    bottom: 32px;
+    display: inline-block;
+    width: 100px;
+    color: rgb(255, 255, 255);
+    font-family: '微软雅黑';
+    line-height: 30px;
+    left: 10px;
+    cursor: pointer;
+    background: #ff4848;
+    border-radius: 4px;
+    height: 30px;
+    text-align: center;
+}
+#address-cancel, #address-cancel1 {
+    background: #969696;
+    position: absolute;
+    bottom: 32px;
+    display: inline-block;
+    width: 100px;
+    color: rgb(255, 255, 255);
+    font-family: '微软雅黑';
+    line-height: 30px;
+    right: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    height: 30px;
+    text-align: center;
+}

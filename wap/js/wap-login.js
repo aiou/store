@@ -83,11 +83,10 @@ $(".submit").click(function(){
     else{   
         var data={
                 username: user,
-                password: password,
-                code: scores
+                password: password
         }
         console.log(data)
-      var url1 = urlnew+'/jfstore/ewmaddscore';
+      var url1 =urlnew+'/jfstore/ewmaddscore?code='+scores;
       var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", url1, false);           
         // xmlhttp.setRequestHeader("token", this.token);
@@ -126,7 +125,7 @@ $(".submit").click(function(){
         $(".bcgs").show()
            $(".alerts").show()
            $(".alert-content").html("错误")
-                    $("body,html").addClass("hiddens");
+           $("body,html").addClass("hiddens");
         setTimeout('hideAlertWin()',2000); 
      }
    }

@@ -89,6 +89,7 @@ function MeetingRoom(meetingroom_data){
 		this.li_name.className = "org-name";
 		this.li_num = document.createElement("li");
 		this.li_num.innerHTML = this.products;
+		this.li_num.title = this.products;
 		this.li_num.className = "org-id";
 		this.li_cap = document.createElement("li");
 		this.li_cap.innerHTML = this.numbers ;
@@ -217,11 +218,12 @@ $(".chaxun").click(function(){
 			url2 = url2+'&exchangeEndTime='+a
 		}
 	if(d != null && d != ""){
+
 			url2 = url2+'&productName='+d
+			console.log(url2)
 		}
-	else{
-		$.getJSON(url2,function(data){
-			success:f
+	$.getJSON(url2,function(data){
+			console.log(data)
 			if(data.code==0){
 			var c=data.data.length
 			if(c!==0){
@@ -238,5 +240,4 @@ $(".chaxun").click(function(){
 		}).fail(function () {
     alert("网络错误，请重试")
 })
-	}
 })

@@ -25,6 +25,7 @@ function sendMessage(){
     		$(".bcgs").show()
             $(".alerts").show()
     		$(".alert-content").html( '手机号码格式不正确');
+    		$("body,html").addClass("hiddens");
             setTimeout('hideAlertWin()',2000); 
     		return false;
     	}
@@ -40,18 +41,21 @@ function sendMessage(){
                     $(".bcgs").show()
                     $(".alerts").show()
                     $(".alert-content").html('手机验证码已发送');
+                    $("body,html").addClass("hiddens");
                     code=data.smsCode
                     setTimeout('hideAlertWin()',2000);                         
                     }
                     else{
                     	$(".bcgs").show()
                        $(".alerts").show()
+                       $("body,html").addClass("hiddens");
                        $(".alert-content").html(data.message);  
                     }
             },
             error:function(data){
             	    $(".bcgs").show()
                     $(".alerts").show()
+                    $("body,html").addClass("hiddens");
                     $(".alert-content").html("服务器内部错误");
                     setTimeout('hideAlertWin()',2000); 
             }
@@ -60,6 +64,7 @@ function sendMessage(){
 else{
                  $(".bcgs").show()
                 $(".alerts").show()
+                $("body,html").addClass("hiddens");
                 $(".alert-content").html("请填写手机号码");
                  setTimeout('hideAlertWin()',2000); 
 }
@@ -80,14 +85,17 @@ function SetRemainTime(){
 function hideAlertWin(){
     $(".bcgs").hide()
     $(".alerts").hide()
+    $("body,html").removeClass("hiddens");
 }
 $(".img-right").click(function(){
   $(".bcgs").hide()
   $(".alerts").hide()
+  $("body,html").removeClass("hiddens");
 })
 $(".alert-sure").click(function(){
   $(".bcgs").hide()
   $(".alerts").hide()
+  $("body,html").removeClass("hiddens");
 })
 $(".submit").click(function(){
 	var a=$.trim($("#userPhone").val())
@@ -109,6 +117,7 @@ $(".submit").click(function(){
     	$(".bcgs").show()
         $(".alerts").show()
         $(".alert-content").html("请完善信息")
+        $("body,html").addClass("hiddens");
          setTimeout('hideAlertWin()',2000); 
          return false
     }
@@ -116,12 +125,14 @@ $(".submit").click(function(){
         $(".bcgs").show()
         $(".alerts").show()
         $(".alert-content").html("验证码错误")
+        $("body,html").addClass("hiddens");
          return false
     }
     else if(!c.match(test)){
         $(".bcgs").show()
         $(".alerts").show()
         $(".alert-content").html("密码格式不对")
+        $("body,html").addClass("hiddens");
          setTimeout('hideAlertWin()',2000); 
          return false
     }
@@ -129,12 +140,14 @@ $(".submit").click(function(){
         $(".bcgs").show()
         $(".alerts").show()
         $(".alert-content").html("密码格式不对") 
+        $("body,html").addClass("hiddens");
          return false
     }
     else if(c!==d){
          $(".bcgs").show()
         $(".alerts").show()
         $(".alert-content").html("两次输入密码不一致")
+        $("body,html").addClass("hiddens");
          return false
     }    
   
@@ -180,6 +193,7 @@ $(".submit").click(function(){
              $(".bcgs").show()
             $(".alerts").show()
             $(".alert-content").html("恭喜你注册成功")
+            $("body,html").addClass("hiddens");
             $(".alert-sure").click(function(){
                 window.location.href="wap-login.html"
             })
@@ -192,12 +206,14 @@ $(".submit").click(function(){
         else{
             $(".bcgs").show()
 	        $(".alerts").show()
+	        $("body,html").addClass("hiddens");
 	        $(".alert-content").html(codes.mes)
         }
         }
         else{
            $(".bcgs").show()
 	       $(".alerts").show()
+	       $("body,html").addClass("hiddens");
 	       $(".alert-content").html("服务器内部错误")
         }
     }

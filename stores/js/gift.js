@@ -337,3 +337,7 @@ function paging_mode(start,end){
       $(".page-num").val("");
       }
   });
+  $("#address-cancel").click(function(){
+    $(".gift-sure").hide()
+    $(".bcgs").hide()
+  })

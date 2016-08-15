@@ -402,17 +402,17 @@ ul{
     width: 130px;
 }
 .rightBox .cxuser{
-    position: absolute;
-    left: 250px;
-    top: 20px;
+        position: absolute;
+    left: 240px;
+    top: 16px;
     height: 30px;
     line-height: 30px;
     width: 60px;
 }
 .rightBox .cxproduct{
-    position: absolute;
-    left: 350px;
-    top: 20px;
+        position: absolute;
+    left: 414px;
+    top: 16px;
     height: 30px;
     line-height: 30px;
     width: 60px;
@@ -811,4 +811,28 @@ margin-bottom: -25px;
     background: rgb(255, 255, 255);
     border-radius: 5px;
     display: none
+}
+.notice-user{
+         display: inline-block;
+    width: 75px;
+    height: 30px;
+    cursor: pointer;
+    background: url(../images/user.png) no-repeat 0px 0px;
+    position: absolute;
+    left: 145px;
+    top: 17px;
+}
+.notice-product{
+        display: inline-block;
+    width: 75px;
+    height: 30px;
+    cursor: pointer;
+    background: url(../images/product.png) no-repeat 0px 0px;
+    position: absolute;
+    left: 325px;
+    top: 17px;
+}
+.org-id{
+    overflow: hidden;
+    cursor:pointer;
 }

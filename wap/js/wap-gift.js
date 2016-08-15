@@ -98,6 +98,7 @@ function paging_mode(start,end){
         $(".alert-content").html("请先登录");
          $("body,html").addClass("hiddens");
         setTimeout('hideAlertWin()',2000); 
+        return false
        }
    if(exchangenumbers==''){
         $(".bcgs").show()
@@ -105,13 +106,40 @@ function paging_mode(start,end){
         $("body,html").addClass("hiddens");
         $(".alert-content").html("请填写数量");
         setTimeout('hideAlertWin()',2000); 
+        return false
    }
    else{
+        $(".bcgs").show()
+      $(".gift-sure").show() 
+      html1=''
+      html=''
+    $.getJSON(urlnew+'/jfstore/listAddressByUserId?userId='+site2,function(data){
+      console.log(data)
+      var count=data.data.length
+     for (var i =0; i<count; i++) {
+       if(data.data[i].isDefault==0){
+         html+='<input type="radio" name="address" class="morenaddress" checked="true" value="'+data.data[i].id+'">'+data.data[i].contactName+'&nbsp'+data.data[i].contactTelphone+
+         data.data[i].province+data.data[i].city+data.data[i].detailLocation
+       }
+       else{
+        html1+='<input type="radio" name="address" class="qitaaddress" value="'+data.data[i].id+'">'+data.data[i].contactName+'&nbsp'+data.data[i].contactTelphone+
+         data.data[i].province+data.data[i].city+data.data[i].detailLocation+'<br>'
+       }
+     };
+     $(".moren-box").append(html)
+     $(".qita-box").append(html1)   
+    })
+    
+   
+    $("#address-true").click(function(){
+      var values=$('input[name="address"]:checked').val();       
     var data={
       productName:productnames,
       exchangeNumber:exchangenumbers,
       needScore:needscores,
-      userId:site2
+      userId:site2,
+      addressId:values
+
       }
       console.log(data)
     var url1 = urlnew+'/jfstore/insertexchange';
@@ -124,14 +152,13 @@ function paging_mode(start,end){
     if(xmlhttp.status==200){
     var codes=JSON.parse(xmlhttp.responseText)
     if(codes.code==0){
-    $(".bcgs").show()
+     $(".bcgs").show()
     $(".alerts").show()
      $("body,html").addClass("hiddens");
     $(".alert-content").html("恭喜你，兑换成功！");
     $(".alert-sure").click(function(){
       window.location.reload()
     })
-    
     }
     else{
       $("body,html").addClass("hiddens");
@@ -144,7 +171,7 @@ function paging_mode(start,end){
     }
     }
     else{
-       $("body,html").addClass("hiddens");
+      $("body,html").addClass("hiddens");
       $(".bcgs").show()
       $(".alerts").show()
       $(".alert-content").html("服务器内部错误");
@@ -152,6 +179,7 @@ function paging_mode(start,end){
       window.location.reload()
     }) 
     }
+})
    }
   }
    MeetingRoom.prototype.xiangqing = function(){
@@ -280,3 +308,7 @@ function paging_mode(start,end){
       $(".page-num").val("");
       }
   });
+   $("#address-cancel").click(function(){
+    $(".gift-sure").hide()
+    $(".bcgs").hide()
+  })
