@@ -47,7 +47,7 @@ span,button,input{
 	text-align: center;
 	border: 0;
 	outline: none;
-	margin-top: 3px;
+	margin-top: 10px;
 }
 .box .bottomimg{
 	height: 30%;
@@ -155,4 +155,27 @@ span,button,input{
 }
 .alert-bottom{
     text-align: center;
+}
+.address-box{
+    overflow: hidden;
+}
+.address-box span{
+    float: left;
+    text-align:left;
+    width: 35%;
+    height: 35px;
+    line-height: 35px;
+    color: #fff;
+}
+.address-box input{
+    float: left;
+    width: 65%;
+}
+#city{
+    float: left;
+    width: 64%;
+    text-align: left;
+}
+.hiddens{
+    overflow: hidden;
 }
