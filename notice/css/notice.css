@@ -816,10 +816,10 @@ margin-bottom: -25px;
          display: inline-block;
     width: 75px;
     height: 30px;
+    line-height: 30px;
     cursor: pointer;
-    background: url(../images/user.png) no-repeat 0px 0px;
     position: absolute;
-    left: 145px;
+    left: 170px;
     top: 17px;
 }
 .notice-product{
@@ -827,8 +827,8 @@ margin-bottom: -25px;
     width: 75px;
     height: 30px;
     cursor: pointer;
-    background: url(../images/product.png) no-repeat 0px 0px;
     position: absolute;
+    line-height: 30px;
     left: 325px;
     top: 17px;
 }

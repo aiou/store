@@ -215,7 +215,7 @@ $(".chaxun").click(function(){
 			url2 = url2+'&exchangeStartTime='+a
 		}
 	if(b != null && b != ""){
-			url2 = url2+'&exchangeEndTime='+a
+			url2 = url2+'&exchangeEndTime='+b
 		}
 	if(d != null && d != ""){
 

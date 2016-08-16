@@ -22,7 +22,6 @@
 	 */
 	function FastClick(layer, options) {
 		var oldOnClick;
-
 		options = options || {};
 
 		/**

@@ -139,7 +139,7 @@ $(".regist-button").click(function(){
         console.log(codes.mes)
         if(codes.code==0){
             $.getJSON(urlnew+'/jfstore/showUser?username='+a,function(data){
-            	var userid=data.id
+            	var userid=data.data.id
             var data={
 				  "userId": userid,
 				  "contactName": e,

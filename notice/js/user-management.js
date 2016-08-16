@@ -465,16 +465,17 @@ $(".add-button").click(function(){
 })
 //查询
 $(".chaxun").click(function(){
-		var organId = $("user-chaxun").val();
+		var organId = $(".user-chaxun").val();
 		if((organId==null)||(organId=='')){
 			location.reload()
 			return false
 		}
 		else{
-		var url ='https://api.cloudp.cc:443/cloudpServer/v1/orgs/name/'+organId+'?token='+admin_token;
+		var url2 =urlnew+'/jfstore/showUser?username='+organId;
+		console.log(url)
 		$.ajax({
 			type:"get",
-			url:url,
+			url:url2,
 			success: function(data){
 					if(data.code==0){
 					if(data.data.length==0){
