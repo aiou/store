@@ -39,9 +39,20 @@ var scores
         setTimeout('hideAlertWin()',2000); 
       }
       else{ 
-        $.getJSON('http://m.11895.org/YunToolService/hxjf.do?type=1&jfCode='+jfscore,function(data){
-          scores=data.jfScore
-          $(".count").html(scores)         
+        $.getJSON(urlnew+'/jfstore/getscoreBycode?code='+jfscore,function(data){
+          console.log(data)
+          scores=data.data
+          if(data.code==0){
+            $(".count").html(scores) 
+          }
+          else{
+            $(".bcgs").show()
+         $(".alerts").show()
+         $(".alert-content").html(data.mes)
+                  $("body,html").addClass("hiddens");
+        setTimeout('hideAlertWin()',2000); 
+          }
+                  
   })
         
       }
@@ -86,7 +97,7 @@ $(".submit").click(function(){
                 password: password
         }
         console.log(data)
-      var url1 =urlnew+'/jfstore/ewmaddscore?code='+scores;
+      var url1 =urlnew+'/jfstore/ewmaddscore?code='+jfscore;
       var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", url1, false);           
         // xmlhttp.setRequestHeader("token", this.token);

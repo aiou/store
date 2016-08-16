@@ -1,4 +1,6 @@
 var wsCache = new WebStorageCache();
+var datas
+var data1
 var currentCount = 10;//每一页显示的条数
 function exit(){
    wsCache.deleteAllExpires();
@@ -6,9 +8,24 @@ function exit(){
    wsCache.delete('refid');
    window.location.href="user-login.html"
 }
-    function getLocalTime(nS) {     
-    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ')
-}
+Date.prototype.format = function(fmt)   
+{ //author: meizz   
+  var o = {   
+    "M+" : this.getMonth()+1,                 //月份   
+    "d+" : this.getDate(),                    //日   
+    "h+" : this.getHours(),                   //小时   
+    "m+" : this.getMinutes(),                 //分   
+    "s+" : this.getSeconds(),                 //秒   
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度   
+    "S"  : this.getMilliseconds()             //毫秒   
+  };   
+  if(/(y+)/.test(fmt))   
+    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
+  for(var k in o)   
+    if(new RegExp("("+ k +")").test(fmt))   
+  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+  return fmt;   
+}  
 function paging_mode(start,end){
     document.getElementById("contentBox").innerHTML="";
     for(var i=start;i<end;i++){
@@ -19,9 +36,10 @@ function paging_mode(start,end){
     //DATA
 
     this.titles = meetingroom_data.title;
-    this.times= meetingroom_data.time.toString().substring(0,10);
+    this.times= meetingroom_data.time;
     this.contents= meetingroom_data.content;
-    var data=getLocalTime(this.times)
+    datas=new Date(this.times)
+            data1=datas.format("yyyy-MM-dd hh:mm"); 
     //DOM
    	this.div1 = document.createElement("div");
    	this.div1.className="public-content"
@@ -35,7 +53,7 @@ function paging_mode(start,end){
     this.div1second.innerHTML=this.titles;
     this.div1third=document.createElement("div")
     this.div1third.className="public-right";
-    this.div1third.innerHTML=data
+    this.div1third.innerHTML=data1
     this.div2a = document.createElement("div");
     this.div2a.className="open1"
     this.div2b = document.createElement("div");
@@ -43,7 +61,7 @@ function paging_mode(start,end){
     this.div2b.innerHTML=this.titles
     this.div2c = document.createElement("div");
     this.div2c.className="open3"
-    this.div2c.innerHTML=data
+    this.div2c.innerHTML=data1
     this.div2d = document.createElement("div");
     this.div2d.className="open4"
     this.div2d.innerHTML="尊敬的用户"

@@ -211,3 +211,12 @@ function tianjia(){
   }
 }
 }
+function testcount(){
+  $.getJSON(urlnew+'/jfstore/listopt',function(data){
+    var a=data.data.length
+    if(a!=0){
+      $("#message").show()
+    }
+  })
+}
+setInterval('testcount()',600000)

@@ -3,6 +3,7 @@ var site2
 var currentCount=10;
 var usernames
 var addressnew
+var data1
 var wsCache = new WebStorageCache();
 $("#datatime1").datetimepicker();
 $("#datatime2").datetimepicker();	
@@ -38,9 +39,24 @@ else{
 // $("#datatime2").datetimepicker();
 //退出按钮
 
-function getLocalTime(nS) {     
-    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ')
-}
+Date.prototype.format = function(fmt)   
+{ //author: meizz   
+  var o = {   
+    "M+" : this.getMonth()+1,                 //月份   
+    "d+" : this.getDate(),                    //日   
+    "h+" : this.getHours(),                   //小时   
+    "m+" : this.getMinutes(),                 //分   
+    "s+" : this.getSeconds(),                 //秒   
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度   
+    "S"  : this.getMilliseconds()             //毫秒   
+  };   
+  if(/(y+)/.test(fmt))   
+    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
+  for(var k in o)   
+    if(new RegExp("("+ k +")").test(fmt))   
+  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+  return fmt;   
+}  
 //分页显示公用方法
 function paging_mode(start,end){
 document.getElementById("contentBox").innerHTML="";
@@ -76,8 +92,9 @@ function MeetingRoom(meetingroom_data){
 		 	datas=''
 		 }
 		 else{
-		 	this.times = meetingroom_data.exchangeTime.toString().substring(0,10);
-            datas=getLocalTime(this.times)
+		 	this.times = meetingroom_data.exchangeTime
+            datas=new Date(this.times)
+            data1=datas.format("yyyy-MM-dd hh:mm"); 
 		 }		 
 		 gets(this.ids)
 		 gets1(this.address)	
@@ -99,7 +116,7 @@ function MeetingRoom(meetingroom_data){
 		this.li_org.className = "org-time";
 		this.li_option = document.createElement("li");
 		this.li_option.className = "description";
-		this.li_option.innerHTML = datas;
+		this.li_option.innerHTML = data1;
 		this.li_options = document.createElement("li");
 		this.li_options.className = "description1";
 		this.li_options.innerHTML = addressnew;
@@ -241,3 +258,12 @@ $(".chaxun").click(function(){
     alert("网络错误，请重试")
 })
 })
+function testcount(){
+	$.getJSON(urlnew+'/jfstore/listopt',function(data){
+		var a=data.data.length
+		if(a!=0){
+			$("#message").show()
+		}
+	})
+}
+setInterval('testcount()',600000)

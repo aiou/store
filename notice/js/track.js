@@ -3,6 +3,8 @@ var site2
 var noticeid
 var currentCount=10;
 var tcontents
+var datas
+var data1
 var wsCache = new WebStorageCache();
 wsCache.deleteAllExpires();
 site1=wsCache.get("tokencom");
@@ -13,9 +15,24 @@ function exit(){
   wsCache.delete('refidcom');
    window.location.href="login.html"
 }
-function getLocalTime(nS) {     
-    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ')
-}
+Date.prototype.format = function(fmt)   
+{ //author: meizz   
+  var o = {   
+    "M+" : this.getMonth()+1,                 //月份   
+    "d+" : this.getDate(),                    //日   
+    "h+" : this.getHours(),                   //小时   
+    "m+" : this.getMinutes(),                 //分   
+    "s+" : this.getSeconds(),                 //秒   
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度   
+    "S"  : this.getMilliseconds()             //毫秒   
+  };   
+  if(/(y+)/.test(fmt))   
+    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
+  for(var k in o)   
+    if(new RegExp("("+ k +")").test(fmt))   
+  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+  return fmt;   
+}  
 if((site1==null)||(site2==null)){
 	window.location.href="login.html"
 }
@@ -41,10 +58,11 @@ else{
     //DATA
     this.ids = meetingroom_data.id;
     this.titles= meetingroom_data.title;
-    this.times= meetingroom_data.time.toString().substring(0,10);
+    this.times= meetingroom_data.time
     this.contents = meetingroom_data.content;
     //DOM
-    var datas=getLocalTime(this.times)
+    datas=new Date(this.times)
+    data1=datas.format("yyyy-MM-dd hh:mm"); 
    	this.ul_element = document.createElement("li");
     this.li_name = document.createElement("div");
     this.li_name.className="noticeName";
@@ -53,7 +71,7 @@ else{
     this.li_namep.innerHTML=this.titles;
     this.li_num = document.createElement("span");
     this.li_num.className="noticeTime"
-    this.li_num.innerHTML=datas
+    this.li_num.innerHTML=data1
     this.li_cap = document.createElement("span");
     this.li_cap.innerHTML = "编辑";
     this.li_cap.className = "editNotice";
@@ -326,3 +344,12 @@ $(".trues").click(function(){
     // 获取编辑区域的所有图片
     var imgs = editor1.$txt.find('img');
     // 追加内容
+function testcount(){
+  $.getJSON(urlnew+'/jfstore/listopt',function(data){
+    var a=data.data.length
+    if(a!=0){
+      $("#message").show()
+    }
+  })
+}
+setInterval('testcount()',600000)

@@ -23,6 +23,7 @@
 				<li class="userManagement"><a href="user-management.html"><span>用户管理</span></a></li>
 				<li class="add_Notice"><a href="notice.html"><span>添加公告</span></a></li>
 				<li class="add_Notice"><a href="img.html"><span>公告轮播</span></a></li>
+				<li id="message" style="display:none"><a href="message.html"><span style="color:red;margin-left:40px;">您有新的消息！</span></a></li>
 			</ul>
 		<div class="rightBox">
 			<div class="addNoticeBox clear">
@@ -138,7 +139,8 @@
 	<div class="form-box1">
 			<form  method="post" enctype="multipart/form-data" id="forms">
 			<div class="input-box">物品名称：<input type="text" name="name" class="add-name" ></div>
-			<div class="input-box">兑换积分：<input type="text" name="needscore" class="add-score" value=""></div> <div class="input-box">物品数量：<input type="text" name="totals" class="add-count" value=""></div>
+			<div class="input-box">兑换积分：<input type="text" name="needscore" id="add-score" value=""></div> 
+			<div class="input-box">物品数量：<input type="text" name="totals" class="add-count" value=""></div>
 			<div class="input-radio">
 			<input type="radio" name="lb" value="1" id="radio3" checked="checked">
 			<label for="radio3" class="label3">热门</label>

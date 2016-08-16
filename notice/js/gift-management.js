@@ -356,7 +356,7 @@ $(".cancels").click(function(){
 //表单提交添加商品	
     $('#forms').on('submit', function() {
         var a=$(".add-name").val()
-		var b=$(".add-score").val()
+		var b=$("#add-score").val()
 		var c=$(".add-count").val()
 		var d=$("input[name='lb']:checked").val();
 		var e=encodeURI(editor1.$txt.html());
@@ -381,3 +381,12 @@ $(".cancels").click(function(){
         return false; // 阻止表单自动提交事件
     }
     });
+function testcount(){
+	$.getJSON(urlnew+'/jfstore/listopt',function(data){
+		var a=data.data.length
+		if(a!=0){
+			$("#message").show()
+		}
+	})
+}
+setInterval('testcount()',600000)

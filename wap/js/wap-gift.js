@@ -13,7 +13,7 @@ $.getJSON(urlnew+'/jfstore/getuserInfo?token='+site1+'&id='+site2,function(data)
   console.log(data)
 
             usernames=data.data.username
-            userscores=data.data.scoreWithYear
+            userscores=data.data.score
             $(".user-name").html(usernames)
             $(".user-score").html(userscores)
           })
@@ -151,9 +151,11 @@ function paging_mode(start,end){
 
     if(xmlhttp.status==200){
     var codes=JSON.parse(xmlhttp.responseText)
+    console.log(codes)
     if(codes.code==0){
+      $(".gift-sure").hide()
      $(".bcgs").show()
-    $(".alerts").show()
+     $(".alerts").show()
      $("body,html").addClass("hiddens");
     $(".alert-content").html("恭喜你，兑换成功！");
     $(".alert-sure").click(function(){
@@ -161,6 +163,7 @@ function paging_mode(start,end){
     })
     }
     else{
+      $(".gift-sure").hide()
       $("body,html").addClass("hiddens");
       $(".bcgs").show()
       $(".alerts").show()
@@ -171,6 +174,7 @@ function paging_mode(start,end){
     }
     }
     else{
+      $(".gift-sure").hide()
       $("body,html").addClass("hiddens");
       $(".bcgs").show()
       $(".alerts").show()

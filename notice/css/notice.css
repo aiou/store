@@ -11,8 +11,8 @@ ul{
   overflow:hidden;
   visibility:hidden;}
 .clear{zoom:1;}
-a{cursor:pointer;}
-body{font-family:"Microsoft Yahei";}
+a{cursor:pointer;text-decoration: none}
+body{font-family:;"Microsoft Yahei";}
 /*顶部样式*/
 .topBox{width:100%;height:70px;}
 .topContent{width:1178px;margin:0 auto;height:70px;background: #ff4848;position: relative; }

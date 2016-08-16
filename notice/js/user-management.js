@@ -472,7 +472,6 @@ $(".chaxun").click(function(){
 		}
 		else{
 		var url2 =urlnew+'/jfstore/showUser?username='+organId;
-		console.log(url)
 		$.ajax({
 			type:"get",
 			url:url2,
@@ -483,10 +482,16 @@ $(".chaxun").click(function(){
 							location.reload()
 						return;
 					}
+					else{
+						// var a=$.makeArray(data.data)
+						// console.log(data.data)
+						// console.log(a)
+						firstShowList(data);
+					}
 				}else{
 					alert(data.mes);
 				}
-				firstShowList(data);
+				
 			
 			},
 			error: function(erro){
@@ -542,3 +547,12 @@ $(".cancels").click(function(){
 	$(".bcgs").hide()
 	$(".add-score").hide()
 })
+function testcount(){
+	$.getJSON(urlnew+'/jfstore/listopt',function(data){
+		var a=data.data.length
+		if(a!=0){
+			$("#message").show()
+		}
+	})
+}
+setInterval('testcount()',600000)

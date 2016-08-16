@@ -7,6 +7,7 @@ var totals
 var editorid
 var editordetail
 var addressnew
+var data1
  wsCache.deleteAllExpires();
  site1=wsCache.get("token");
 site2=wsCache.get("refid");
@@ -96,7 +97,7 @@ else{
 
 	}
 function getLocalTime(nS) {     
-    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ')
+    return  SimpleDateFormat
 }
 //分页显示公用方法
 function paging_mode(start,end){
@@ -119,6 +120,24 @@ function gets(results){
          data.data.province+data.data.city+data.data.detailLocation	 	
 		 })
 }
+Date.prototype.format = function(fmt)   
+{ //author: meizz   
+  var o = {   
+    "M+" : this.getMonth()+1,                 //月份   
+    "d+" : this.getDate(),                    //日   
+    "h+" : this.getHours(),                   //小时   
+    "m+" : this.getMinutes(),                 //分   
+    "s+" : this.getSeconds(),                 //秒   
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度   
+    "S"  : this.getMilliseconds()             //毫秒   
+  };   
+  if(/(y+)/.test(fmt))   
+    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
+  for(var k in o)   
+    if(new RegExp("("+ k +")").test(fmt))   
+  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+  return fmt;   
+}  
 function MeetingRoom(meetingroom_data){
 		//DATA
 		 this.address = meetingroom_data.addressId;
@@ -130,8 +149,10 @@ function MeetingRoom(meetingroom_data){
 		 	datas=''
 		 }
 		 else{
-		 	this.times = meetingroom_data.exchangeTime.toString().substring(0,10);
-            datas=getLocalTime(this.times)
+		 	this.times = meetingroom_data.exchangeTime
+            datas=new Date(this.times)
+            data1=datas.format("yyyy-MM-dd hh:mm"); 
+
 		 }
 		
 		 gets(this.address)	
@@ -157,7 +178,7 @@ function MeetingRoom(meetingroom_data){
 		// this.li_cap1.addEventListener("click",this.delete.bind(this),false);
 		this.li_option = document.createElement("li");
 		this.li_option.className = "description";
-		this.li_option.innerHTML = datas;
+		this.li_option.innerHTML = data1;
 		this.ul_element.appendChild(this.li_name);
 		this.ul_element.appendChild(this.li_num);
 		this.ul_element.appendChild(this.li_cap);
