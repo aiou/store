@@ -67,6 +67,7 @@ function paging_mode(start,end){
     this.li_img2.src="../image/jia.png";
     this.li_img2.addEventListener("click",this.jia.bind(this),false);
     this.li_inputs = document.createElement("input");
+    this.li_inputs.value="0"
     this.li_opation = document.createElement("dd");
     this.li_opation.innerHTML = "立刻兑换";
     this.li_opation.className = "cash";
@@ -109,6 +110,7 @@ function paging_mode(start,end){
     this.li_img2.src="../image/jia.png";
     this.li_img2.addEventListener("click",this.jia.bind(this),false);
     this.li_inputs = document.createElement("input");
+    this.li_inputs.value="0"
     this.li_opation = document.createElement("dd");
     this.li_opation.innerHTML = "立刻兑换";
     this.li_opation.className = "cash";

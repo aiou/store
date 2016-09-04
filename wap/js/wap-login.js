@@ -32,13 +32,60 @@ var scores
   Request = GetRequest();
   jfscore=Request.c;
   if((jfscore=='')||(jfscore==undefined)){
-        $(".bcgs").show()
-         $(".alerts").show()
-         $(".alert-content").html("扫描失败请重复扫描")
-                  $("body,html").addClass("hiddens");
+        $(".submit").click(function(){
+  var user=$.trim($(".username").val())
+  var password=$.trim($(".userpassword").val())
+    if((user=='')||(password=='')){
+     $(".bcgs").show()
+     $(".alerts").show()
+     $(".alert-content").html("请完善信息")
+              $("body,html").addClass("hiddens");
         setTimeout('hideAlertWin()',2000); 
+      return false
+    }
+    else{   
+        $.ajax({
+                  type:"get",
+                  url:urlnew+'/jfstore/userLogin?username='+user+'&password='+password,
+                  dataType:"json",
+                   success:function(data){
+                           $(".submits").attr("disabled",false)
+                          if(data.code==0){  
+                           admintoken=data.data.token;
+                           refids=data.data.refid
+                           wsCache.delete('tokenwap');
+                           wsCache.delete('refidwap');
+                           wsCache.set('tokenwap',admintoken , {exp : 86400});
+                           wsCache.set('refidwap',refids , {exp :86400});
+                           window.location.href="wap-gift.html"  
+          }
+          else if(data.code==6){
+              $(".bcgs").show()
+                            $(".alerts").show()
+                            $(".alert-content").html("账号或密码错误")
+                            $("body,html").addClass("hiddens");
+                              setTimeout('hideAlertWin()',2000); 
+          }
+          else if(data.code==999){
+              $(".bcgs").show()
+                           $(".alerts").show()
+                           $(".alert-content").html("服务器内部错误")
+                           $("body,html").addClass("hiddens");
+                            setTimeout('hideAlertWin()',2000); 
+          }
+        },
+        error:function(data){
+          $(".bcgs").show()
+           $(".alerts").show()
+           $(".alert-content").html("错误")
+           $("body,html").addClass("hiddens");
+        setTimeout('hideAlertWin()',2000); 
+        }
+      })
       }
-      else{ 
+    })
+    }
+   else{ 
         $.getJSON(urlnew+'/jfstore/getscoreBycode?code='+jfscore,function(data){
           console.log(data)
           scores=data.data
